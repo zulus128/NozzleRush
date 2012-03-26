@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3664D95915208A2B006DF7DD /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3664D95815208A2B006DF7DD /* track1.tmx */; };
 		369FACFF152089230056C20F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FACFE152089230056C20F /* QuartzCore.framework */; };
 		369FAD01152089230056C20F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD00152089230056C20F /* OpenGLES.framework */; };
 		369FAD03152089230056C20F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD02152089230056C20F /* OpenAL.framework */; };
@@ -179,6 +180,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3664D95815208A2B006DF7DD /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
 		369FACFA152089230056C20F /* NozzleRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NozzleRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369FACFE152089230056C20F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		369FAD00152089230056C20F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -554,9 +556,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3664D95615208A1C006DF7DD /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				3664D95815208A2B006DF7DD /* track1.tmx */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		369FACEF152089220056C20F = {
 			isa = PBXGroup;
 			children = (
+				3664D95615208A1C006DF7DD /* Maps */,
 				369FAD10152089230056C20F /* NozzleRush */,
 				369FACFD152089230056C20F /* Frameworks */,
 				369FACFB152089230056C20F /* Products */,
@@ -1184,6 +1195,7 @@
 				369FAD28152089240056C20F /* iTunesArtwork in Resources */,
 				369FAE5E152089270056C20F /* ChangeLog in Resources */,
 				369FAF1E152089290056C20F /* blocks.png in Resources */,
+				3664D95915208A2B006DF7DD /* track1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1446,6 +1458,7 @@
 				369FAF23152089290056C20F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
