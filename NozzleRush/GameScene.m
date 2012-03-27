@@ -33,7 +33,7 @@
 
     if((self = [super init])) {				
 	
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"TileMap.tmx"];
+        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
         self.background = [_tileMap layerNamed:@"Background"];
 		self.background.anchorPoint = ccp(0, 0);
 		[self addChild:_tileMap z:0];
