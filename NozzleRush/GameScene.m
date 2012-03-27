@@ -48,4 +48,44 @@
     return self;
 }
 
+- (CGPoint)boundLayerPos:(CGPoint)newPos {
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    CGPoint retval = newPos;
+    retval.x = MIN(retval.x, 0);
+    retval.x = MAX(retval.x, -_tileMap.contentSize.width+winSize.width); 
+    retval.y = MIN(0, retval.y);
+    retval.y = MAX(-_tileMap.contentSize.height+winSize.height, retval.y); 
+    return retval;
+}
+
+- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {    
+        
+        CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+        touchLocation = [self convertToNodeSpace:touchLocation];                
+        
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {    
+        
+        CGPoint translation = [recognizer translationInView:recognizer.view];
+        translation = ccp(translation.x, -translation.y);
+        CGPoint newPos = ccpAdd(self.position, translation);
+        self.position = [self boundLayerPos:newPos];  
+        [recognizer setTranslation:CGPointZero inView:recognizer.view];    
+        
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+		float scrollDuration = 0.2;
+		CGPoint velocity = [recognizer velocityInView:recognizer.view];
+		CGPoint newPos = ccpAdd(self.position, ccpMult(ccp(velocity.x, velocity.y * -1), scrollDuration));
+		newPos = [self boundLayerPos:newPos];
+        
+		[self stopAllActions];
+		CCMoveTo *moveTo = [CCMoveTo actionWithDuration:scrollDuration position:newPos];            
+		[self runAction:[CCEaseOut actionWithAction:moveTo rate:1]];            
+        
+    }        
+}
+
 @end
