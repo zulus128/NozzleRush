@@ -82,6 +82,24 @@ enum {
 	return scene;
 }
 
+-(void)setViewpointCenter:(CGPoint) position {
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    int x = MAX(position.x, winSize.width / 2);
+    int y = MAX(position.y, winSize.height / 2);
+    x = MIN(x, (_tileMap.mapSize.width * _tileMap.tileSize.width) 
+            - winSize.width / 2);
+    y = MIN(y, (_tileMap.mapSize.height * _tileMap.tileSize.height) 
+            - winSize.height/2);
+    CGPoint actualPosition = ccp(x, y);
+    
+    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    self.position = viewPoint;
+    
+}
+
 // on "init" you need to initialize your instance
 -(id) init {
 
@@ -96,13 +114,21 @@ enum {
 //        [self schedule:@selector(update:)];
 //		[self schedule:@selector(gameLogic:) interval:1.0];		
 		
-//		self.position = ccp(-228, -122);
+		self.position = ccp(-228, -122);
         
         [self initPhysics];
         
         [self processCollisionLayer];
         
-        CGPoint p = ccp(100, 100);
+        CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
+        NSAssert(objects != nil, @"'Objects' object group not found");
+        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
+        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
+        int x = [[spawnPoint valueForKey:@"x"] intValue];
+        int y = [[spawnPoint valueForKey:@"y"] intValue];
+        CGPoint p = ccp(x, y);
+        NSLog(@"SpawnPoint x = %d, y = %d",x,y);
+
         
         CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
 		spriteTexture_ = [parent texture];
@@ -110,7 +136,8 @@ enum {
         PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
         [parent addChild:sprite];
         
-        sprite.position = ccp( p.x, p.y);
+        sprite.position = ccp(p.x, p.y);
+        [self setViewpointCenter:sprite.position];
         
         // Define the dynamic body.
         //Set up a 1m squared box in the physics world
@@ -133,7 +160,7 @@ enum {
         [sprite setPhysicsBody:body];
         
         
-        body->ApplyLinearImpulse(b2Vec2(2, 2), body->GetWorldCenter());
+//        body->ApplyLinearImpulse(b2Vec2(2, 2), body->GetWorldCenter());
         
         [self scheduleUpdate];
 
@@ -221,7 +248,7 @@ enum {
     NSArray *pointsArray;
     for (id object in polygonObjectArray)
     {
-        NSLog(@"Poligon!!!");
+       // NSLog(@"Poligon!!!");
         pointsString = [object valueForKey:@"polygonPoints"];
         if (pointsString != NULL)
         {
@@ -278,7 +305,7 @@ enum {
 }
 
 - (void) addWall: (CGPoint) p sh:(b2PolygonShape)shape {
-/*
+
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
@@ -294,15 +321,18 @@ enum {
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
     body->CreateFixture(&fixtureDef);
-  */  
-    b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(p.x, p.y); // bottom-left corner
-    // Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = world->CreateBody(&groundBodyDef);
-	
-	groundBody->CreateFixture(&shape,0);
+    
+    
+    NSLog(@"x = %f, y = %f",p.x,p.y);
+    
+//    b2BodyDef groundBodyDef;
+//	groundBodyDef.position.Set(p.x, p.y); // bottom-left corner
+//    // Call the body factory which allocates memory for the ground body
+//	// from a pool and creates the ground box shape (also from a pool).
+//	// The body is also added to the world.
+//	b2Body* groundBody = world->CreateBody(&groundBodyDef);
+//	
+//	groundBody->CreateFixture(&shape,0);
 	
 
    
