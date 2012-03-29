@@ -100,6 +100,15 @@ enum {
     
 }
 
+-(CGPoint) locationFromTilePos:(CGPoint)tilePos {
+    
+	CCTMXLayer *grass = [_tileMap layerNamed:@"Background"];
+	CCSprite *tile = [grass tileAt:tilePos];
+	float x = -tile.position.x - _tileMap.tileSize.width + 64;
+	float y = -tile.position.y - _tileMap.tileSize.height;
+	return CGPointMake(-x, -y);
+}
+
 // on "init" you need to initialize your instance
 -(id) init {
 
@@ -126,8 +135,10 @@ enum {
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
         int x = [[spawnPoint valueForKey:@"x"] intValue];
         int y = [[spawnPoint valueForKey:@"y"] intValue];
-        CGPoint p = ccp(x, y);
-        NSLog(@"SpawnPoint x = %d, y = %d",x,y);
+//        CGPoint p = ccp(_tileMap.mapSize.width
+//                        ,_tileMap.mapSize.height);//ccp(x, y);
+        CGPoint p = [self locationFromTilePos:ccp(24,24)];
+        NSLog(@"SpawnPoint x = %d, y = %d",p.x,p.y);
 
         
         CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
@@ -137,6 +148,7 @@ enum {
         [parent addChild:sprite];
         
         sprite.position = ccp(p.x, p.y);
+        sprite.scale = 2.5f;
         [self setViewpointCenter:sprite.position];
         
         // Define the dynamic body.
