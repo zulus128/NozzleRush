@@ -109,6 +109,19 @@ enum {
 	return CGPointMake(-x, -y);
 }
 
+- (CGPoint) ort2iso:(CGPoint) pos {
+
+        float mapHeight = _tileMap.mapSize.height;
+        float mapWidth = _tileMap.mapSize.width;
+        float tileHeight = _tileMap.tileSize.height;
+        float tileWidth = _tileMap.tileSize.width;
+        float ratio = tileWidth / tileHeight;
+        
+        int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight) + 0.49f;
+        int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1) + 0.49f;
+        return ccp(x, y - 0.5f * tileHeight);
+}
+
 // on "init" you need to initialize your instance
 -(id) init {
 
@@ -133,22 +146,28 @@ enum {
         NSAssert(objects != nil, @"'Objects' object group not found");
         NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-        int x = [[spawnPoint valueForKey:@"x"] intValue];
-        int y = [[spawnPoint valueForKey:@"y"] intValue];
-//        CGPoint p = ccp(_tileMap.mapSize.width
-//                        ,_tileMap.mapSize.height);//ccp(x, y);
-        CGPoint p = [self locationFromTilePos:ccp(24,24)];
-        NSLog(@"SpawnPoint x = %d, y = %d",p.x,p.y);
+        float x = [[spawnPoint valueForKey:@"x"] intValue]  / CC_CONTENT_SCALE_FACTOR();
+        float y = [[spawnPoint valueForKey:@"y"] intValue] / CC_CONTENT_SCALE_FACTOR();
+        NSLog(@"SpawnPoint xy x = %f, y = %f",x,y);
+        
+//        CGPoint p = [self ort2iso:ccp(640,640)];
+//        CGPoint p = [self.background positionAt:ccp(x,y)];
+        CGPoint p = ccp(x,y);
+
+//        CGPoint p = [self locationFromTilePos:ccp(12,20)];
+        NSLog(@"SpawnPoint x = %f, y = %f",p.x,p.y);
 
         
-        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
-		spriteTexture_ = [parent texture];
-		[self addChild:parent z:0 tag:kTagParentNode];
-        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
-        [parent addChild:sprite];
+//        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
+//		spriteTexture_ = [parent texture];
+//		[_tileMap addChild:parent z:0 tag:kTagParentNode];
+//        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
+//        [parent addChild:sprite];
         
-        sprite.position = ccp(p.x, p.y);
-        sprite.scale = 2.5f;
+        CCSprite* sprite = [CCSprite spriteWithFile:@"4test.png"];
+        [_tileMap addChild:sprite];
+        
+        sprite.position = [self ort2iso: ccp(0, 800)];
         [self setViewpointCenter:sprite.position];
         
         // Define the dynamic body.
@@ -169,7 +188,7 @@ enum {
         fixtureDef.friction = 0.3f;
         body->CreateFixture(&fixtureDef);
         
-        [sprite setPhysicsBody:body];
+//        [sprite setPhysicsBody:body];
         
         
 //        body->ApplyLinearImpulse(b2Vec2(2, 2), body->GetWorldCenter());
