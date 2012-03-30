@@ -5,15 +5,15 @@
  </tileset>
  <layer name="Background" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJzdllEKgDAMQ7t2d/D+N1VhgTBU2Gj6YSDgGO6ZTmfdzHzD7XKncYxxH3NB1/e8UngO1pFkaM6RtT5zKhhzrZ6yrmolRxajIgfebSWjDasZIWZU1UqdA2eYkuFFDHWtwv7xnVfk+NrzzP/H256/2TcYfF5lZoHQNyiF/kXNYHM/tGvcH7TuCU/pErQ=
+   eJy9loEKgDAIRN3cP/T/f1rBDo5RA4fnwUFD2kutZTezfuD2eNDa53rMmNP1G1cKz8G6kgyteWTtz5wKxlqrr1yjiuSxyskRRkUeeLeVjDatZvgmnsGoqpU6D5xhSkYvYqhr5abvecV3XpHHrueZ/4+/nmcy+LzK5ECYG5TC/KJmsHkeOjXud9r3BrY9EtI=
   </data>
  </layer>
  <objectgroup name="Collisions" width="25" height="25">
-  <object x="-14" y="-16">
-   <polygon points="0,0 74,94 -1,93"/>
+  <object x="348" y="277">
+   <polygon points="0,0 288,1 121,-261"/>
   </object>
  </objectgroup>
  <objectgroup name="Objects" width="25" height="25">
-  <object name="SpawnPoint" x="358" y="638" width="79" height="39"/>
+  <object name="SpawnPoint" x="347" y="629" width="83" height="37"/>
  </objectgroup>
 </map>

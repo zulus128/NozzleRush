@@ -27,7 +27,7 @@ enum {
 -(void) initPhysics
 {
 	
-	CGSize s = [[CCDirector sharedDirector] winSize];
+//	CGSize s = [[CCDirector sharedDirector] winSize];
 	
 	b2Vec2 gravity;
 	gravity.Set(0.0f, 0.0f);
@@ -35,6 +35,18 @@ enum {
 	// Do we want to let bodies sleep?
 	world->SetAllowSleeping(true);
 	world->SetContinuousPhysics(true);
+    
+    m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+	world->SetDebugDraw(m_debugDraw);
+	
+	uint32 flags = 0;
+	flags += b2Draw::e_shapeBit;
+	//		flags += b2Draw::e_jointBit;
+	//		flags += b2Draw::e_aabbBit;
+	//		flags += b2Draw::e_pairBit;
+	//		flags += b2Draw::e_centerOfMassBit;
+	m_debugDraw->SetFlags(flags);
+    
 /*	
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
@@ -118,8 +130,11 @@ enum {
         float ratio = tileWidth / tileHeight;
         
         int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight) + 0.49f;
+//        int y = tileHeight /2 * ( mapHeight - pos.x/(tileWidth / ratio) + pos.y/tileHeight) + 0.49f;
         int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1) + 0.49f;
+//        y = mapHeight - y;
         return ccp(x, y - 0.5f * tileHeight);
+//        return ccp(x, y);
 }
 
 // on "init" you need to initialize your instance
@@ -130,13 +145,15 @@ enum {
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
         self.background = [_tileMap layerNamed:@"Background"];
 		self.background.anchorPoint = ccp(0, 0);
-		[self addChild:_tileMap z:0];
+		[self addChild:_tileMap z:-1];
 		
 		// Call game logic about every second
 //        [self schedule:@selector(update:)];
 //		[self schedule:@selector(gameLogic:) interval:1.0];		
 		
-		self.position = ccp(-228, -122);
+//		self.position = ccp(-228, -122);
+        
+        debug = NO;
         
         [self initPhysics];
         
@@ -146,17 +163,10 @@ enum {
         NSAssert(objects != nil, @"'Objects' object group not found");
         NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-        float x = [[spawnPoint valueForKey:@"x"] intValue]  / CC_CONTENT_SCALE_FACTOR();
-        float y = [[spawnPoint valueForKey:@"y"] intValue] / CC_CONTENT_SCALE_FACTOR();
+        float x = [[spawnPoint valueForKey:@"x"] integerValue] / CC_CONTENT_SCALE_FACTOR();
+        float y = [[spawnPoint valueForKey:@"y"] integerValue] / CC_CONTENT_SCALE_FACTOR();
         NSLog(@"SpawnPoint xy x = %f, y = %f",x,y);
         
-//        CGPoint p = [self ort2iso:ccp(640,640)];
-//        CGPoint p = [self.background positionAt:ccp(x,y)];
-        CGPoint p = ccp(x,y);
-
-//        CGPoint p = [self locationFromTilePos:ccp(12,20)];
-        NSLog(@"SpawnPoint x = %f, y = %f",p.x,p.y);
-
         
 //        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
 //		spriteTexture_ = [parent texture];
@@ -167,7 +177,10 @@ enum {
         CCSprite* sprite = [CCSprite spriteWithFile:@"4test.png"];
         [_tileMap addChild:sprite];
         
-        sprite.position = [self ort2iso: ccp(0, 800)];
+        CGPoint p = ccp(x,y);
+        NSLog(@"SpawnPoint x = %f, y = %f",p.x,p.y);
+
+        sprite.position = [self ort2iso:p];
         [self setViewpointCenter:sprite.position];
         
         // Define the dynamic body.
@@ -190,8 +203,11 @@ enum {
         
 //        [sprite setPhysicsBody:body];
         
+        body->SetUserData(sprite);
         
-//        body->ApplyLinearImpulse(b2Vec2(2, 2), body->GetWorldCenter());
+        body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
+        
+        
         
         [self scheduleUpdate];
 
@@ -213,6 +229,21 @@ enum {
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);	
+    
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
+        if (b->GetUserData() != NULL) {
+
+            CCSprite *ballData = (CCSprite *)b->GetUserData();
+            
+            CGPoint p = ccp(b->GetPosition().x * PTM_RATIO,
+                                    b->GetPosition().y * PTM_RATIO);
+            ballData.position = [self ort2iso:p];
+            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+            
+            [self setViewpointCenter:ballData.position];
+        }        
+    }
+
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
@@ -262,6 +293,9 @@ enum {
 	
     [_tileMap release];
         
+    delete m_debugDraw;
+	m_debugDraw = NULL;
+
 	[super dealloc];
 }	
 
@@ -293,6 +327,8 @@ enum {
                 NSLog(@"%s skipped TMX polygon at x=%d,y=%d for exceeding %d vertices", __PRETTY_FUNCTION__, x, y, b2_maxPolygonVertices);
                 continue;
             }
+            NSLog(@"pointsArray = %@", pointsArray);
+            
             // build polygon verticies;
             for (i = 0, k = 0; i < n; ++k)
             {
@@ -303,6 +339,7 @@ enum {
                 ++i;
                 shape.m_vertices[k].Set(fX/PTM_RATIO, fY/PTM_RATIO);
             }
+            
             // calculate area of a simple (ie. non-self-intersecting) polygon,
             // because it will be negative for counter-clockwise winding
             area = 0.0;
@@ -329,16 +366,75 @@ enum {
             y = [[object valueForKey:@"y"] intValue] / CC_CONTENT_SCALE_FACTOR();
             // TODO add the box2d object to the box2d world at coordinate (x,y)
             
+            NSLog(@"Point x = %d, y = %d",x,y);
+            
             [self addWall:ccp(x,y) sh:shape];
+            
+            
+//            glLineWidth(3);
+//            ccDrawLine( ccp(x,y), ccp(x+width,y) );
+//            ccDrawLine( ccp(x+width,y), ccp(x+width,y+height) );
+//            ccDrawLine( ccp(x+width,y+height), ccp(x,y+height) );
+//            ccDrawLine( ccp(x,y+height), ccp(x,y) );
+//            glLineWidth(1);
         }
     }
     
 }
 
+//-(void) draw
+//{
+//    glLineWidth(3);
+//    ccDrawLine( [self ort2iso:ccp(0,0)], [self ort2iso:ccp(800,800)] );
+//    glLineWidth(1);
+//}
+
+-(void) draw
+{
+	//
+	// IMPORTANT:
+	// This is only for debug purposes
+	// It is recommend to disable it
+	//
+	[super draw];
+	
+//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+//	
+//	kmGLPushMatrix();
+//	
+//	world->DrawDebugData();	
+//	
+//	kmGLPopMatrix();
+    
+    
+    if(debug) {
+        
+        glLineWidth(3);
+        int32 cnt = debugShape.GetVertexCount();
+        b2Vec2 p0 = debugShape.GetVertex(0);
+        b2Vec2 p00 = p0;
+        float x = debugPoint.x;
+        float y = debugPoint.y;
+        for (int i = 1; i < cnt; i++) {
+            
+            b2Vec2 p = debugShape.GetVertex(i);
+            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+            p0 = p;
+        }
+        ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+
+        glLineWidth(1);
+    }
+}
+
 - (void) addWall: (CGPoint) p sh:(b2PolygonShape)shape {
 
+    debugPoint = p;
+    debugShape = shape;
+    debug = YES;
+    
     b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
+    bodyDef.type = b2_staticBody;/* b2_dynamicBody;*/
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
     b2Body *body = world->CreateBody(&bodyDef);
     
@@ -355,6 +451,7 @@ enum {
     
     
     NSLog(@"x = %f, y = %f",p.x,p.y);
+    
     
 //    b2BodyDef groundBodyDef;
 //	groundBodyDef.position.Set(p.x, p.y); // bottom-left corner
