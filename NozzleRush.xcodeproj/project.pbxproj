@@ -16,7 +16,6 @@
 		361074FA1521AB3A00DC776F /* 7test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074F11521AB3A00DC776F /* 7test.png */; };
 		361074FB1521AB3A00DC776F /* 8test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074F21521AB3A00DC776F /* 8test.png */; };
 		361074FC1521AB3A00DC776F /* 9test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074F31521AB3A00DC776F /* 9test.png */; };
-		3612A9CC15230FA100483409 /* track2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3612A9CB15230FA100483409 /* track2.tmx */; };
 		36209595152176050041020A /* track_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 36209594152176050041020A /* track_tiles.png */; };
 		36209599152176820041020A /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 36209598152176820041020A /* Common.m */; };
 		3620959C1521777B0041020A /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620959B1521777B0041020A /* GameScene.mm */; };
@@ -189,7 +188,6 @@
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1C152089290056C20F /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF1B152089290056C20F /* PhysicsSprite.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
-		36F9A9B015218A7E00A2F2AB /* isometric_grass_and_water.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36F9A9AF15218A7E00A2F2AB /* isometric_grass_and_water.tmx */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
 /* End PBXBuildFile section */
 
@@ -203,7 +201,6 @@
 		361074F11521AB3A00DC776F /* 7test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7test.png; sourceTree = "<group>"; };
 		361074F21521AB3A00DC776F /* 8test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8test.png; sourceTree = "<group>"; };
 		361074F31521AB3A00DC776F /* 9test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9test.png; sourceTree = "<group>"; };
-		3612A9CB15230FA100483409 /* track2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track2.tmx; sourceTree = "<group>"; };
 		36209594152176050041020A /* track_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_tiles.png; sourceTree = "<group>"; };
 		36209597152176820041020A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		36209598152176820041020A /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
@@ -562,7 +559,6 @@
 		369FAF1A152089290056C20F /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		369FAF1B152089290056C20F /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
-		36F9A9AF15218A7E00A2F2AB /* isometric_grass_and_water.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = isometric_grass_and_water.tmx; sourceTree = "<group>"; };
 		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -606,8 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				36FEA3291525CD9E0007BEB2 /* track1.tmx */,
-				3612A9CB15230FA100483409 /* track2.tmx */,
-				36F9A9AF15218A7E00A2F2AB /* isometric_grass_and_water.tmx */,
 				36209594152176050041020A /* track_tiles.png */,
 			);
 			name = Maps;
@@ -1250,7 +1244,6 @@
 				369FAE5E152089270056C20F /* ChangeLog in Resources */,
 				369FAF1E152089290056C20F /* blocks.png in Resources */,
 				36209595152176050041020A /* track_tiles.png in Resources */,
-				36F9A9B015218A7E00A2F2AB /* isometric_grass_and_water.tmx in Resources */,
 				361074F41521AB3A00DC776F /* 1test.png in Resources */,
 				361074F51521AB3A00DC776F /* 2test.png in Resources */,
 				361074F61521AB3A00DC776F /* 3test.png in Resources */,
@@ -1260,7 +1253,6 @@
 				361074FA1521AB3A00DC776F /* 7test.png in Resources */,
 				361074FB1521AB3A00DC776F /* 8test.png in Resources */,
 				361074FC1521AB3A00DC776F /* 9test.png in Resources */,
-				3612A9CC15230FA100483409 /* track2.tmx in Resources */,
 				36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

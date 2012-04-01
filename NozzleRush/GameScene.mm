@@ -129,9 +129,9 @@ enum {
         float tileWidth = _tileMap.tileSize.width;
         float ratio = tileWidth / tileHeight;
         
-        int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight) + 0.49f;
+    int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight);// + 0.49f;
 //        int y = tileHeight /2 * ( mapHeight - pos.x/(tileWidth / ratio) + pos.y/tileHeight) + 0.49f;
-        int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1) + 0.49f;
+    int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1);// + 0.49f;
 //        y = mapHeight - y;
         return ccp(x, y - 0.5f * tileHeight);
 //        return ccp(x, y);
@@ -335,7 +335,8 @@ enum {
                 fX = [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 // flip y-position (TMX y-origin is upper-left)
-                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+//                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+                fY = [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 shape.m_vertices[k].Set(fX/PTM_RATIO, fY/PTM_RATIO);
             }
