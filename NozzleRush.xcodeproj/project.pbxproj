@@ -19,6 +19,11 @@
 		36209595152176050041020A /* track_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 36209594152176050041020A /* track_tiles.png */; };
 		36209599152176820041020A /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 36209598152176820041020A /* Common.m */; };
 		3620959C1521777B0041020A /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620959B1521777B0041020A /* GameScene.mm */; };
+		364B77E4154A58CA009E4E9E /* Button_field_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77DF154A58CA009E4E9E /* Button_field_1.png */; };
+		364B77E5154A58CA009E4E9E /* Button_fire_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E0154A58CA009E4E9E /* Button_fire_1.png */; };
+		364B77E6154A58CA009E4E9E /* Button_trigger_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E1154A58CA009E4E9E /* Button_trigger_1.png */; };
+		364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E2154A58CA009E4E9E /* Button_weapon_1.png */; };
+		364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E3154A58CA009E4E9E /* Button_weapon_2.png */; };
 		369FACFF152089230056C20F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FACFE152089230056C20F /* QuartzCore.framework */; };
 		369FAD01152089230056C20F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD00152089230056C20F /* OpenGLES.framework */; };
 		369FAD03152089230056C20F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD02152089230056C20F /* OpenAL.framework */; };
@@ -206,6 +211,11 @@
 		36209598152176820041020A /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		3620959A1521777B0041020A /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		3620959B1521777B0041020A /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
+		364B77DF154A58CA009E4E9E /* Button_field_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_field_1.png; sourceTree = "<group>"; };
+		364B77E0154A58CA009E4E9E /* Button_fire_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_fire_1.png; sourceTree = "<group>"; };
+		364B77E1154A58CA009E4E9E /* Button_trigger_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_trigger_1.png; sourceTree = "<group>"; };
+		364B77E2154A58CA009E4E9E /* Button_weapon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_1.png; sourceTree = "<group>"; };
+		364B77E3154A58CA009E4E9E /* Button_weapon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_2.png; sourceTree = "<group>"; };
 		3665A519152960DA00BD0B27 /* NozzleRush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NozzleRush.entitlements; sourceTree = "<group>"; };
 		369FACFA152089230056C20F /* NozzleRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NozzleRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369FACFE152089230056C20F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -599,6 +609,18 @@
 			name = Cars;
 			sourceTree = "<group>";
 		};
+		364B77DD154A589F009E4E9E /* Joystick */ = {
+			isa = PBXGroup;
+			children = (
+				364B77DF154A58CA009E4E9E /* Button_field_1.png */,
+				364B77E0154A58CA009E4E9E /* Button_fire_1.png */,
+				364B77E1154A58CA009E4E9E /* Button_trigger_1.png */,
+				364B77E2154A58CA009E4E9E /* Button_weapon_1.png */,
+				364B77E3154A58CA009E4E9E /* Button_weapon_2.png */,
+			);
+			name = Joystick;
+			sourceTree = "<group>";
+		};
 		3664D95615208A1C006DF7DD /* Maps */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +633,7 @@
 		369FACEF152089220056C20F = {
 			isa = PBXGroup;
 			children = (
+				364B77DD154A589F009E4E9E /* Joystick */,
 				361074E91521AB2A00DC776F /* Cars */,
 				3664D95615208A1C006DF7DD /* Maps */,
 				369FAD10152089230056C20F /* NozzleRush */,
@@ -1256,6 +1279,11 @@
 				361074FB1521AB3A00DC776F /* 8test.png in Resources */,
 				361074FC1521AB3A00DC776F /* 9test.png in Resources */,
 				36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */,
+				364B77E4154A58CA009E4E9E /* Button_field_1.png in Resources */,
+				364B77E5154A58CA009E4E9E /* Button_fire_1.png in Resources */,
+				364B77E6154A58CA009E4E9E /* Button_trigger_1.png in Resources */,
+				364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */,
+				364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
