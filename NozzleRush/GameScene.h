@@ -21,6 +21,7 @@
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
 @property (nonatomic, retain) CCTMXLayer *background;
+@property (nonatomic, retain) CCLayer *hudLayer;
 
 + (id) scene;
 

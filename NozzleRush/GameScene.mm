@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "PhysicsSprite.h"
+#import "HudLayer.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -23,6 +24,7 @@ enum {
 
 @synthesize tileMap = _tileMap;
 @synthesize background = _background;
+@synthesize hudLayer = _hudLayer;
 
 -(void) initPhysics
 {
@@ -90,6 +92,10 @@ enum {
 	// add layer as a child to scene
 	[scene addChild: layer z:1];
 	
+    HudLayer *hud = [HudLayer node];
+	[scene addChild:hud z:2];
+	layer.hudLayer = hud;
+    
 	// return the scene
 	return scene;
 }
@@ -206,7 +212,6 @@ enum {
         body->SetUserData(sprite);
         
         body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
-        
         
         
         [self scheduleUpdate];

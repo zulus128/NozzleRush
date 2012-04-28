@@ -193,6 +193,7 @@
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1C152089290056C20F /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF1B152089290056C20F /* PhysicsSprite.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
+		36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.m */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
 /* End PBXBuildFile section */
 
@@ -570,6 +571,8 @@
 		369FAF1A152089290056C20F /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		369FAF1B152089290056C20F /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
+		36AF39AD154C0466008C3F63 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
 		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -673,6 +676,8 @@
 				36209598152176820041020A /* Common.m */,
 				3620959A1521777B0041020A /* GameScene.h */,
 				3620959B1521777B0041020A /* GameScene.mm */,
+				36AF39AC154C0466008C3F63 /* HudLayer.h */,
+				36AF39AD154C0466008C3F63 /* HudLayer.m */,
 				369FAF11152089290056C20F /* AppDelegate.h */,
 				369FAF12152089290056C20F /* AppDelegate.mm */,
 				369FAF14152089290056C20F /* HelloWorldLayer.h */,
@@ -1443,6 +1448,7 @@
 				369FAF1C152089290056C20F /* PhysicsSprite.mm in Sources */,
 				36209599152176820041020A /* Common.m in Sources */,
 				3620959C1521777B0041020A /* GameScene.mm in Sources */,
+				36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
