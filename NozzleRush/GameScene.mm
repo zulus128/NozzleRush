@@ -148,6 +148,8 @@ enum {
 
     if((self = [super init])) {				
 	
+//        self.isTouchEnabled = YES;
+        
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
         self.background = [_tileMap layerNamed:@"Background"];
 		self.background.anchorPoint = ccp(0, 0);
@@ -261,35 +263,35 @@ enum {
     return retval;
 }
 
-- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
-    
-    if (recognizer.state == UIGestureRecognizerStateBegan) {    
-        
-        CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-        touchLocation = [self convertToNodeSpace:touchLocation];                
-        
-    } else if (recognizer.state == UIGestureRecognizerStateChanged) {    
-        
-        CGPoint translation = [recognizer translationInView:recognizer.view];
-        translation = ccp(translation.x, -translation.y);
-        CGPoint newPos = ccpAdd(self.position, translation);
-        self.position = [self boundLayerPos:newPos];  
-        [recognizer setTranslation:CGPointZero inView:recognizer.view];    
-        
-    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-		float scrollDuration = 0.2;
-		CGPoint velocity = [recognizer velocityInView:recognizer.view];
-		CGPoint newPos = ccpAdd(self.position, ccpMult(ccp(velocity.x, velocity.y * -1), scrollDuration));
-		newPos = [self boundLayerPos:newPos];
-        
-		[self stopAllActions];
-		CCMoveTo *moveTo = [CCMoveTo actionWithDuration:scrollDuration position:newPos];            
-		[self runAction:[CCEaseOut actionWithAction:moveTo rate:1]];            
-        
-    }        
-}
+//- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
+//    
+//    if (recognizer.state == UIGestureRecognizerStateBegan) {    
+//        
+//        CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+//        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+//        touchLocation = [self convertToNodeSpace:touchLocation];                
+//        
+//    } else if (recognizer.state == UIGestureRecognizerStateChanged) {    
+//        
+//        CGPoint translation = [recognizer translationInView:recognizer.view];
+//        translation = ccp(translation.x, -translation.y);
+//        CGPoint newPos = ccpAdd(self.position, translation);
+//        self.position = [self boundLayerPos:newPos];  
+//        [recognizer setTranslation:CGPointZero inView:recognizer.view];    
+//        
+//    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+//        
+//		float scrollDuration = 0.2;
+//		CGPoint velocity = [recognizer velocityInView:recognizer.view];
+//		CGPoint newPos = ccpAdd(self.position, ccpMult(ccp(velocity.x, velocity.y * -1), scrollDuration));
+//		newPos = [self boundLayerPos:newPos];
+//        
+//		[self stopAllActions];
+//		CCMoveTo *moveTo = [CCMoveTo actionWithDuration:scrollDuration position:newPos];            
+//		[self runAction:[CCEaseOut actionWithAction:moveTo rate:1]];            
+//        
+//    }        
+//}
 
 -(void) dealloc
 {
@@ -471,5 +473,6 @@ enum {
 
    
 }
+
 
 @end

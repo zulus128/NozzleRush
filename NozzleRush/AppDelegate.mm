@@ -82,10 +82,9 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
     CCScene *scene = [GameScene scene];
-    GameScene *layer = (GameScene *) [scene.children objectAtIndex:0];
-	
-    UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:layer action:@selector(handlePanFrom:)] autorelease];
-    [navController_.view addGestureRecognizer:gestureRecognizer];
+//    GameScene *layer = (GameScene *) [scene.children objectAtIndex:0];	
+//    UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:layer action:@selector(handlePanFrom:)] autorelease];
+//    [navController_.view addGestureRecognizer:gestureRecognizer];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 //	[director_ pushScene: [HelloWorldLayer scene]]; 

@@ -12,6 +12,9 @@
 @interface HudLayer : CCLayer {
     
     float trigbeginx, trigbeginy;
+    BOOL flagbegin;
+    CCSprite* joyfire;
+    id move_ease_in;
 }
 
 @end

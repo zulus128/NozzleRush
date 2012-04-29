@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SCALE 0.2f
+#define SCALE 0.4f
 
 @interface Common : NSObject
 
