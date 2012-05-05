@@ -12,4 +12,8 @@
 
 @interface Common : NSObject
 
++ (Common*) instance;
+
+@property (assign, readwrite) CGPoint direction;
+
 @end

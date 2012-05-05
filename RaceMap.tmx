@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="50" height="60" tilewidth="164" tileheight="94">
+ <tileset firstgid="1" name="17" tilewidth="164" tileheight="109">
+  <tileoffset x="0" y="15"/>
+  <image source="17.png" width="165" height="109"/>
+ </tileset>
+ <tileset firstgid="2" name="16" tilewidth="164" tileheight="94">
+  <image source="16.png" width="166" height="95"/>
+ </tileset>
+ <tileset firstgid="3" name="15" tilewidth="164" tileheight="115">
+  <image source="15.png" width="165" height="115"/>
+ </tileset>
+ <tileset firstgid="4" name="14" tilewidth="137" tileheight="182">
+  <tileoffset x="0" y="68"/>
+  <image source="14.png" width="137" height="182"/>
+ </tileset>
+ <tileset firstgid="5" name="13" tilewidth="164" tileheight="163">
+  <tileoffset x="0" y="69"/>
+  <image source="13.png" width="165" height="163"/>
+ </tileset>
+ <tileset firstgid="6" name="12" tilewidth="164" tileheight="94">
+  <image source="12.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="7" name="11" tilewidth="83" tileheight="114">
+  <image source="11.png" width="83" height="114"/>
+ </tileset>
+ <tileset firstgid="8" name="10" tilewidth="164" tileheight="115">
+  <image source="10.png" width="165" height="115"/>
+ </tileset>
+ <tileset firstgid="9" name="9" tilewidth="164" tileheight="94">
+  <image source="9.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="10" name="8" tilewidth="164" tileheight="115">
+  <image source="8.png" width="165" height="115"/>
+ </tileset>
+ <tileset firstgid="11" name="7" tilewidth="83" tileheight="114">
+  <tileoffset x="81" y="0"/>
+  <image source="7.png" width="83" height="114"/>
+ </tileset>
+ <tileset firstgid="12" name="5" tilewidth="164" tileheight="163">
+  <tileoffset x="0" y="69"/>
+  <image source="5.png" width="165" height="163"/>
+ </tileset>
+ <tileset firstgid="13" name="4" tilewidth="137" tileheight="182">
+  <tileoffset x="27" y="68"/>
+  <image source="4.png" width="137" height="182"/>
+ </tileset>
+ <tileset firstgid="14" name="3" tilewidth="164" tileheight="94">
+  <image source="3.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="15" name="2" tilewidth="164" tileheight="94">
+  <image source="2.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="16" name="1" tilewidth="99" tileheight="291">
+  <tileoffset x="32" y="60"/>
+  <image source="1.png" width="99" height="291"/>
+ </tileset>
+ <tileset firstgid="17" name="6" tilewidth="164" tileheight="94">
+  <image source="6.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="18" name="9-down" tilewidth="164" tileheight="94">
+  <tileoffset x="2" y="2"/>
+  <image source="9.png" width="165" height="96"/>
+ </tileset>
+ <tileset firstgid="19" name="7-down" tilewidth="83" tileheight="114">
+  <tileoffset x="83" y="2"/>
+  <image source="7.png" width="83" height="114"/>
+ </tileset>
+ <tileset firstgid="20" name="11-down" tilewidth="83" tileheight="114">
+  <tileoffset x="-2" y="2"/>
+  <image source="11.png" width="83" height="114"/>
+ </tileset>
+ <tileset firstgid="21" name="16-down" tilewidth="164" tileheight="94">
+  <tileoffset x="0" y="4"/>
+  <image source="16.png" width="166" height="95"/>
+ </tileset>
+ <layer name="Layer3" width="50" height="60" opacity="0.76">
+  <data encoding="base64" compression="zlib">
+   eJzt10EOxCAIhWFPoPe/7ewbMzOWHx4YFiyapsqnWHWNMVZHR0f6mAlyaEtbTtqam+c38Wxv997LYsn7rdXDEu3Y5fzNaHEo1om1b7XBw6Ew3OIg6yHDuqjqOPkvZ60r2pDJQbZJjat1f490ZDIoHZ61ajXQuXk6shss86E0UA61wZoT+d9XOqgcMuyDdE1UdxCWqL3pn32RsqgMc/OdsjasBrWFPkup1ix9HiQdxNmRGBdyjKP7VzuooPtuRx7HLXV1i2PBbbWjHe1ox40Odd/0XFR1kGd/1TxHGEjLrztwhZrKYiDu22rDieM07+hasuSXqe6fuVQ0VKmZCvEBnxmtuQ==
+  </data>
+ </layer>
+ <layer name="Layer2" width="50" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmlEOwjAIQD2C0Xn/q6ofTcwyRoFHqUtfssQvyhu06zpvt8ViPK/P9RhwbRdwyHQZ7ZDhUuVAulQ7EC6SQzZPYVyPy1kdGvfE35KLlYo6ZOTQW4dMpBws41fXg5qbxL3wQq4vZD2ItfuXir6iHawQfVVZB81jlANFJPYMdWh4+6pqLyPhycXiYN2vePF4aD0yah+g5aTlMlM/Nah6fKmoQ4P0qITqK+3dp3eN9r4Peu6t9T3O+pzxuHh7pNfF+6y0ukTmrORCXRaX6JydxYWoaY9LJFZPPtTZi+ZyhLQ3oecsdU+k3CXoekbmTYTsOWvFu6eNrKGNMxdrLC9kL/xzX2XFosYmzx9WX9WMPaPH6qu56lEdixp79dVc9aiORY1N9dXmjGWBPjcmv20fYTl/iJLl4nWI9ALtMrIOe7LPRDLrUOmSDe2ikbk2Ui5SviO/PURdrkbld589kf9gLa7HG/pGRCE=
+  </data>
+ </layer>
+ <layer name="Layer1" width="50" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmUkOwzAIRdN53PT+l228sFRZdsPwgSTiSSyL81Q7JjBNSeLPcY67Q9yMHU5zPJzCwsXbwcIlygHpMnJ4GwbaZeRwUOSk8OqsKXWJcqj0XC6CPM9OHi+H0TMgPCQ5tOzBo7evt+aBPJtID24tg3y/oDwQd6jm/YLwiHYoaD3W4FDQeCBqGdRdJfWIrgNaJB5rcyhIPNZQy7QgPCJqmZb02J9HiaVvH2rNIv0elHhwv+O4d6XERbpHqC7S+57rotnrI5elmtbCRXtmRy6j4PZQqC6tx5XxW64L5a7s5aI8D6r3suTCue+RZ7b8L7/7/EzMg6hpLc6s9NxosDyzW/Io1L3xAeSSgqx7Imuo9LDNFbl2euhJD9tckWunh570sM0VubakJ4IANWerIGfbPUZ9IIu+sZULp4eC6hujXSIcKpT+jma26eGw5KINyxmVl0vkzATlEj33KYz6O96zzSRJ/vMFwgce/Q==
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="50" height="60">
+  <object x="3094" y="730">
+   <polygon points="0,0 185,185 183,381 -10,574 -1046,580 -1689,1222 -1690,1696 -1029,2351 -569,2345 -291,2067 463,2064 566,2167 566,3664 456,3774 -8,3772 -294,4058 -1513,4059 -1891,3685 -1899,2318 -1909,2284 -1932,2271 -2270,2270 -2463,2081 -2462,286 -2167,-3"/>
+  </object>
+  <object x="7" y="5">
+   <polygon points="0,0 536,543 169,916 177,2890 643,3357 738,3353 735,4483 1490,5231 2885,5230 3167,4949 3639,4955 4109,4485 4103,2891 3551,2346 2713,2348 2419,2624 2131,2621 1854,2340 1843,2041 2138,1759 3179,1755 3720,1195 3723,829 3174,280 829,274 539,539 3,-3 4689,-4 4690,5631 -4,5634"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Objects" width="50" height="60">
+  <object x="1964" y="472"/>
+  <object x="1968" y="535"/>
+  <object x="1968" y="535"/>
+  <object x="2090" y="571">
+   <polygon points="0,0 -6,-55 34,-53 39,-9"/>
+  </object>
+ </objectgroup>
+</map>

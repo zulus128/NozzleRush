@@ -10,4 +10,29 @@
 
 @implementation Common
 
+@synthesize direction;
+
++ (Common*) instance  {
+	
+	static Common* instance;
+	
+	@synchronized(self) {
+		
+		if(!instance) {
+			
+			instance = [[Common alloc] init];
+		}
+	}
+	return instance;
+}
+
+- (id) init{	
+	
+	self = [super init];
+	if(self !=nil) {
+ 
+    }
+	return self;	
+}
+
 @end

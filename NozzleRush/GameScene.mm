@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "PhysicsSprite.h"
 #import "HudLayer.h"
+#import "Common.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -114,6 +115,7 @@ enum {
     
     CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    self.position = ccpMult(viewPoint, 0.5f);
     self.position = viewPoint;
     
 }
@@ -122,7 +124,7 @@ enum {
     
 	CCTMXLayer *grass = [_tileMap layerNamed:@"Background"];
 	CCSprite *tile = [grass tileAt:tilePos];
-	float x = -tile.position.x - _tileMap.tileSize.width + 64;
+	float x = -tile.position.x - _tileMap.tileSize.width + 194;//64;
 	float y = -tile.position.y - _tileMap.tileSize.height;
 	return CGPointMake(-x, -y);
 }
@@ -139,7 +141,7 @@ enum {
 //        int y = tileHeight /2 * ( mapHeight - pos.x/(tileWidth / ratio) + pos.y/tileHeight) + 0.49f;
     int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1);// + 0.49f;
 //        y = mapHeight - y;
-        return ccp(x, y - 0.5f * tileHeight);
+        return ccp(x, (y - 0.5f * tileHeight));
 //        return ccp(x, y);
 }
 
@@ -150,7 +152,8 @@ enum {
 	
 //        self.isTouchEnabled = YES;
         
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
+//        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
+        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest.tmx"];
         self.background = [_tileMap layerNamed:@"Background"];
 		self.background.anchorPoint = ccp(0, 0);
 		[self addChild:_tileMap z:-1];
@@ -183,7 +186,7 @@ enum {
 //        [parent addChild:sprite];
         
         CCSprite* sprite = [CCSprite spriteWithFile:@"4test.png"];
-        [_tileMap addChild:sprite];
+        [_tileMap addChild:sprite z:50];
         
         CGPoint p = ccp(x,y);
         NSLog(@"SpawnPoint x = %f, y = %f",p.x,p.y);
@@ -213,9 +216,13 @@ enum {
         
         body->SetUserData(sprite);
         
-        body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
+//        body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
         
         
+//        b2Vec2 force1 = b2Vec2(5, -5);
+//        force1.Normalize();
+//        body->ApplyLinearImpulse(force1, body->GetPosition());
+
         [self scheduleUpdate];
 
 		
@@ -240,6 +247,10 @@ enum {
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
         if (b->GetUserData() != NULL) {
 
+                    b2Vec2 force1 = b2Vec2([Common instance].direction.x, -[Common instance].direction.y);
+                    force1.Normalize();
+                    b->ApplyForce(force1, b->GetPosition());
+            
             CCSprite *ballData = (CCSprite *)b->GetUserData();
             
             CGPoint p = ccp(b->GetPosition().x * PTM_RATIO,
@@ -250,10 +261,13 @@ enum {
             [self setViewpointCenter:ballData.position];
         }        
     }
+    
+//    world->ClearForces();
 
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
+    
     CGSize winSize = [CCDirector sharedDirector].winSize;
     CGPoint retval = newPos;
     retval.x = MIN(retval.x, 0);

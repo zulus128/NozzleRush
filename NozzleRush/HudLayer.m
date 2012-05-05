@@ -10,7 +10,7 @@
 #import "Common.h"
 
 
-#define JOYCENTERX 50
+#define JOYCENTERX 250
 #define JOYCENTERY 50
 #define JOYTRIGGERRADIUS 102
 #define JOYFIELDRADIUS 250
@@ -83,6 +83,8 @@
     if(ccpDistance(p, ccp(JOYCENTERX, JOYCENTERY)) < JOYFIELDRADIUS*SCALE)
         joyfire.position = p;
     
+    [Common instance].direction = ccp(p.x - trigbeginx, p.y - trigbeginy);
+    
 //    NSLog(@"----------m");
 }
 
@@ -94,6 +96,8 @@
         [joyfire runAction:move_ease_in];
         
         flagbegin = NO;
+    
+    [Common instance].direction = ccp(0,0);
     
 //    NSLog(@"----------e");
     
