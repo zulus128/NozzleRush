@@ -120,14 +120,14 @@ enum {
     
 }
 
--(CGPoint) locationFromTilePos:(CGPoint)tilePos {
-    
-	CCTMXLayer *grass = [_tileMap layerNamed:@"Background"];
-	CCSprite *tile = [grass tileAt:tilePos];
-	float x = -tile.position.x - _tileMap.tileSize.width + 194;//64;
-	float y = -tile.position.y - _tileMap.tileSize.height;
-	return CGPointMake(-x, -y);
-}
+//-(CGPoint) locationFromTilePos:(CGPoint)tilePos {
+//    
+//	CCTMXLayer *grass = [_tileMap layerNamed:@"Background"];
+//	CCSprite *tile = [grass tileAt:tilePos];
+//	float x = -tile.position.x - _tileMap.tileSize.width + 194;//64;
+//	float y = -tile.position.y - _tileMap.tileSize.height;
+//	return CGPointMake(-x, -y);
+//}
 
 - (CGPoint) ort2iso:(CGPoint) pos {
 
@@ -141,7 +141,7 @@ enum {
 //        int y = tileHeight /2 * ( mapHeight - pos.x/(tileWidth / ratio) + pos.y/tileHeight) + 0.49f;
     int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1);// + 0.49f;
 //        y = mapHeight - y;
-        return ccp(x, (y - 0.5f * tileHeight));
+        return ccp(x / CC_CONTENT_SCALE_FACTOR(), (y - 0.5f * tileHeight) / CC_CONTENT_SCALE_FACTOR());
 //        return ccp(x, y);
 }
 
@@ -174,9 +174,11 @@ enum {
         NSAssert(objects != nil, @"'Objects' object group not found");
         NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-        float x = [[spawnPoint valueForKey:@"x"] integerValue] / CC_CONTENT_SCALE_FACTOR();
-        float y = [[spawnPoint valueForKey:@"y"] integerValue] / CC_CONTENT_SCALE_FACTOR();
-        NSLog(@"SpawnPoint xy x = %f, y = %f",x,y);
+//        float x = [[spawnPoint valueForKey:@"x"] integerValue] / CC_CONTENT_SCALE_FACTOR();
+//        float y = [[spawnPoint valueForKey:@"y"] integerValue] / CC_CONTENT_SCALE_FACTOR();
+        float x = [[spawnPoint valueForKey:@"x"] integerValue];
+        float y = [[spawnPoint valueForKey:@"y"] integerValue];
+        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
         
         
 //        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
@@ -189,9 +191,10 @@ enum {
         [_tileMap addChild:sprite z:50];
         
         CGPoint p = ccp(x,y);
-        NSLog(@"SpawnPoint x = %f, y = %f",p.x,p.y);
 
+//        sprite.position = ccp(2000,2800);//[self ort2iso:p];
         sprite.position = [self ort2iso:p];
+        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
         [self setViewpointCenter:sprite.position];
         
         // Define the dynamic body.
@@ -353,11 +356,11 @@ enum {
             // build polygon verticies;
             for (i = 0, k = 0; i < n; ++k)
             {
-                fX = [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+                fX = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 // flip y-position (TMX y-origin is upper-left)
 //                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
-                fY = [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+                fY = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 shape.m_vertices[k].Set(fX/PTM_RATIO, fY/PTM_RATIO);
             }
@@ -384,8 +387,8 @@ enum {
             }
             // must call 'Set', because it processes points
             shape.Set(shape.m_vertices, shape.m_vertexCount);
-            x = [[object valueForKey:@"x"] intValue] / CC_CONTENT_SCALE_FACTOR();
-            y = [[object valueForKey:@"y"] intValue] / CC_CONTENT_SCALE_FACTOR();
+            x = [[object valueForKey:@"x"] intValue];// / CC_CONTENT_SCALE_FACTOR();
+            y = [[object valueForKey:@"y"] intValue];// / CC_CONTENT_SCALE_FACTOR();
             // TODO add the box2d object to the box2d world at coordinate (x,y)
             
             NSLog(@"Point x = %d, y = %d",x,y);

@@ -10,7 +10,7 @@
 #import "Common.h"
 
 
-#define JOYCENTERX 250
+#define JOYCENTERX 50
 #define JOYCENTERY 50
 #define JOYTRIGGERRADIUS 102
 #define JOYFIELDRADIUS 250
