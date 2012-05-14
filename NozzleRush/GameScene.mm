@@ -24,7 +24,6 @@ enum {
 @implementation GameScene
 
 @synthesize tileMap = _tileMap;
-@synthesize background = _background;
 @synthesize hudLayer = _hudLayer;
 
 -(void) initPhysics
@@ -50,36 +49,6 @@ enum {
 	//		flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);
     
-/*	
-	// Define the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0); // bottom-left corner
-	
-	// Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = world->CreateBody(&groundBodyDef);
-	
-	// Define the ground box shape.
-	b2EdgeShape groundBox;		
-	
-	// bottom
-	
-	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// top
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// left
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// right
-	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
- */
 }
 
 +(id) scene {
@@ -120,29 +89,17 @@ enum {
     
 }
 
-//-(CGPoint) locationFromTilePos:(CGPoint)tilePos {
-//    
-//	CCTMXLayer *grass = [_tileMap layerNamed:@"Background"];
-//	CCSprite *tile = [grass tileAt:tilePos];
-//	float x = -tile.position.x - _tileMap.tileSize.width + 194;//64;
-//	float y = -tile.position.y - _tileMap.tileSize.height;
-//	return CGPointMake(-x, -y);
-//}
-
 - (CGPoint) ort2iso:(CGPoint) pos {
 
-        float mapHeight = _tileMap.mapSize.height;
-        float mapWidth = _tileMap.mapSize.width;
-        float tileHeight = _tileMap.tileSize.height;
-        float tileWidth = _tileMap.tileSize.width;
-        float ratio = tileWidth / tileHeight;
+    float mapHeight = _tileMap.mapSize.height;
+    float mapWidth = _tileMap.mapSize.width;
+    float tileHeight = _tileMap.tileSize.height;
+    float tileWidth = _tileMap.tileSize.width;
+    float ratio = tileWidth / tileHeight;
         
     int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight);// + 0.49f;
-//        int y = tileHeight /2 * ( mapHeight - pos.x/(tileWidth / ratio) + pos.y/tileHeight) + 0.49f;
     int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1);// + 0.49f;
-//        y = mapHeight - y;
-        return ccp(x / CC_CONTENT_SCALE_FACTOR(), (y - 0.5f * tileHeight) / CC_CONTENT_SCALE_FACTOR());
-//        return ccp(x, y);
+    return ccp(x / CC_CONTENT_SCALE_FACTOR(), (y - 0.5f * tileHeight) / CC_CONTENT_SCALE_FACTOR());
 }
 
 // on "init" you need to initialize your instance
@@ -152,18 +109,9 @@ enum {
 	
 //        self.isTouchEnabled = YES;
         
-//        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"track1.tmx"];
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest.tmx"];
-        self.background = [_tileMap layerNamed:@"Background"];
-		self.background.anchorPoint = ccp(0, 0);
 		[self addChild:_tileMap z:-1];
 		
-		// Call game logic about every second
-//        [self schedule:@selector(update:)];
-//		[self schedule:@selector(gameLogic:) interval:1.0];		
-		
-//		self.position = ccp(-228, -122);
-        
         debug = NO;
         
         [self initPhysics];
@@ -174,8 +122,6 @@ enum {
         NSAssert(objects != nil, @"'Objects' object group not found");
         NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-//        float x = [[spawnPoint valueForKey:@"x"] integerValue] / CC_CONTENT_SCALE_FACTOR();
-//        float y = [[spawnPoint valueForKey:@"y"] integerValue] / CC_CONTENT_SCALE_FACTOR();
         float x = [[spawnPoint valueForKey:@"x"] integerValue];
         float y = [[spawnPoint valueForKey:@"y"] integerValue];
         NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
@@ -192,7 +138,6 @@ enum {
         
         CGPoint p = ccp(x,y);
 
-//        sprite.position = ccp(2000,2800);//[self ort2iso:p];
         sprite.position = [self ort2iso:p];
         NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
         [self setViewpointCenter:sprite.position];
@@ -202,7 +147,8 @@ enum {
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
         bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-        b2Body *body = world->CreateBody(&bodyDef);
+        
+        body = world->CreateBody(&bodyDef);
         
         // Define another box shape for our dynamic body.
         b2PolygonShape dynamicBox;
@@ -212,20 +158,18 @@ enum {
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;	
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.friction = 4.3f;
         body->CreateFixture(&fixtureDef);
+        body->SetLinearDamping(1.0f);
         
 //        [sprite setPhysicsBody:body];
         
         body->SetUserData(sprite);
-        
+                
 //        body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
         
+//        body->SetTransform(body->GetPosition(), CC_DEGREES_TO_RADIANS(90));
         
-//        b2Vec2 force1 = b2Vec2(5, -5);
-//        force1.Normalize();
-//        body->ApplyLinearImpulse(force1, body->GetPosition());
-
         [self scheduleUpdate];
 
 		
@@ -247,39 +191,87 @@ enum {
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);	
     
-    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
-        if (b->GetUserData() != NULL) {
+         CGPoint f = ccpMult([Common instance].direction, 1.0f);
+         b2Vec2 force1 = b2Vec2(f.x, -f.y);
+         force1.Normalize();
+         force1 *= (float32)0.5f;
+//        world->ClearForces();
+//        body->ApplyForce(force1, body->GetPosition());
+        body->ApplyLinearImpulse(force1, body->GetPosition());
+         
+//    float bodyAngle = body->GetAngle();
+//    CGPoint vehicleDirectionVector = ccpNormalize(ccpSub(ccp(vehicleBonnetTip.x*PTM_RATIO, vehicleBonnetTip.y*PTM_RATIO), ccp(vehicleCenter.x*PTM_RATIO, vehicleCenter.y*PTM_RATIO)));
+    b2Vec2 toTarget = force1;
+    float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
+    body->SetTransform( body->GetPosition(), desiredAngle );
+    
+//    NSLog(@"desiredAngle = %f",desiredAngle);
 
-                    b2Vec2 force1 = b2Vec2([Common instance].direction.x, -[Common instance].direction.y);
-                    force1.Normalize();
-                    b->ApplyForce(force1, b->GetPosition());
-            
-            CCSprite *ballData = (CCSprite *)b->GetUserData();
-            
-            CGPoint p = ccp(b->GetPosition().x * PTM_RATIO,
-                                    b->GetPosition().y * PTM_RATIO);
-            ballData.position = [self ort2iso:p];
-            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-            
-            [self setViewpointCenter:ballData.position];
-        }        
+    CCSprite *carData = (CCSprite *)body->GetUserData();
+    CGPoint p = ccp(body->GetPosition().x * PTM_RATIO,
+                    body->GetPosition().y * PTM_RATIO);
+    carData.position = [self ort2iso:p];
+    carData.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+    
+    NSString* name = @"4test.png";
+    float a = (carData.rotation < 0)?(360 + carData.rotation):carData.rotation;
+    a = a + 22.5f;
+    
+    if (a < 360.0f) {
+        if (a < 315.0f) {
+            if (a < 270.0f) {
+                if (a < 225.0f) {
+                    if (a < 180.0f) {
+                        if (a < 135.0f) {
+                            if (a < 90.0f) {
+                                if (a < 45.0f) {
+                                   name = @"4test.png";  
+                                } else name = @"6test.png";
+                            } else name = @"2test.png";
+                        } else name = @"8test.png";
+                    } else name = @"3test.png";
+                } else name = @"5test.png";
+            } else name = @"1test.png";
+        } else name = @"7test.png";
     }
+
+    NSLog(@"angle = %f, name = %@", a, name);
+  
+    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
+    [carData setTexture: tex];
+    
+    [self setViewpointCenter:carData.position];
+
+//    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
+//        if (b->GetUserData() != NULL) {
+//
+//            
+//            CCSprite *ballData = (CCSprite *)b->GetUserData();
+//            
+//            CGPoint p = ccp(b->GetPosition().x * PTM_RATIO,
+//                                    b->GetPosition().y * PTM_RATIO);
+//            ballData.position = [self ort2iso:p];
+//            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+//            
+//            [self setViewpointCenter:ballData.position];
+//        }        
+//    }
     
 //    world->ClearForces();
 
 }
 
-- (CGPoint)boundLayerPos:(CGPoint)newPos {
-    
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    CGPoint retval = newPos;
-    retval.x = MIN(retval.x, 0);
-    retval.x = MAX(retval.x, -_tileMap.contentSize.width+winSize.width); 
-    retval.y = MIN(0, retval.y);
-    retval.y = MAX(-_tileMap.contentSize.height+winSize.height, retval.y); 
-    return retval;
-}
-
+//- (CGPoint)boundLayerPos:(CGPoint)newPos {
+//    
+//    CGSize winSize = [CCDirector sharedDirector].winSize;
+//    CGPoint retval = newPos;
+//    retval.x = MIN(retval.x, 0);
+//    retval.x = MAX(retval.x, -_tileMap.contentSize.width+winSize.width); 
+//    retval.y = MIN(0, retval.y);
+//    retval.y = MAX(-_tileMap.contentSize.height+winSize.height, retval.y); 
+//    return retval;
+//}
+//
 //- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
 //    
 //    if (recognizer.state == UIGestureRecognizerStateBegan) {    
@@ -461,7 +453,7 @@ enum {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;/* b2_dynamicBody;*/
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-    b2Body *body = world->CreateBody(&bodyDef);
+    b2Body *bodyw = world->CreateBody(&bodyDef);
     
     // Define another box shape for our dynamic body.
 //    b2PolygonShape dynamicBox;
@@ -472,7 +464,7 @@ enum {
     fixtureDef.shape = &shape;	
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
-    body->CreateFixture(&fixtureDef);
+    bodyw->CreateFixture(&fixtureDef);
     
     
     NSLog(@"x = %f, y = %f",p.x,p.y);

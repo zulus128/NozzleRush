@@ -1557,7 +1557,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_ENTITLEMENTS = NozzleRush/NozzleRush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: VADIM KASSIN";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VADIM KASSIN";
 				COPY_PHASE_STRIP = YES;
@@ -1583,8 +1582,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VADIM KASSIN";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VADIM KASSIN";
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1596,8 +1595,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "32A01BDC-4FC4-4632-8B6D-911723018625";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "32A01BDC-4FC4-4632-8B6D-911723018625";
+				PROVISIONING_PROFILE = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1629,9 +1628,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_ENTITLEMENTS = NozzleRush/NozzleRush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VADIM KASSIN";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VADIM KASSIN";
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1644,8 +1642,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "32A01BDC-4FC4-4632-8B6D-911723018625";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "32A01BDC-4FC4-4632-8B6D-911723018625";
+				PROVISIONING_PROFILE = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
 				USER_HEADER_SEARCH_PATHS = "\"NozzleRush/libs\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1655,7 +1653,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_ENTITLEMENTS = NozzleRush/NozzleRush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: VADIM KASSIN";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VADIM KASSIN";
 				COPY_PHASE_STRIP = YES;

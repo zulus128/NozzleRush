@@ -10,8 +10,8 @@
 #import "Common.h"
 
 
-#define JOYCENTERX 50
-#define JOYCENTERY 50
+#define JOYCENTERX 70
+#define JOYCENTERY 70
 #define JOYTRIGGERRADIUS 102
 #define JOYFIELDRADIUS 250
 
@@ -80,7 +80,7 @@
     float deltax = trigbeginx - JOYCENTERX;
     float deltay = trigbeginy - JOYCENTERY;
     CGPoint p = ccp(location.x - deltax, location.y - deltay);
-    if(ccpDistance(p, ccp(JOYCENTERX, JOYCENTERY)) < JOYFIELDRADIUS*SCALE)
+    if(ccpDistance(p, ccp(JOYCENTERX, JOYCENTERY)) < JOYFIELDRADIUS*SCALE*2)
         joyfire.position = p;
     
     [Common instance].direction = ccp(p.x - trigbeginx, p.y - trigbeginy);

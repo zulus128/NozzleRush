@@ -6,7 +6,7 @@
 @interface GameScene : CCLayer {
     
     CCTMXTiledMap *_tileMap;
-    CCTMXLayer *_background;	
+//    CCTMXLayer *_background;	
 	
     b2World* world;	
     
@@ -17,10 +17,12 @@
     CGPoint debugPoint;
     b2PolygonShape debugShape;
     BOOL debug;
+    
+    b2Body *body;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
-@property (nonatomic, retain) CCTMXLayer *background;
+//@property (nonatomic, retain) CCTMXLayer *background;
 @property (nonatomic, retain) CCLayer *hudLayer;
 
 + (id) scene;
