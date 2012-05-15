@@ -133,7 +133,7 @@ enum {
 //        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
 //        [parent addChild:sprite];
         
-        CCSprite* sprite = [CCSprite spriteWithFile:@"4test.png"];
+        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
         [_tileMap addChild:sprite z:50];
         
         CGPoint p = ccp(x,y);
@@ -211,10 +211,12 @@ enum {
     CGPoint p = ccp(body->GetPosition().x * PTM_RATIO,
                     body->GetPosition().y * PTM_RATIO);
     carData.position = [self ort2iso:p];
-    carData.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+//    carData.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
     
-    NSString* name = @"4test.png";
-    float a = (carData.rotation < 0)?(360 + carData.rotation):carData.rotation;
+    float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+    
+    NSString* name = @"car1.png";
+    float a = (rot < 0)?(360 + rot):rot;
     a = a + 22.5f;
     
     if (a < 360.0f) {
@@ -225,20 +227,23 @@ enum {
                         if (a < 135.0f) {
                             if (a < 90.0f) {
                                 if (a < 45.0f) {
-                                   name = @"4test.png";  
-                                } else name = @"6test.png";
-                            } else name = @"2test.png";
-                        } else name = @"8test.png";
-                    } else name = @"3test.png";
-                } else name = @"5test.png";
-            } else name = @"1test.png";
-        } else name = @"7test.png";
+                                   name = @"car4.png";  
+                                } else name = @"car5.png";
+                            } else name = @"car6.png";
+                        } else name = @"car7.png";
+                    } else name = @"car8.png";
+                } else name = @"car1.png";
+            } else name = @"car2.png";
+        } else name = @"car3.png";
     }
 
-    NSLog(@"angle = %f, name = %@", a, name);
-  
-    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
-    [carData setTexture: tex];
+//    NSLog(@"angle = %f, name = %@", a, name);
+    if(([Common instance].direction.x != 0) || ([Common instance].direction.y != 0)) {
+
+        CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
+        [carData setTexture: tex];
+        
+    }
     
     [self setViewpointCenter:carData.position];
 
