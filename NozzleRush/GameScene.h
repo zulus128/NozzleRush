@@ -6,7 +6,8 @@
 @interface GameScene : CCLayer {
     
     CCTMXTiledMap *_tileMap;
-//    CCTMXLayer *_background;	
+    CCTMXLayer *_background;	
+    CCTMXLayer *_background1;	
 	
     b2World* world;	
     

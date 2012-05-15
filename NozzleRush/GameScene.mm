@@ -28,8 +28,8 @@ enum {
 
 -(void) initPhysics
 {
-	
-//	CGSize s = [[CCDirector sharedDirector] winSize];
+
+    //	CGSize s = [[CCDirector sharedDirector] winSize];
 	
 	b2Vec2 gravity;
 	gravity.Set(0.0f, 0.0f);
@@ -112,6 +112,15 @@ enum {
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest.tmx"];
 		[self addChild:_tileMap z:-1];
 		
+        
+        
+        _background = [self.tileMap layerNamed:@"LayerTile7"];
+        _background.position = ccp(81,0);
+
+        _background1 = [self.tileMap layerNamed:@"LayerTile7Down"];
+        _background1.position = ccp(83,2);
+
+        
         debug = NO;
         
         [self initPhysics];
