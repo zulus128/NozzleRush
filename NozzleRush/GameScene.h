@@ -3,6 +3,14 @@
 #import "Box2D.h"
 #import "GLES-Render.h"
 
+@interface DebugStruc : NSObject {
+}
+    
+@property (readwrite) CGPoint debugPoint;
+@property (nonatomic, readwrite) b2PolygonShape debugShape;
+
+@end
+
 @interface GameScene : CCLayer {
     
     CCTMXTiledMap *_tileMap;
@@ -15,11 +23,13 @@
     
     GLESDebugDraw *m_debugDraw;		// strong ref
     
-    CGPoint debugPoint;
-    b2PolygonShape debugShape;
+//    CGPoint debugPoint;
+//    b2PolygonShape debugShape;
     BOOL debug;
     
     b2Body *body;
+    
+    NSMutableArray* debugs;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;

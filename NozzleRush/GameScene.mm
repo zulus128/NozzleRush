@@ -21,6 +21,13 @@ enum {
 	kTagParentNode = 1,
 };
 
+@implementation DebugStruc
+
+@synthesize debugPoint;
+@synthesize debugShape;
+
+@end
+
 @implementation GameScene
 
 @synthesize tileMap = _tileMap;
@@ -43,10 +50,10 @@ enum {
 	
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
-			flags += b2Draw::e_jointBit;
-			flags += b2Draw::e_aabbBit;
-			flags += b2Draw::e_pairBit;
-			flags += b2Draw::e_centerOfMassBit;
+//			flags += b2Draw::e_jointBit;
+//			flags += b2Draw::e_aabbBit;
+//			flags += b2Draw::e_pairBit;
+//			flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);
     
 }
@@ -109,6 +116,8 @@ enum {
 	
 //        self.isTouchEnabled = YES;
         
+        debugs = [[NSMutableArray alloc] init];
+        
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 		[self addChild:_tileMap z:-1];
 		
@@ -158,26 +167,19 @@ enum {
         bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
         
         body = world->CreateBody(&bodyDef);
+        body->SetLinearDamping(1.0f);
+        body->SetUserData(sprite);
         
         // Define another box shape for our dynamic body.
         b2PolygonShape dynamicBox;
-        dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
+        dynamicBox.SetAsBox(2.1f, 2.1f);
         
         // Define the dynamic body fixture.
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;	
-        fixtureDef.density = 1.0f;
-        fixtureDef.friction = 4.3f;
+        fixtureDef.density = 0.02f;
+//        fixtureDef.friction = 4.3f;
         body->CreateFixture(&fixtureDef);
-        body->SetLinearDamping(1.0f);
-        
-//        [sprite setPhysicsBody:body];
-        
-        body->SetUserData(sprite);
-                
-//        body->ApplyLinearImpulse(b2Vec2(0, -3), body->GetWorldCenter());
-        
-//        body->SetTransform(body->GetPosition(), CC_DEGREES_TO_RADIANS(90));
         
         [self scheduleUpdate];
 
@@ -203,7 +205,7 @@ enum {
          CGPoint f = ccpMult([Common instance].direction, 1.0f);
          b2Vec2 force1 = b2Vec2(f.x, -f.y);
          force1.Normalize();
-         force1 *= (float32)0.5f;
+         force1 *= (float32)0.8f;
 //        world->ClearForces();
 //        body->ApplyForce(force1, body->GetPosition());
         body->ApplyLinearImpulse(force1, body->GetPosition());
@@ -429,39 +431,68 @@ enum {
 	//
 	[super draw];
 	
-	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
-	kmGLPushMatrix();
-	
-	world->DrawDebugData();	
-	
-	kmGLPopMatrix();
+//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+//	kmGLPushMatrix();
+//	world->DrawDebugData();	
+//	kmGLPopMatrix();
     
     
-//    if(debug) {
-//        
-//        glLineWidth(3);
-//        int32 cnt = debugShape.GetVertexCount();
-//        b2Vec2 p0 = debugShape.GetVertex(0);
-//        b2Vec2 p00 = p0;
-//        float x = debugPoint.x;
-//        float y = debugPoint.y;
-//        for (int i = 1; i < cnt; i++) {
-//            
-//            b2Vec2 p = debugShape.GetVertex(i);
-//            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
-//            p0 = p;
-//        }
-//        ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
-//
-//        glLineWidth(1);
-//    }
+    if(debug) {
+        
+        glLineWidth(3);
+
+        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
+
+            b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();
+            
+            int32 cnt = sh->GetVertexCount();
+            b2Vec2 p0 = sh->GetVertex(0);
+            b2Vec2 p00 = p0;
+            float x = body->GetPosition().x * PTM_RATIO;
+            float y = body->GetPosition().y * PTM_RATIO;
+            for (int i = 1; i < cnt; i++) {
+                
+                b2Vec2 p = sh->GetVertex(i);
+                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                p0 = p;
+            }
+            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+            
+        }
+
+        
+        
+        for (int j = 0; j < debugs.count; j++) {
+
+            DebugStruc* ds = [debugs objectAtIndex:j];
+            
+            int32 cnt = ds.debugShape.GetVertexCount();
+            b2Vec2 p0 = ds.debugShape.GetVertex(0);
+            b2Vec2 p00 = p0;
+            float x = ds.debugPoint.x;
+            float y = ds.debugPoint.y;
+            for (int i = 1; i < cnt; i++) {
+            
+                b2Vec2 p = ds.debugShape.GetVertex(i);
+                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                p0 = p;
+            }
+            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+        }
+        
+        glLineWidth(1);
+    }
 }
 
 - (void) addWall: (CGPoint) p sh:(b2PolygonShape)shape {
 
-    debugPoint = p;
-    debugShape = shape;
+    DebugStruc* ds = [[DebugStruc alloc] init];
+    ds.debugPoint = p;
+    ds.debugShape = shape;
+    
+    [debugs addObject:ds];
+    
+    
     debug = YES;
     
     b2BodyDef bodyDef;
@@ -469,32 +500,14 @@ enum {
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
     b2Body *bodyw = world->CreateBody(&bodyDef);
     
-    // Define another box shape for our dynamic body.
-//    b2PolygonShape dynamicBox;
-//    dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-    
-    // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	
-    fixtureDef.density = 1.0f;
+    fixtureDef.density = 1000.0f;
     fixtureDef.friction = 0.3f;
     bodyw->CreateFixture(&fixtureDef);
     
+//    NSLog(@"x = %f, y = %f",p.x,p.y);
     
-    NSLog(@"x = %f, y = %f",p.x,p.y);
-    
-    
-//    b2BodyDef groundBodyDef;
-//	groundBodyDef.position.Set(p.x, p.y); // bottom-left corner
-//    // Call the body factory which allocates memory for the ground body
-//	// from a pool and creates the ground box shape (also from a pool).
-//	// The body is also added to the world.
-//	b2Body* groundBody = world->CreateBody(&groundBodyDef);
-//	
-//	groundBody->CreateFixture(&shape,0);
-	
-
-   
 }
 
 
