@@ -43,10 +43,10 @@ enum {
 	
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
-	//		flags += b2Draw::e_jointBit;
-	//		flags += b2Draw::e_aabbBit;
-	//		flags += b2Draw::e_pairBit;
-	//		flags += b2Draw::e_centerOfMassBit;
+			flags += b2Draw::e_jointBit;
+			flags += b2Draw::e_aabbBit;
+			flags += b2Draw::e_pairBit;
+			flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);
     
 }
@@ -109,7 +109,7 @@ enum {
 	
 //        self.isTouchEnabled = YES;
         
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest.tmx"];
+        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 		[self addChild:_tileMap z:-1];
 		
         
@@ -429,33 +429,33 @@ enum {
 	//
 	[super draw];
 	
-//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-//	
-//	kmGLPushMatrix();
-//	
-//	world->DrawDebugData();	
-//	
-//	kmGLPopMatrix();
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+	
+	kmGLPushMatrix();
+	
+	world->DrawDebugData();	
+	
+	kmGLPopMatrix();
     
     
-    if(debug) {
-        
-        glLineWidth(3);
-        int32 cnt = debugShape.GetVertexCount();
-        b2Vec2 p0 = debugShape.GetVertex(0);
-        b2Vec2 p00 = p0;
-        float x = debugPoint.x;
-        float y = debugPoint.y;
-        for (int i = 1; i < cnt; i++) {
-            
-            b2Vec2 p = debugShape.GetVertex(i);
-            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
-            p0 = p;
-        }
-        ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
-
-        glLineWidth(1);
-    }
+//    if(debug) {
+//        
+//        glLineWidth(3);
+//        int32 cnt = debugShape.GetVertexCount();
+//        b2Vec2 p0 = debugShape.GetVertex(0);
+//        b2Vec2 p00 = p0;
+//        float x = debugPoint.x;
+//        float y = debugPoint.y;
+//        for (int i = 1; i < cnt; i++) {
+//            
+//            b2Vec2 p = debugShape.GetVertex(i);
+//            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+//            p0 = p;
+//        }
+//        ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+//
+//        glLineWidth(1);
+//    }
 }
 
 - (void) addWall: (CGPoint) p sh:(b2PolygonShape)shape {
