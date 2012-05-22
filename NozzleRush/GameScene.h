@@ -13,7 +13,7 @@
 
 @interface GameScene : CCLayer {
     
-    CCTMXTiledMap *_tileMap;
+//    CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;	
     CCTMXLayer *_background1;	
 	
@@ -32,10 +32,11 @@
     NSMutableArray* debugs;
 }
 
-@property (nonatomic, retain) CCTMXTiledMap *tileMap;
+//@property (nonatomic, retain) CCTMXTiledMap *tileMap;
 //@property (nonatomic, retain) CCTMXLayer *background;
 @property (nonatomic, retain) CCLayer *hudLayer;
 
 + (id) scene;
+- (void) setViewpointCenter:(CGPoint) position;
 
 @end

@@ -7,15 +7,8 @@
 //
 
 #import "GameScene.h"
-#import "PhysicsSprite.h"
 #import "HudLayer.h"
 #import "Common.h"
-
-//Pixel to metres ratio. Box2D uses metres as the unit for measurement.
-//This ratio defines how many pixels correspond to 1 Box2D "metre"
-//Box2D is optimized for objects of 1x1 metre therefore it makes sense
-//to define the ratio so that your most common object type is 1x1 metre.
-#define PTM_RATIO 32
 
 enum {
 	kTagParentNode = 1,
@@ -30,7 +23,7 @@ enum {
 
 @implementation GameScene
 
-@synthesize tileMap = _tileMap;
+//@synthesize tileMap = _tileMap;
 @synthesize hudLayer = _hudLayer;
 
 -(void) initPhysics
@@ -77,15 +70,15 @@ enum {
 	return scene;
 }
 
--(void)setViewpointCenter:(CGPoint) position {
+- (void) setViewpointCenter:(CGPoint) position {
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     int x = MAX(position.x, winSize.width / 2);
     int y = MAX(position.y, winSize.height / 2);
-    x = MIN(x, (_tileMap.mapSize.width * _tileMap.tileSize.width) 
+    x = MIN(x, ([Common instance].tileMap.mapSize.width * [Common instance].tileMap.tileSize.width) 
             - winSize.width / 2);
-    y = MIN(y, (_tileMap.mapSize.height * _tileMap.tileSize.height) 
+    y = MIN(y, ([Common instance].tileMap.mapSize.height * [Common instance].tileMap.tileSize.height) 
             - winSize.height/2);
     CGPoint actualPosition = ccp(x, y);
     
@@ -96,18 +89,6 @@ enum {
     
 }
 
-- (CGPoint) ort2iso:(CGPoint) pos {
-
-    float mapHeight = _tileMap.mapSize.height;
-    float mapWidth = _tileMap.mapSize.width;
-    float tileHeight = _tileMap.tileSize.height;
-    float tileWidth = _tileMap.tileSize.width;
-    float ratio = tileWidth / tileHeight;
-        
-    int x = tileWidth /2 * ( mapWidth + pos.x/(tileWidth / ratio) - pos.y/tileHeight);// + 0.49f;
-    int y = tileHeight /2 * (( mapHeight * 2 - pos.x/(tileWidth / ratio) - pos.y/tileHeight) +1);// + 0.49f;
-    return ccp(x / CC_CONTENT_SCALE_FACTOR(), (y - 0.5f * tileHeight) / CC_CONTENT_SCALE_FACTOR());
-}
 
 // on "init" you need to initialize your instance
 -(id) init {
@@ -118,15 +99,17 @@ enum {
         
         debugs = [[NSMutableArray alloc] init];
         
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
-		[self addChild:_tileMap z:-1];
+//      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
+//		[self addChild:_tileMap z:-1];
+        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest2.tmx"];
+		[self addChild:[Common instance].tileMap z:-1];
 		
         
         
-        _background = [self.tileMap layerNamed:@"LayerTile7"];
+        _background = [[Common instance].tileMap layerNamed:@"LayerTile7"];
         _background.position = ccp(81,0);
 
-        _background1 = [self.tileMap layerNamed:@"LayerTile7Down"];
+        _background1 = [[Common instance].tileMap layerNamed:@"LayerTile7Down"];
         _background1.position = ccp(83,2);
 
         
@@ -136,7 +119,7 @@ enum {
         
         [self processCollisionLayer];
         
-        CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
+        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
         NSAssert(objects != nil, @"'Objects' object group not found");
         NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
         NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
@@ -152,11 +135,11 @@ enum {
 //        [parent addChild:sprite];
         
         CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
-        [_tileMap addChild:sprite z:50];
+        [[Common instance].tileMap addChild:sprite z:50];
         
         CGPoint p = ccp(x,y);
 
-        sprite.position = [self ort2iso:p];
+        sprite.position = [[Common instance] ort2iso:p];
         NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
         [self setViewpointCenter:sprite.position];
         
@@ -221,7 +204,7 @@ enum {
     CCSprite *carData = (CCSprite *)body->GetUserData();
     CGPoint p = ccp(body->GetPosition().x * PTM_RATIO,
                     body->GetPosition().y * PTM_RATIO);
-    carData.position = [self ort2iso:p];
+    carData.position = [[Common instance] ort2iso:p];
 //    carData.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
     
     float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
@@ -323,7 +306,7 @@ enum {
 	delete world;
 	world = NULL;
 	
-    [_tileMap release];
+//    [_tileMap release];
         
     delete m_debugDraw;
 	m_debugDraw = NULL;
@@ -335,7 +318,7 @@ enum {
 -(void) processCollisionLayer
 {
     // create Box2d polygons for map collision boundaries
-    CCTMXObjectGroup *collisionObjects = [_tileMap objectGroupNamed:@"Collisions"];
+    CCTMXObjectGroup *collisionObjects = [[Common instance].tileMap objectGroupNamed:@"Collisions"];
     NSMutableArray *polygonObjectArray = [collisionObjects objects];
     // TMX polygon points delimiters (Box2d points must have counter-clockwise winding)
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString: @", "];
@@ -453,10 +436,11 @@ enum {
             for (int i = 1; i < cnt; i++) {
                 
                 b2Vec2 p = sh->GetVertex(i);
-                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+//                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
                 p0 = p;
             }
-            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+            ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
             
         }
 
@@ -474,10 +458,10 @@ enum {
             for (int i = 1; i < cnt; i++) {
             
                 b2Vec2 p = ds.debugShape.GetVertex(i);
-                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
                 p0 = p;
             }
-            ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+            ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
         }
         
         glLineWidth(1);

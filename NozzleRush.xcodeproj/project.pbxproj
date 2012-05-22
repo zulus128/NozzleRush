@@ -17,13 +17,15 @@
 		361074FB1521AB3A00DC776F /* 8test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074F21521AB3A00DC776F /* 8test.png */; };
 		361074FC1521AB3A00DC776F /* 9test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074F31521AB3A00DC776F /* 9test.png */; };
 		36209595152176050041020A /* track_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 36209594152176050041020A /* track_tiles.png */; };
-		36209599152176820041020A /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 36209598152176820041020A /* Common.m */; };
+		36209599152176820041020A /* Common.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36209598152176820041020A /* Common.mm */; };
 		3620959C1521777B0041020A /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620959B1521777B0041020A /* GameScene.mm */; };
 		364B77E4154A58CA009E4E9E /* Button_field_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77DF154A58CA009E4E9E /* Button_field_1.png */; };
 		364B77E5154A58CA009E4E9E /* Button_fire_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E0154A58CA009E4E9E /* Button_fire_1.png */; };
 		364B77E6154A58CA009E4E9E /* Button_trigger_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E1154A58CA009E4E9E /* Button_trigger_1.png */; };
 		364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E2154A58CA009E4E9E /* Button_weapon_1.png */; };
 		364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E3154A58CA009E4E9E /* Button_weapon_2.png */; };
+		36684B30156B5D7700AEE7B0 /* Car.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36684B2F156B5D7700AEE7B0 /* Car.mm */; };
+		36684B32156B63CC00AEE7B0 /* RaceMapTest2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */; };
 		369FACFF152089230056C20F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FACFE152089230056C20F /* QuartzCore.framework */; };
 		369FAD01152089230056C20F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD00152089230056C20F /* OpenGLES.framework */; };
 		369FAD03152089230056C20F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD02152089230056C20F /* OpenAL.framework */; };
@@ -189,9 +191,7 @@
 		369FAF0A152089290056C20F /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF09152089290056C20F /* b2Rope.cpp */; };
 		369FAF10152089290056C20F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF0F152089290056C20F /* main.m */; };
 		369FAF13152089290056C20F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF12152089290056C20F /* AppDelegate.mm */; };
-		369FAF16152089290056C20F /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF15152089290056C20F /* HelloWorldLayer.mm */; };
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
-		369FAF1C152089290056C20F /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF1B152089290056C20F /* PhysicsSprite.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
 		36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.m */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
@@ -237,7 +237,7 @@
 		361074F31521AB3A00DC776F /* 9test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9test.png; sourceTree = "<group>"; };
 		36209594152176050041020A /* track_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_tiles.png; sourceTree = "<group>"; };
 		36209597152176820041020A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		36209598152176820041020A /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		36209598152176820041020A /* Common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Common.mm; sourceTree = "<group>"; };
 		3620959A1521777B0041020A /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		3620959B1521777B0041020A /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
 		364B77DF154A58CA009E4E9E /* Button_field_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_field_1.png; sourceTree = "<group>"; };
@@ -246,6 +246,9 @@
 		364B77E2154A58CA009E4E9E /* Button_weapon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_1.png; sourceTree = "<group>"; };
 		364B77E3154A58CA009E4E9E /* Button_weapon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_2.png; sourceTree = "<group>"; };
 		3665A519152960DA00BD0B27 /* NozzleRush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NozzleRush.entitlements; sourceTree = "<group>"; };
+		36684B2E156B5D7700AEE7B0 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		36684B2F156B5D7700AEE7B0 /* Car.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Car.mm; sourceTree = "<group>"; };
+		36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest2.tmx; sourceTree = "<group>"; };
 		369FACFA152089230056C20F /* NozzleRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NozzleRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369FACFE152089230056C20F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		369FAD00152089230056C20F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -592,12 +595,8 @@
 		369FAF0F152089290056C20F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		369FAF11152089290056C20F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369FAF12152089290056C20F /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		369FAF14152089290056C20F /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		369FAF15152089290056C20F /* HelloWorldLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloWorldLayer.mm; sourceTree = "<group>"; };
 		369FAF17152089290056C20F /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		369FAF18152089290056C20F /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
-		369FAF1A152089290056C20F /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
-		369FAF1B152089290056C20F /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		36AF39AD154C0466008C3F63 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
@@ -713,6 +712,7 @@
 				DD56F62B1555B99D00E4F162 /* RaceMap.tmx */,
 				DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */,
 				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
+				36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -757,19 +757,17 @@
 			isa = PBXGroup;
 			children = (
 				36209597152176820041020A /* Common.h */,
-				36209598152176820041020A /* Common.m */,
+				36209598152176820041020A /* Common.mm */,
 				3620959A1521777B0041020A /* GameScene.h */,
 				3620959B1521777B0041020A /* GameScene.mm */,
 				36AF39AC154C0466008C3F63 /* HudLayer.h */,
 				36AF39AD154C0466008C3F63 /* HudLayer.m */,
+				36684B2E156B5D7700AEE7B0 /* Car.h */,
+				36684B2F156B5D7700AEE7B0 /* Car.mm */,
 				369FAF11152089290056C20F /* AppDelegate.h */,
 				369FAF12152089290056C20F /* AppDelegate.mm */,
-				369FAF14152089290056C20F /* HelloWorldLayer.h */,
-				369FAF15152089290056C20F /* HelloWorldLayer.mm */,
 				369FAF17152089290056C20F /* GLES-Render.h */,
 				369FAF18152089290056C20F /* GLES-Render.mm */,
-				369FAF1A152089290056C20F /* PhysicsSprite.h */,
-				369FAF1B152089290056C20F /* PhysicsSprite.mm */,
 				369FAD11152089230056C20F /* Resources */,
 				369FAD29152089240056C20F /* libs */,
 				369FAF0D152089290056C20F /* Supporting Files */,
@@ -1401,6 +1399,7 @@
 				DD69A69F1561E104001FF24B /* car7.png in Resources */,
 				DD69A6A01561E104001FF24B /* car8.png in Resources */,
 				DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */,
+				36684B32156B63CC00AEE7B0 /* RaceMapTest2.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1555,12 +1554,11 @@
 				369FAF0A152089290056C20F /* b2Rope.cpp in Sources */,
 				369FAF10152089290056C20F /* main.m in Sources */,
 				369FAF13152089290056C20F /* AppDelegate.mm in Sources */,
-				369FAF16152089290056C20F /* HelloWorldLayer.mm in Sources */,
 				369FAF19152089290056C20F /* GLES-Render.mm in Sources */,
-				369FAF1C152089290056C20F /* PhysicsSprite.mm in Sources */,
-				36209599152176820041020A /* Common.m in Sources */,
+				36209599152176820041020A /* Common.mm in Sources */,
 				3620959C1521777B0041020A /* GameScene.mm in Sources */,
 				36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */,
+				36684B30156B5D7700AEE7B0 /* Car.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

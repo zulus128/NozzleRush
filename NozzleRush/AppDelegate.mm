@@ -9,7 +9,6 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
-#import "HelloWorldLayer.h"
 
 #import "GameScene.h"
 
