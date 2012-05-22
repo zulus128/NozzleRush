@@ -2,77 +2,77 @@
 <map version="1.0" orientation="isometric" width="50" height="60" tilewidth="164" tileheight="94">
  <tileset firstgid="1" name="17" tilewidth="164" tileheight="109">
   <tileoffset x="0" y="15"/>
-  <image source="../Downloads/NozzleRush2/17.png" width="165" height="109"/>
+  <image source="17.png" width="165" height="109"/>
  </tileset>
  <tileset firstgid="2" name="16" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/16.png" width="166" height="95"/>
+  <image source="16.png" width="166" height="95"/>
  </tileset>
  <tileset firstgid="3" name="15" tilewidth="164" tileheight="115">
-  <image source="../Downloads/NozzleRush2/15.png" width="165" height="115"/>
+  <image source="15.png" width="165" height="115"/>
  </tileset>
  <tileset firstgid="4" name="14" tilewidth="137" tileheight="182">
   <tileoffset x="0" y="68"/>
-  <image source="../Downloads/NozzleRush2/14.png" width="137" height="182"/>
+  <image source="14.png" width="137" height="182"/>
  </tileset>
  <tileset firstgid="5" name="13" tilewidth="164" tileheight="163">
   <tileoffset x="0" y="69"/>
-  <image source="../Downloads/NozzleRush2/13.png" width="165" height="163"/>
+  <image source="13.png" width="165" height="163"/>
  </tileset>
  <tileset firstgid="6" name="12" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/12.png" width="165" height="96"/>
+  <image source="12.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="7" name="11" tilewidth="83" tileheight="114">
-  <image source="../Downloads/NozzleRush2/11.png" width="83" height="114"/>
+  <image source="11.png" width="83" height="114"/>
  </tileset>
  <tileset firstgid="8" name="10" tilewidth="164" tileheight="115">
-  <image source="../Downloads/NozzleRush2/10.png" width="165" height="115"/>
+  <image source="10.png" width="165" height="115"/>
  </tileset>
  <tileset firstgid="9" name="9" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/9.png" width="165" height="96"/>
+  <image source="9.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="10" name="8" tilewidth="164" tileheight="115">
-  <image source="../Downloads/NozzleRush2/8.png" width="165" height="115"/>
+  <image source="8.png" width="165" height="115"/>
  </tileset>
  <tileset firstgid="11" name="7" tilewidth="83" tileheight="114">
   <tileoffset x="81" y="0"/>
-  <image source="../Downloads/NozzleRush2/7.png" width="83" height="114"/>
+  <image source="7.png" width="83" height="114"/>
  </tileset>
  <tileset firstgid="12" name="5" tilewidth="164" tileheight="163">
   <tileoffset x="0" y="69"/>
-  <image source="../Downloads/NozzleRush2/5.png" width="165" height="163"/>
+  <image source="5.png" width="165" height="163"/>
  </tileset>
  <tileset firstgid="13" name="4" tilewidth="137" tileheight="182">
   <tileoffset x="27" y="68"/>
-  <image source="../Downloads/NozzleRush2/4.png" width="137" height="182"/>
+  <image source="4.png" width="137" height="182"/>
  </tileset>
  <tileset firstgid="14" name="3" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/3.png" width="165" height="96"/>
+  <image source="3.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="15" name="2" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/2.png" width="165" height="96"/>
+  <image source="2.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="16" name="1" tilewidth="99" tileheight="291">
   <tileoffset x="32" y="60"/>
-  <image source="../Downloads/NozzleRush2/1.png" width="99" height="291"/>
+  <image source="1.png" width="99" height="291"/>
  </tileset>
  <tileset firstgid="17" name="6" tilewidth="164" tileheight="94">
-  <image source="../Downloads/NozzleRush2/6.png" width="165" height="96"/>
+  <image source="6.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="18" name="9-down" tilewidth="164" tileheight="94">
   <tileoffset x="2" y="2"/>
-  <image source="../Downloads/NozzleRush2/9.png" width="165" height="96"/>
+  <image source="9.png" width="165" height="96"/>
  </tileset>
  <tileset firstgid="19" name="7-down" tilewidth="83" tileheight="114">
   <tileoffset x="83" y="2"/>
-  <image source="../Downloads/NozzleRush2/7.png" width="83" height="114"/>
+  <image source="7.png" width="83" height="114"/>
  </tileset>
  <tileset firstgid="20" name="11-down" tilewidth="83" tileheight="114">
   <tileoffset x="-2" y="2"/>
-  <image source="../Downloads/NozzleRush2/11.png" width="83" height="114"/>
+  <image source="11.png" width="83" height="114"/>
  </tileset>
  <tileset firstgid="21" name="16-down" tilewidth="164" tileheight="94">
   <tileoffset x="0" y="4"/>
-  <image source="../Downloads/NozzleRush2/16.png" width="166" height="95"/>
+  <image source="16.png" width="166" height="95"/>
  </tileset>
  <layer name="LayerTile2" width="50" height="60">
   <data encoding="base64" compression="zlib">

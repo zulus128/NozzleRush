@@ -9,6 +9,11 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
-@interface Car : NSObject
+@interface Car : NSObject {
+    
+    b2Body *body;
+}
+
+-(id) initWithX: (int) x  Y:(int) y;
 
 @end

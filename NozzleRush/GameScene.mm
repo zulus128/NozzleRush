@@ -26,31 +26,6 @@ enum {
 //@synthesize tileMap = _tileMap;
 @synthesize hudLayer = _hudLayer;
 
--(void) initPhysics
-{
-
-    //	CGSize s = [[CCDirector sharedDirector] winSize];
-	
-	b2Vec2 gravity;
-	gravity.Set(0.0f, 0.0f);
-	world = new b2World(gravity);
-	// Do we want to let bodies sleep?
-	world->SetAllowSleeping(true);
-	world->SetContinuousPhysics(true);
-    
-    m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-	world->SetDebugDraw(m_debugDraw);
-	
-	uint32 flags = 0;
-	flags += b2Draw::e_shapeBit;
-//			flags += b2Draw::e_jointBit;
-//			flags += b2Draw::e_aabbBit;
-//			flags += b2Draw::e_pairBit;
-//			flags += b2Draw::e_centerOfMassBit;
-	m_debugDraw->SetFlags(flags);
-    
-}
-
 +(id) scene {
     
 	// 'scene' is an autorelease object.
@@ -101,7 +76,7 @@ enum {
         
 //      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 //		[self addChild:_tileMap z:-1];
-        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest2.tmx"];
+        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest3.tmx"];
 		[self addChild:[Common instance].tileMap z:-1];
 		
         
@@ -115,7 +90,19 @@ enum {
         
         debug = NO;
         
-        [self initPhysics];
+//        [self initPhysics];
+        
+        m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+        [Common instance].world->SetDebugDraw(m_debugDraw);
+        
+        uint32 flags = 0;
+        flags += b2Draw::e_shapeBit;
+        //			flags += b2Draw::e_jointBit;
+        //			flags += b2Draw::e_aabbBit;
+        //			flags += b2Draw::e_pairBit;
+        //			flags += b2Draw::e_centerOfMassBit;
+        m_debugDraw->SetFlags(flags);
+
         
         [self processCollisionLayer];
         
@@ -149,7 +136,7 @@ enum {
         bodyDef.type = b2_dynamicBody;
         bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
         
-        body = world->CreateBody(&bodyDef);
+        body = [Common instance].world->CreateBody(&bodyDef);
         body->SetLinearDamping(1.0f);
         body->SetUserData(sprite);
         
@@ -163,6 +150,9 @@ enum {
         fixtureDef.density = 0.02f;
 //        fixtureDef.friction = 4.3f;
         body->CreateFixture(&fixtureDef);
+        
+        
+        enemy = [[Car alloc] initWithX: x+40 Y:y+40];
         
         [self scheduleUpdate];
 
@@ -183,7 +173,7 @@ enum {
 	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);	
+	[Common instance].world->Step(dt, velocityIterations, positionIterations);	
     
          CGPoint f = ccpMult([Common instance].direction, 1.0f);
          b2Vec2 force1 = b2Vec2(f.x, -f.y);
@@ -303,14 +293,17 @@ enum {
 
 -(void) dealloc
 {
-	delete world;
-	world = NULL;
+//	delete world;
+//	world = NULL;
 	
 //    [_tileMap release];
         
     delete m_debugDraw;
 	m_debugDraw = NULL;
 
+    
+    [enemy release];
+    
 	[super dealloc];
 }	
 
@@ -482,7 +475,7 @@ enum {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;/* b2_dynamicBody;*/
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-    b2Body *bodyw = world->CreateBody(&bodyDef);
+    b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
     
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;	

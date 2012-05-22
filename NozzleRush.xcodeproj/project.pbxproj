@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */; };
 		361074F41521AB3A00DC776F /* 1test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074EB1521AB3A00DC776F /* 1test.png */; };
 		361074F51521AB3A00DC776F /* 2test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074EC1521AB3A00DC776F /* 2test.png */; };
 		361074F61521AB3A00DC776F /* 3test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074ED1521AB3A00DC776F /* 3test.png */; };
@@ -25,7 +26,6 @@
 		364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E2154A58CA009E4E9E /* Button_weapon_1.png */; };
 		364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E3154A58CA009E4E9E /* Button_weapon_2.png */; };
 		36684B30156B5D7700AEE7B0 /* Car.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36684B2F156B5D7700AEE7B0 /* Car.mm */; };
-		36684B32156B63CC00AEE7B0 /* RaceMapTest2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */; };
 		369FACFF152089230056C20F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FACFE152089230056C20F /* QuartzCore.framework */; };
 		369FAD01152089230056C20F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD00152089230056C20F /* OpenGLES.framework */; };
 		369FAD03152089230056C20F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD02152089230056C20F /* OpenAL.framework */; };
@@ -193,7 +193,7 @@
 		369FAF13152089290056C20F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF12152089290056C20F /* AppDelegate.mm */; };
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
-		36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.m */; };
+		36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.mm */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
 		DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */; };
 		DD56F62D1555B99D00E4F162 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61A1555B99D00E4F162 /* 1.png */; };
@@ -226,6 +226,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest3.tmx; sourceTree = "<group>"; };
 		361074EB1521AB3A00DC776F /* 1test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1test.png; sourceTree = "<group>"; };
 		361074EC1521AB3A00DC776F /* 2test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2test.png; sourceTree = "<group>"; };
 		361074ED1521AB3A00DC776F /* 3test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3test.png; sourceTree = "<group>"; };
@@ -248,7 +249,6 @@
 		3665A519152960DA00BD0B27 /* NozzleRush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NozzleRush.entitlements; sourceTree = "<group>"; };
 		36684B2E156B5D7700AEE7B0 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		36684B2F156B5D7700AEE7B0 /* Car.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Car.mm; sourceTree = "<group>"; };
-		36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest2.tmx; sourceTree = "<group>"; };
 		369FACFA152089230056C20F /* NozzleRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NozzleRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369FACFE152089230056C20F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		369FAD00152089230056C20F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -599,7 +599,7 @@
 		369FAF18152089290056C20F /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
-		36AF39AD154C0466008C3F63 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
+		36AF39AD154C0466008C3F63 /* HudLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudLayer.mm; sourceTree = "<group>"; };
 		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
 		DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest1.tmx; sourceTree = "<group>"; };
 		DD56F61A1555B99D00E4F162 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -712,7 +712,7 @@
 				DD56F62B1555B99D00E4F162 /* RaceMap.tmx */,
 				DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */,
 				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
-				36684B31156B63CC00AEE7B0 /* RaceMapTest2.tmx */,
+				3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -761,7 +761,7 @@
 				3620959A1521777B0041020A /* GameScene.h */,
 				3620959B1521777B0041020A /* GameScene.mm */,
 				36AF39AC154C0466008C3F63 /* HudLayer.h */,
-				36AF39AD154C0466008C3F63 /* HudLayer.m */,
+				36AF39AD154C0466008C3F63 /* HudLayer.mm */,
 				36684B2E156B5D7700AEE7B0 /* Car.h */,
 				36684B2F156B5D7700AEE7B0 /* Car.mm */,
 				369FAF11152089290056C20F /* AppDelegate.h */,
@@ -1399,7 +1399,7 @@
 				DD69A69F1561E104001FF24B /* car7.png in Resources */,
 				DD69A6A01561E104001FF24B /* car8.png in Resources */,
 				DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */,
-				36684B32156B63CC00AEE7B0 /* RaceMapTest2.tmx in Resources */,
+				3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1557,7 +1557,7 @@
 				369FAF19152089290056C20F /* GLES-Render.mm in Sources */,
 				36209599152176820041020A /* Common.mm in Sources */,
 				3620959C1521777B0041020A /* GameScene.mm in Sources */,
-				36AF39AE154C0466008C3F63 /* HudLayer.m in Sources */,
+				36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */,
 				36684B30156B5D7700AEE7B0 /* Car.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

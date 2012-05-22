@@ -7,12 +7,12 @@
 //
 
 #import "Common.h"
-#import "Box2D.h"
 
 @implementation Common
 
 @synthesize direction;
 @synthesize tileMap = _tileMap;
+@synthesize world;
 
 + (Common*) instance  {
 	
@@ -28,11 +28,26 @@
 	return instance;
 }
 
+-(void) initPhysics
+{
+    
+    //	CGSize s = [[CCDirector sharedDirector] winSize];
+	
+	b2Vec2 gravity;
+	gravity.Set(0.0f, 0.0f);
+	self.world = new b2World(gravity);
+	// Do we want to let bodies sleep?
+	self.world->SetAllowSleeping(true);
+	self.world->SetContinuousPhysics(true);
+        
+}
+
 - (id) init{	
 	
 	self = [super init];
 	if(self !=nil) {
  
+        [self initPhysics];
     }
 	return self;	
 }
@@ -54,6 +69,9 @@
    
     [_tileMap release];
     
+    delete world;
+	world = NULL;
+
     [super dealloc];
 }
 

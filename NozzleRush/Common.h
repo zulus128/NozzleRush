@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "Box2D.h"
 
 #define SCALE 0.4f
 
@@ -23,5 +24,6 @@
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
+@property (nonatomic) b2World* world;
 
 @end
