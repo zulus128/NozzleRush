@@ -10,12 +10,13 @@
 #import "Common.h"
 
 @implementation Car
+@synthesize body;
 
 -(id) initWithX: (int) x  Y:(int) y {
     
     if((self = [super init])) {				
         
-        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
+        CCSprite* sprite = [CCSprite spriteWithFile:@"car6.png"];
         [[Common instance].tileMap addChild:sprite z:51];
         
         CGPoint p = ccp(x,y);
@@ -26,9 +27,9 @@
         bodyDef.type = b2_dynamicBody;
         bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
         
-        body = [Common instance].world->CreateBody(&bodyDef);
-        body->SetLinearDamping(1.0f);
-        body->SetUserData(sprite);
+        self.body = [Common instance].world->CreateBody(&bodyDef);
+        self.body->SetLinearDamping(1.0f);
+        self.body->SetUserData(sprite);
         
         // Define another box shape for our dynamic body.
         b2PolygonShape dynamicBox;
@@ -39,7 +40,7 @@
         fixtureDef.shape = &dynamicBox;	
         fixtureDef.density = 0.02f;
         //        fixtureDef.friction = 4.3f;
-        body->CreateFixture(&fixtureDef);
+        self.body->CreateFixture(&fixtureDef);
         
     }
     return self;

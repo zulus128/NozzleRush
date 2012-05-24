@@ -11,9 +11,11 @@
 
 @interface Car : NSObject {
     
-    b2Body *body;
+    
 }
 
 -(id) initWithX: (int) x  Y:(int) y;
+
+@property (nonatomic) b2Body *body;
 
 @end

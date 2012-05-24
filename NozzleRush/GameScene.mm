@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "HudLayer.h"
 #import "Common.h"
+#import "RaysCastCallback.h"
 
 enum {
 	kTagParentNode = 1,
@@ -152,7 +153,7 @@ enum {
         body->CreateFixture(&fixtureDef);
         
         
-        enemy = [[Car alloc] initWithX: x+40 Y:y+40];
+        enemy = [[Car alloc] initWithX: x+200 Y:y+0];
         
         [self scheduleUpdate];
 
@@ -231,6 +232,32 @@ enum {
     
     [self setViewpointCenter:carData.position];
 
+    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
+    CGPoint ep = ccp(enemy.body->GetPosition().x * PTM_RATIO,
+                    enemy.body->GetPosition().y * PTM_RATIO);
+    eData.position = [[Common instance] ort2iso:ep];
+//    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
+    
+    
+    b2Vec2 eyeOffset = b2Vec2(0, -0.5);
+    eye = enemy.body->GetWorldPoint(eyeOffset);
+    target = eye - enemy.body->GetWorldCenter();
+    target.Normalize();
+    target *= 20.0;
+    target = eye + target;
+    
+    RaysCastCallback callback;
+    [Common instance].world->RayCast(&callback, eye, target);
+    
+    if (callback.m_fixture) {
+//        monsterData.target = ccp(callback.m_point.x * [LevelHelperLoader pixelsToMeterRatio], 
+//                                 callback.m_point.y * [LevelHelperLoader pixelsToMeterRatio]);
+//        if (callback.m_fixture->GetBody() == _heroBody) {    
+//            monsterData.canSeePlayer = TRUE;
+//        }
+    }
+
+    
 //    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
 //        if (b->GetUserData() != NULL) {
 //
@@ -412,11 +439,20 @@ enum {
 //	world->DrawDebugData();	
 //	kmGLPopMatrix();
     
-    
     if(debug) {
         
         glLineWidth(3);
 
+        
+        float ex = eye.x * PTM_RATIO;
+        float ey = eye.y * PTM_RATIO;
+        float ex1 = target.x * PTM_RATIO;
+        float ey1 = target.y * PTM_RATIO;
+        
+        ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
+        
+        
+        
         for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
 
             b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();

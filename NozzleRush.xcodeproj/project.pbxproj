@@ -629,6 +629,7 @@
 		DD69A6961561E104001FF24B /* car6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car6.png; sourceTree = "<group>"; };
 		DD69A6971561E104001FF24B /* car7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car7.png; sourceTree = "<group>"; };
 		DD69A6981561E104001FF24B /* car8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car8.png; sourceTree = "<group>"; };
+		DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallback.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -764,6 +765,7 @@
 				36AF39AD154C0466008C3F63 /* HudLayer.mm */,
 				36684B2E156B5D7700AEE7B0 /* Car.h */,
 				36684B2F156B5D7700AEE7B0 /* Car.mm */,
+				DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */,
 				369FAF11152089290056C20F /* AppDelegate.h */,
 				369FAF12152089290056C20F /* AppDelegate.mm */,
 				369FAF17152089290056C20F /* GLES-Render.h */,
