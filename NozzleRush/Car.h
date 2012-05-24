@@ -22,4 +22,6 @@
 @property (nonatomic) b2Body *body;
 @property (readwrite) b2Vec2 eye;
 @property (readwrite) b2Vec2 target;
+@property (readwrite) b2Vec2 target1;
+@property (readwrite) b2Vec2 target2;
 @end

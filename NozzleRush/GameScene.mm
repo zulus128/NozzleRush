@@ -432,7 +432,17 @@ enum {
         float ey1 = enemy.target.y * PTM_RATIO;
         
         ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
+
+        ex1 = enemy.target1.x * PTM_RATIO;
+        ey1 = enemy.target1.y * PTM_RATIO;
         
+        ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
+
+        ex1 = enemy.target2.x * PTM_RATIO;
+        ey1 = enemy.target2.y * PTM_RATIO;
+        
+        ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
+
         
         
         for (b2Fixture* f = enemy.body->GetFixtureList(); f; f = f->GetNext()) {

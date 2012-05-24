@@ -12,7 +12,7 @@
 
 @implementation Car
 @synthesize body;
-@synthesize target, eye;
+@synthesize target, target1, target2, eye;
 
 - (id) initWithX: (int) x  Y:(int) y {
     
@@ -55,7 +55,7 @@
 - (void) update {
 
 //    CGPoint f = ccp(self.body->GetPosition().x, self.body->GetPosition().y + 0);
-    CGPoint f = ccp(1, 0);
+    CGPoint f = ccp(0, 1);
     b2Vec2 force1 = b2Vec2(f.x, -f.y);
     force1.Normalize();
     force1 *= (float32)0.08f;
@@ -101,25 +101,41 @@
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     
-    b2Vec2 eyeOffset = b2Vec2(0, 1.5);
+    b2Vec2 eyeOffset = b2Vec2(0, 0/*1.5*/);
     self.eye = body->GetWorldPoint(eyeOffset);
-    self.target = b2Vec2(1, -0);//eye - body->GetWorldCenter();
+    self.target = force1;//b2Vec2(1, -0);
     self.target.Normalize();
-    target *= 8.0;
+    target *= 80.0;
     self.target = eye + target;
     
     RaysCastCallback callback;
-    [Common instance].world->RayCast(&callback, eye, target);
+    RaysCastCallback callback1;
+    RaysCastCallback callback2;
     
+    [Common instance].world->RayCast(&callback, eye, target);    
     if (callback.m_fixture) {
         
-        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f", callback.m_point.x, callback.m_point.y, callback.m_point.Normalize());
+        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f, f = %f", callback.m_point.x, callback.m_point.y, (eye - callback.m_point).Length(), callback.m_fraction);
+    }
+
+    self.target1 = b2Vec2(1, -1);//eye - body->GetWorldCenter();
+    self.target1.Normalize();
+    target1 *= 8.0;
+    self.target1 = eye + target1;
+    [Common instance].world->RayCast(&callback1, eye, target1);    
+    if (callback1.m_fixture) {
         
-        //        monsterData.target = ccp(callback.m_point.x * [LevelHelperLoader pixelsToMeterRatio], 
-        //                                 callback.m_point.y * [LevelHelperLoader pixelsToMeterRatio]);
-        //        if (callback.m_fixture->GetBody() == _heroBody) {    
-        //            monsterData.canSeePlayer = TRUE;
-        //        }
+        NSLog(@"ray intersect fixture1 x = %f, y = %f, l = %f, f = %f", callback1.m_point.x, callback1.m_point.y, (eye - callback1.m_point).Length(), callback1.m_fraction);
+    }
+
+    self.target2 = b2Vec2(1, 1);//eye - body->GetWorldCenter();
+    self.target2.Normalize();
+    target2 *= 8.0;
+    self.target2 = eye + target2;
+    [Common instance].world->RayCast(&callback2, eye, target2);    
+    if (callback2.m_fixture) {
+        
+        NSLog(@"ray intersect fixture2 x = %f, y = %f, l = %f, f = %f", callback2.m_point.x, callback2.m_point.y, (eye - callback2.m_point).Length(), callback2.m_fraction);
     }
 
     
