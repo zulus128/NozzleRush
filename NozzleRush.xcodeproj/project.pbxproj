@@ -223,6 +223,7 @@
 		DD69A69E1561E104001FF24B /* car6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6961561E104001FF24B /* car6.png */; };
 		DD69A69F1561E104001FF24B /* car7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6971561E104001FF24B /* car7.png */; };
 		DD69A6A01561E104001FF24B /* car8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6981561E104001FF24B /* car8.png */; };
+		F210EF11156DFE0500E931DC /* RaceMapTest4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -630,6 +631,7 @@
 		DD69A6971561E104001FF24B /* car7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car7.png; sourceTree = "<group>"; };
 		DD69A6981561E104001FF24B /* car8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car8.png; sourceTree = "<group>"; };
 		DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallback.h; sourceTree = "<group>"; };
+		F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest4.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -714,6 +716,7 @@
 				DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */,
 				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
 				3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */,
+				F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1402,6 +1405,7 @@
 				DD69A6A01561E104001FF24B /* car8.png in Resources */,
 				DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */,
 				3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */,
+				F210EF11156DFE0500E931DC /* RaceMapTest4.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

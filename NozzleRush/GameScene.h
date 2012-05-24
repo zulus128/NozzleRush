@@ -34,8 +34,6 @@
     
     Car* enemy;
     
-    b2Vec2 eye;
-    b2Vec2 target;
 }
 
 //@property (nonatomic, retain) CCTMXTiledMap *tileMap;

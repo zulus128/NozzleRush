@@ -9,7 +9,7 @@
 #import "GameScene.h"
 #import "HudLayer.h"
 #import "Common.h"
-#import "RaysCastCallback.h"
+
 
 enum {
 	kTagParentNode = 1,
@@ -77,7 +77,7 @@ enum {
         
 //      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 //		[self addChild:_tileMap z:-1];
-        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest3.tmx"];
+        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest4.tmx"];
 		[self addChild:[Common instance].tileMap z:-1];
 		
         
@@ -186,6 +186,7 @@ enum {
          
 //    float bodyAngle = body->GetAngle();
 //    CGPoint vehicleDirectionVector = ccpNormalize(ccpSub(ccp(vehicleBonnetTip.x*PTM_RATIO, vehicleBonnetTip.y*PTM_RATIO), ccp(vehicleCenter.x*PTM_RATIO, vehicleCenter.y*PTM_RATIO)));
+
     b2Vec2 toTarget = force1;
     float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
     body->SetTransform( body->GetPosition(), desiredAngle );
@@ -230,32 +231,13 @@ enum {
         
     }
     
-    [self setViewpointCenter:carData.position];
+//    [self setViewpointCenter:carData.position];
 
+    [enemy update];
+    
     CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
-    CGPoint ep = ccp(enemy.body->GetPosition().x * PTM_RATIO,
-                    enemy.body->GetPosition().y * PTM_RATIO);
-    eData.position = [[Common instance] ort2iso:ep];
-//    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
-    
-    
-    b2Vec2 eyeOffset = b2Vec2(0, -0.5);
-    eye = enemy.body->GetWorldPoint(eyeOffset);
-    target = eye - enemy.body->GetWorldCenter();
-    target.Normalize();
-    target *= 20.0;
-    target = eye + target;
-    
-    RaysCastCallback callback;
-    [Common instance].world->RayCast(&callback, eye, target);
-    
-    if (callback.m_fixture) {
-//        monsterData.target = ccp(callback.m_point.x * [LevelHelperLoader pixelsToMeterRatio], 
-//                                 callback.m_point.y * [LevelHelperLoader pixelsToMeterRatio]);
-//        if (callback.m_fixture->GetBody() == _heroBody) {    
-//            monsterData.canSeePlayer = TRUE;
-//        }
-    }
+    [self setViewpointCenter:eData.position];
+
 
     
 //    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
@@ -444,15 +426,35 @@ enum {
         glLineWidth(3);
 
         
-        float ex = eye.x * PTM_RATIO;
-        float ey = eye.y * PTM_RATIO;
-        float ex1 = target.x * PTM_RATIO;
-        float ey1 = target.y * PTM_RATIO;
+        float ex = enemy.eye.x * PTM_RATIO;
+        float ey = enemy.eye.y * PTM_RATIO;
+        float ex1 = enemy.target.x * PTM_RATIO;
+        float ey1 = enemy.target.y * PTM_RATIO;
         
         ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
         
         
         
+        for (b2Fixture* f = enemy.body->GetFixtureList(); f; f = f->GetNext()) {
+            
+            b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();
+            
+            int32 cnt = sh->GetVertexCount();
+            b2Vec2 p0 = sh->GetVertex(0);
+            b2Vec2 p00 = p0;
+            float x = enemy.body->GetPosition().x * PTM_RATIO;
+            float y = enemy.body->GetPosition().y * PTM_RATIO;
+            for (int i = 1; i < cnt; i++) {
+                
+                b2Vec2 p = sh->GetVertex(i);
+                //                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                p0 = p;
+            }
+            ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
+            
+        }
+
         for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
 
             b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();
