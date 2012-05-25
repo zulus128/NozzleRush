@@ -20,6 +20,7 @@
 @interface Common : NSObject
 
 + (Common*) instance;
+- (CGPoint) getMapObjectPos:(NSString*) name;
 - (CGPoint) ort2iso:(CGPoint) pos;
 
 @property (assign, readwrite) CGPoint direction;

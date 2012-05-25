@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */; };
+		3609B65E156F95DE00642CEF /* RaceMapTest5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */; };
 		361074F41521AB3A00DC776F /* 1test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074EB1521AB3A00DC776F /* 1test.png */; };
 		361074F51521AB3A00DC776F /* 2test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074EC1521AB3A00DC776F /* 2test.png */; };
 		361074F61521AB3A00DC776F /* 3test.png in Resources */ = {isa = PBXBuildFile; fileRef = 361074ED1521AB3A00DC776F /* 3test.png */; };
@@ -228,6 +229,7 @@
 
 /* Begin PBXFileReference section */
 		3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest3.tmx; sourceTree = "<group>"; };
+		3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest5.tmx; sourceTree = "<group>"; };
 		361074EB1521AB3A00DC776F /* 1test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1test.png; sourceTree = "<group>"; };
 		361074EC1521AB3A00DC776F /* 2test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2test.png; sourceTree = "<group>"; };
 		361074ED1521AB3A00DC776F /* 3test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3test.png; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
 				3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */,
 				F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */,
+				3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1306,6 +1309,7 @@
 			buildPhases = (
 				369FACF6152089230056C20F /* Sources */,
 				369FACF7152089230056C20F /* Frameworks */,
+				3609B65C156F8E2300642CEF /* ShellScript */,
 				369FACF8152089230056C20F /* Resources */,
 			);
 			buildRules = (
@@ -1406,10 +1410,27 @@
 				DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */,
 				3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */,
 				F210EF11156DFE0500E931DC /* RaceMapTest4.tmx in Resources */,
+				3609B65E156F95DE00642CEF /* RaceMapTest5.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3609B65C156F8E2300642CEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash    \nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		369FACF6152089230056C20F /* Sources */ = {

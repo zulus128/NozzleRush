@@ -77,7 +77,7 @@ enum {
         
 //      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 //		[self addChild:_tileMap z:-1];
-        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest4.tmx"];
+        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
 		[self addChild:[Common instance].tileMap z:-1];
 		
         
@@ -128,6 +128,7 @@ enum {
         CGPoint p = ccp(x,y);
 
         sprite.position = [[Common instance] ort2iso:p];
+        sprite.scale = 0.5f;
         NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
         [self setViewpointCenter:sprite.position];
         
@@ -143,7 +144,8 @@ enum {
         
         // Define another box shape for our dynamic body.
         b2PolygonShape dynamicBox;
-        dynamicBox.SetAsBox(2.1f, 2.1f);
+//        dynamicBox.SetAsBox(2.1f, 2.1f);
+        dynamicBox.SetAsBox(1.0f, 1.0f);
         
         // Define the dynamic body fixture.
         b2FixtureDef fixtureDef;

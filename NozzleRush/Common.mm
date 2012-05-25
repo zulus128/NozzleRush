@@ -28,6 +28,18 @@
 	return instance;
 }
 
+- (CGPoint) getMapObjectPos:(NSString*) name {
+    
+    CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"Objects"];
+    NSAssert(objects != nil, @"'Objects' object group not found");
+    NSMutableDictionary *spawnPoint = [objects objectNamed:name];        
+    NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
+    
+    float x = [[spawnPoint valueForKey:@"x"] integerValue];
+    float y = [[spawnPoint valueForKey:@"y"] integerValue];
+
+}
+
 -(void) initPhysics
 {
     
