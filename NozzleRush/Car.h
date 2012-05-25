@@ -13,6 +13,7 @@
     
 //    b2Vec2 eye;
 //    b2Vec2 target;
+    float angle;
 }
 
 - (id) initWithX: (int) x  Y:(int) y;

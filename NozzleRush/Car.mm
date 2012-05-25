@@ -55,10 +55,14 @@
 - (void) update {
 
 //    CGPoint f = ccp(self.body->GetPosition().x, self.body->GetPosition().y + 0);
-    CGPoint f = ccp(0, 1);
-    b2Vec2 force1 = b2Vec2(f.x, -f.y);
+//    CGPoint f = ccp(0, 1);
+//    b2Vec2 force1 = b2Vec2(f.x, -f.y);
+    
+//    float angle = 0;
+    b2Vec2 force1 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle)), sin(CC_DEGREES_TO_RADIANS(angle)));
+    
     force1.Normalize();
-    force1 *= (float32)0.08f;
+    force1 *= (float32)0.3f;
     body->ApplyLinearImpulse(force1, body->GetPosition());
     
     b2Vec2 toTarget = force1;
@@ -105,40 +109,66 @@
     self.eye = body->GetWorldPoint(eyeOffset);
     self.target = force1;//b2Vec2(1, -0);
     self.target.Normalize();
-    target *= 80.0;
+    target *= 70.0;
     self.target = eye + target;
     
     RaysCastCallback callback;
     RaysCastCallback callback1;
     RaysCastCallback callback2;
     
+    float l0 = 1000;
+    float l1 = 1000;
+    float l2 = 1000;
+    
     [Common instance].world->RayCast(&callback, eye, target);    
     if (callback.m_fixture) {
         
-        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f, f = %f", callback.m_point.x, callback.m_point.y, (eye - callback.m_point).Length(), callback.m_fraction);
+        l0 = (eye - callback.m_point).Length();
+        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f, f = %f", callback.m_point.x, callback.m_point.y, l0, callback.m_fraction);
     }
 
-    self.target1 = b2Vec2(1, -1);//eye - body->GetWorldCenter();
+    float angle1 = angle + 45;
+    b2Vec2 f1 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle1)), sin(CC_DEGREES_TO_RADIANS(angle1)));
+
+    self.target1 = f1;//b2Vec2(1, -1);//eye - body->GetWorldCenter();
     self.target1.Normalize();
-    target1 *= 8.0;
+    target1 *= 18.0;
     self.target1 = eye + target1;
     [Common instance].world->RayCast(&callback1, eye, target1);    
     if (callback1.m_fixture) {
         
-        NSLog(@"ray intersect fixture1 x = %f, y = %f, l = %f, f = %f", callback1.m_point.x, callback1.m_point.y, (eye - callback1.m_point).Length(), callback1.m_fraction);
+        l1 = (eye - callback1.m_point).Length();
+        NSLog(@"ray intersect fixture1 x = %f, y = %f, l = %f, f = %f", callback1.m_point.x, callback1.m_point.y, l1, callback1.m_fraction);
     }
 
-    self.target2 = b2Vec2(1, 1);//eye - body->GetWorldCenter();
+    float angle2 = angle - 45;
+    b2Vec2 f2 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle2)), sin(CC_DEGREES_TO_RADIANS(angle2)));
+
+    self.target2 = f2;//b2Vec2(1, 1);//eye - body->GetWorldCenter();
     self.target2.Normalize();
-    target2 *= 8.0;
+    target2 *= 18.0;
     self.target2 = eye + target2;
     [Common instance].world->RayCast(&callback2, eye, target2);    
     if (callback2.m_fixture) {
         
-        NSLog(@"ray intersect fixture2 x = %f, y = %f, l = %f, f = %f", callback2.m_point.x, callback2.m_point.y, (eye - callback2.m_point).Length(), callback2.m_fraction);
+        l2 = (eye - callback2.m_point).Length();
+        NSLog(@"ray intersect fixture2 x = %f, y = %f, l = %f, f = %f", callback2.m_point.x, callback2.m_point.y, l2, callback2.m_fraction);
     }
 
     
+    if ((l0 < 999) && (fabs(l1 - l2) > 6)) {
+        
+        NSLog(@"turn");
+        
+        if (l1 < l2) {
+            
+            angle -= 12;
+        }
+        else {
+            
+            angle += 12;
+        }
+    }
 //    NSLog(@"vel = %f", body->GetLinearVelocity().Normalize());
 
 }
