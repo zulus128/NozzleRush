@@ -9,14 +9,15 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
+enum Car_type { CT_ME, CT_ENEMY };
+
 @interface Car : NSObject {
     
-//    b2Vec2 eye;
-//    b2Vec2 target;
     float angle;
+    int typ;
 }
 
-- (id) initWithX: (int) x  Y:(int) y;
+- (id) initWithX: (int) x  Y:(int) y Type:(int) type;
 
 - (void) update;
 

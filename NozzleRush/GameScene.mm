@@ -77,7 +77,8 @@ enum {
         
 //      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
 //		[self addChild:_tileMap z:-1];
-        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
+
+//        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
 		[self addChild:[Common instance].tileMap z:-1];
 		
         
@@ -107,13 +108,13 @@ enum {
         
         [self processCollisionLayer];
         
-        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
-        NSAssert(objects != nil, @"'Objects' object group not found");
-        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
-        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-        float x = [[spawnPoint valueForKey:@"x"] integerValue];
-        float y = [[spawnPoint valueForKey:@"y"] integerValue];
-        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
+//        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
+//        NSAssert(objects != nil, @"'Objects' object group not found");
+//        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
+//        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
+//        float x = [[spawnPoint valueForKey:@"x"] integerValue];
+//        float y = [[spawnPoint valueForKey:@"y"] integerValue];
+//        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
         
         
 //        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
@@ -122,40 +123,44 @@ enum {
 //        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
 //        [parent addChild:sprite];
         
-        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
-        [[Common instance].tileMap addChild:sprite z:50];
+//        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
+//        [[Common instance].tileMap addChild:sprite z:50];
+//        
+//        CGPoint p = ccp(x,y);
+//
+//        sprite.position = [[Common instance] ort2iso:p];
+//        sprite.scale = 0.5f;
+//        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
+//        [self setViewpointCenter:sprite.position];
+//        
+//        // Define the dynamic body.
+//        //Set up a 1m squared box in the physics world
+//        b2BodyDef bodyDef;
+//        bodyDef.type = b2_dynamicBody;
+//        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+//        
+//        body = [Common instance].world->CreateBody(&bodyDef);
+//        body->SetLinearDamping(1.0f);
+//        body->SetUserData(sprite);
+//        
+//        // Define another box shape for our dynamic body.
+//        b2PolygonShape dynamicBox;
+////        dynamicBox.SetAsBox(2.1f, 2.1f);
+//        dynamicBox.SetAsBox(1.0f, 1.0f);
+//        
+//        // Define the dynamic body fixture.
+//        b2FixtureDef fixtureDef;
+//        fixtureDef.shape = &dynamicBox;	
+//        fixtureDef.density = 0.02f;
+////        fixtureDef.friction = 4.3f;
+//        body->CreateFixture(&fixtureDef);
         
-        CGPoint p = ccp(x,y);
-
-        sprite.position = [[Common instance] ort2iso:p];
-        sprite.scale = 0.5f;
-        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
-        [self setViewpointCenter:sprite.position];
         
-        // Define the dynamic body.
-        //Set up a 1m squared box in the physics world
-        b2BodyDef bodyDef;
-        bodyDef.type = b2_dynamicBody;
-        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+        CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
         
-        body = [Common instance].world->CreateBody(&bodyDef);
-        body->SetLinearDamping(1.0f);
-        body->SetUserData(sprite);
+        me = [[Car alloc] initWithX: sp.x Y:sp.y Type:CT_ME];
         
-        // Define another box shape for our dynamic body.
-        b2PolygonShape dynamicBox;
-//        dynamicBox.SetAsBox(2.1f, 2.1f);
-        dynamicBox.SetAsBox(1.0f, 1.0f);
-        
-        // Define the dynamic body fixture.
-        b2FixtureDef fixtureDef;
-        fixtureDef.shape = &dynamicBox;	
-        fixtureDef.density = 0.02f;
-//        fixtureDef.friction = 4.3f;
-        body->CreateFixture(&fixtureDef);
-        
-        
-        enemy = [[Car alloc] initWithX: x+200 Y:y+0];
+        enemy = [[Car alloc] initWithX: sp.x+200 Y:sp.y+0 Type:CT_ENEMY];
         
         [self scheduleUpdate];
 
@@ -164,8 +169,8 @@ enum {
     return self;
 }
 
--(void) update: (ccTime) dt
-{
+-(void) update: (ccTime) dt {
+    
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful
@@ -178,86 +183,15 @@ enum {
 	// generally best to keep the time step and iterations fixed.
 	[Common instance].world->Step(dt, velocityIterations, positionIterations);	
     
-         CGPoint f = ccpMult([Common instance].direction, 1.0f);
-         b2Vec2 force1 = b2Vec2(f.x, -f.y);
-         force1.Normalize();
-         force1 *= (float32)0.8f;
-//        world->ClearForces();
-//        body->ApplyForce(force1, body->GetPosition());
-        body->ApplyLinearImpulse(force1, body->GetPosition());
-         
-//    float bodyAngle = body->GetAngle();
-//    CGPoint vehicleDirectionVector = ccpNormalize(ccpSub(ccp(vehicleBonnetTip.x*PTM_RATIO, vehicleBonnetTip.y*PTM_RATIO), ccp(vehicleCenter.x*PTM_RATIO, vehicleCenter.y*PTM_RATIO)));
 
-    b2Vec2 toTarget = force1;
-    float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
-    body->SetTransform( body->GetPosition(), desiredAngle );
+    [me update];
+    CCSprite *eData = (CCSprite *)(me.body->GetUserData());
+    [self setViewpointCenter:eData.position];
     
-//    NSLog(@"desiredAngle = %f",desiredAngle);
-
-    CCSprite *carData = (CCSprite *)body->GetUserData();
-    CGPoint p = ccp(body->GetPosition().x * PTM_RATIO,
-                    body->GetPosition().y * PTM_RATIO);
-    carData.position = [[Common instance] ort2iso:p];
-//    carData.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-    
-    float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-    
-    NSString* name = @"car1.png";
-    float a = (rot < 0)?(360 + rot):rot;
-    a = a + 22.5f;
-    
-    if (a < 360.0f) {
-        if (a < 315.0f) {
-            if (a < 270.0f) {
-                if (a < 225.0f) {
-                    if (a < 180.0f) {
-                        if (a < 135.0f) {
-                            if (a < 90.0f) {
-                                if (a < 45.0f) {
-                                   name = @"car4.png";  
-                                } else name = @"car5.png";
-                            } else name = @"car6.png";
-                        } else name = @"car7.png";
-                    } else name = @"car8.png";
-                } else name = @"car1.png";
-            } else name = @"car2.png";
-        } else name = @"car3.png";
-    }
-
-//    NSLog(@"angle = %f, name = %@", a, name);
-    if(([Common instance].direction.x != 0) || ([Common instance].direction.y != 0)) {
-
-        CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
-        [carData setTexture: tex];
-        
-    }
-    
-//    [self setViewpointCenter:carData.position];
-
     [enemy update];
     
-    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
-    [self setViewpointCenter:eData.position];
-
-
-    
-//    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {    
-//        if (b->GetUserData() != NULL) {
-//
-//            
-//            CCSprite *ballData = (CCSprite *)b->GetUserData();
-//            
-//            CGPoint p = ccp(b->GetPosition().x * PTM_RATIO,
-//                                    b->GetPosition().y * PTM_RATIO);
-//            ballData.position = [self ort2iso:p];
-//            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-//            
-//            [self setViewpointCenter:ballData.position];
-//        }        
-//    }
-    
-//    world->ClearForces();
+//    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
+//    [self setViewpointCenter:eData.position];
 
 }
 
@@ -312,7 +246,7 @@ enum {
     delete m_debugDraw;
 	m_debugDraw = NULL;
 
-    
+    [me release];
     [enemy release];
     
 	[super dealloc];
@@ -427,6 +361,11 @@ enum {
         
         glLineWidth(3);
 
+        for (int i = 0; i < [[Common instance] getCheckpointCnt]; i++) {
+            
+            CGPoint p = [[Common instance] getCheckpoint:i];
+            ccDrawPoint([[Common instance]ort2iso:p]);
+        }
         
         float ex = enemy.eye.x * PTM_RATIO;
         float ey = enemy.eye.y * PTM_RATIO;
@@ -467,15 +406,15 @@ enum {
             
         }
 
-        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
+        for (b2Fixture* f = me.body->GetFixtureList(); f; f = f->GetNext()) {
 
             b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();
             
             int32 cnt = sh->GetVertexCount();
             b2Vec2 p0 = sh->GetVertex(0);
             b2Vec2 p00 = p0;
-            float x = body->GetPosition().x * PTM_RATIO;
-            float y = body->GetPosition().y * PTM_RATIO;
+            float x = me.body->GetPosition().x * PTM_RATIO;
+            float y = me.body->GetPosition().y * PTM_RATIO;
             for (int i = 1; i < cnt; i++) {
                 
                 b2Vec2 p = sh->GetVertex(i);

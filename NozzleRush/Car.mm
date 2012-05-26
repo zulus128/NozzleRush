@@ -14,9 +14,11 @@
 @synthesize body;
 @synthesize target, target1, target2, eye;
 
-- (id) initWithX: (int) x  Y:(int) y {
+- (id) initWithX: (int) x  Y:(int) y Type:(int) type {
     
     if((self = [super init])) {				
+        
+        typ = type;
         
         CCSprite* sprite = [CCSprite spriteWithFile:@"car6.png"];
         [[Common instance].tileMap addChild:sprite z:51];
@@ -48,7 +50,7 @@
         
         
         
-
+        [[Common instance] getCheckpoint:1];
         
     }
     return self;
@@ -56,21 +58,6 @@
 
 - (void) update {
 
-//    CGPoint f = ccp(self.body->GetPosition().x, self.body->GetPosition().y + 0);
-//    CGPoint f = ccp(0, 1);
-//    b2Vec2 force1 = b2Vec2(f.x, -f.y);
-    
-//    float angle = 0;
-    b2Vec2 force1 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle)), sin(CC_DEGREES_TO_RADIANS(angle)));
-    
-    force1.Normalize();
-    force1 *= (float32)0.3f;
-    body->ApplyLinearImpulse(force1, body->GetPosition());
-    
-    b2Vec2 toTarget = force1;
-    float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
-    body->SetTransform( body->GetPosition(), desiredAngle );
-    
     float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
     
     NSString* name = @"car1.png";
@@ -95,23 +82,55 @@
         } else name = @"car3.png";
     }
     
-     
-    CCSprite *eData = (CCSprite *)body->GetUserData();
-    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
-    [eData setTexture: tex];
     
-//    CCSprite *eData = (CCSprite *)(body->GetUserData());
+    CCSprite *eData = (CCSprite *)body->GetUserData();
+
+    if(([Common instance].direction.x != 0) || ([Common instance].direction.y != 0) || (typ != CT_ME)) {
+        
+        CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
+        [eData setTexture: tex];
+        
+    }
+
+    
+    //    CCSprite *eData = (CCSprite *)(body->GetUserData());
     CGPoint ep = ccp(body->GetPosition().x * PTM_RATIO,
                      body->GetPosition().y * PTM_RATIO);
     eData.position = [[Common instance] ort2iso:ep];
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
+
+    if (typ == CT_ME) {
+
+        CGPoint f = ccpMult([Common instance].direction, 1.0f);
+        b2Vec2 fforce1 = b2Vec2(f.x, -f.y);
+        fforce1.Normalize();
+        fforce1 *= (float32)0.08f;
+        body->ApplyLinearImpulse(fforce1, body->GetPosition());
+        
+        b2Vec2 toTarget = fforce1;
+        float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
+        body->SetTransform( body->GetPosition(), desiredAngle );
+
+        return;
+    }
     
+    
+    
+    b2Vec2 force1 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle)), sin(CC_DEGREES_TO_RADIANS(angle)));
+    
+    force1.Normalize();
+    force1 *= (float32)0.08f;
+    body->ApplyLinearImpulse(force1, body->GetPosition());
+    
+    b2Vec2 toTarget = force1;
+    float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
+    body->SetTransform( body->GetPosition(), desiredAngle );
     
     b2Vec2 eyeOffset = b2Vec2(0, 0/*1.5*/);
     self.eye = body->GetWorldPoint(eyeOffset);
     self.target = force1;//b2Vec2(1, -0);
     self.target.Normalize();
-    target *= 70.0;
+    target *= 330.0;
     self.target = eye + target;
     
     RaysCastCallback callback;
@@ -126,7 +145,7 @@
     if (callback.m_fixture) {
         
         l0 = (eye - callback.m_point).Length();
-        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f, f = %f", callback.m_point.x, callback.m_point.y, l0, callback.m_fraction);
+//        NSLog(@"ray intersect fixture x = %f, y = %f, l = %f, f = %f", callback.m_point.x, callback.m_point.y, l0, callback.m_fraction);
     }
 
     float angle1 = angle + 45;
@@ -140,7 +159,7 @@
     if (callback1.m_fixture) {
         
         l1 = (eye - callback1.m_point).Length();
-        NSLog(@"ray intersect fixture1 x = %f, y = %f, l = %f, f = %f", callback1.m_point.x, callback1.m_point.y, l1, callback1.m_fraction);
+//        NSLog(@"ray intersect fixture1 x = %f, y = %f, l = %f, f = %f", callback1.m_point.x, callback1.m_point.y, l1, callback1.m_fraction);
     }
 
     float angle2 = angle - 45;
@@ -154,21 +173,21 @@
     if (callback2.m_fixture) {
         
         l2 = (eye - callback2.m_point).Length();
-        NSLog(@"ray intersect fixture2 x = %f, y = %f, l = %f, f = %f", callback2.m_point.x, callback2.m_point.y, l2, callback2.m_fraction);
+//        NSLog(@"ray intersect fixture2 x = %f, y = %f, l = %f, f = %f", callback2.m_point.x, callback2.m_point.y, l2, callback2.m_fraction);
     }
 
     
     if ((l0 < 999) && (fabs(l1 - l2) > 6)) {
         
-        NSLog(@"turn");
+//        NSLog(@"turn");
         
         if (l1 < l2) {
             
-            angle -= 12;
+            angle -= 11.25;
         }
         else {
             
-            angle += 12;
+            angle += 11.25;
         }
     }
 //    NSLog(@"vel = %f", body->GetLinearVelocity().Normalize());

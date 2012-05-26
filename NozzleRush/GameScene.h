@@ -20,7 +20,7 @@
 	
 //    b2World* world;	
     
-    CCTexture2D *spriteTexture_;
+//    CCTexture2D *spriteTexture_;
     
     GLESDebugDraw *m_debugDraw;		// strong ref
     
@@ -28,10 +28,11 @@
 //    b2PolygonShape debugShape;
     BOOL debug;
     
-    b2Body *body;
+//    b2Body *body;
     
     NSMutableArray* debugs;
     
+    Car* me;
     Car* enemy;
     
 }

@@ -17,11 +17,20 @@
 //to define the ratio so that your most common object type is 1x1 metre.
 #define PTM_RATIO 32
 
-@interface Common : NSObject
+#define MAX_CHECKPOINTS 50
+#define CHP_NAME @"Checkpoint"
+
+@interface Common : NSObject {
+    
+    CGPoint chp[MAX_CHECKPOINTS];
+    int chp_cnt;
+}
 
 + (Common*) instance;
 - (CGPoint) getMapObjectPos:(NSString*) name;
 - (CGPoint) ort2iso:(CGPoint) pos;
+- (CGPoint) getCheckpoint:(int) c;
+- (int) getCheckpointCnt;
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;

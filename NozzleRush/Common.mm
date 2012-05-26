@@ -32,16 +32,52 @@
     
     CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"Objects"];
     NSAssert(objects != nil, @"'Objects' object group not found");
+    
     NSMutableDictionary *spawnPoint = [objects objectNamed:name];        
     NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
     
     float x = [[spawnPoint valueForKey:@"x"] integerValue];
     float y = [[spawnPoint valueForKey:@"y"] integerValue];
 
+    return ccp(x, y);
 }
 
--(void) initPhysics
-{
+- (int) getCheckpointCnt {
+    
+    return chp_cnt;
+}
+
+- (CGPoint) getCheckpoint:(int) c {
+    
+    if(chp_cnt > 0)
+        return chp[c];
+    
+    CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"Objects"];
+    NSAssert(objects != nil, @"'Objects' object group not found 1");
+    
+    chp_cnt = 0;
+    NSMutableDictionary *sp;
+    do {
+
+        NSString* s = [NSString stringWithFormat:@"%@%d", CHP_NAME, (chp_cnt + 1)];
+        sp = [objects objectNamed:s];        
+        if(sp != nil) {
+            
+            float x = [[sp valueForKey:@"x"] integerValue];
+            float y = [[sp valueForKey:@"y"] integerValue];
+            chp[chp_cnt++] = ccp(x, y); 
+            NSLog(@"Checkpoint%d x = %f, y = %f", chp_cnt, x, y);
+        }
+        
+    } while (sp != nil);
+
+    if (chp_cnt > 0)
+        return chp[c];
+
+    return ccp(0, 0);
+}
+
+-(void) initPhysics {
     
     //	CGSize s = [[CCDirector sharedDirector] winSize];
 	
@@ -54,12 +90,17 @@
         
 }
 
-- (id) init{	
+- (id) init {	
 	
 	self = [super init];
 	if(self !=nil) {
  
         [self initPhysics];
+        
+        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
+        
+        chp_cnt = -1;
+        
     }
 	return self;	
 }
