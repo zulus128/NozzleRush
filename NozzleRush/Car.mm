@@ -102,7 +102,12 @@
     if (typ == CT_ME) {
 
         CGPoint f = ccpMult([Common instance].direction, 1.0f);
-        b2Vec2 fforce1 = b2Vec2(f.x, -f.y);
+//        b2Vec2 ff1 = b2Vec2(f.x, -f.y);
+        float32 ang = CC_DEGREES_TO_RADIANS(-45);
+        float32 x2 = f.x * cos(ang) - (-f.y) * sin(ang);
+        float32 y2 = (-f.y) * cos(ang) + f.x * sin(ang);
+//        b2Vec2 f2 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle2)), sin(CC_DEGREES_TO_RADIANS(angle2)));
+        b2Vec2 fforce1 = b2Vec2(x2, y2);
         fforce1.Normalize();
         fforce1 *= (float32)0.08f;
         body->ApplyLinearImpulse(fforce1, body->GetPosition());
@@ -111,6 +116,23 @@
         float desiredAngle = atan2f( -toTarget.x, -toTarget.y );
         body->SetTransform( body->GetPosition(), desiredAngle );
 
+            
+        CGPoint p1 = eData.position;
+        CGPoint p2 = [[Common instance] getCurCheckpoint];
+        float d = ccpDistance(p1, p2);
+        [Common instance].distToChp = d;
+        if(d < 250) {
+
+            [Common instance].checkpoint++;
+            if([Common instance].checkpoint >= [[Common instance] getCheckpointCnt]) {
+                
+                [Common instance].checkpoint = 0;
+                [Common instance].laps++;
+
+            }
+        }
+//        NSLog(@"dist = %f", d);
+        
         return;
     }
     

@@ -13,6 +13,7 @@
 @synthesize direction;
 @synthesize tileMap = _tileMap;
 @synthesize world;
+@synthesize laps, checkpoint, distToChp;
 
 + (Common*) instance  {
 	
@@ -47,10 +48,15 @@
     return chp_cnt;
 }
 
+- (CGPoint) getCurCheckpoint {
+
+    return [self getCheckpoint:self.checkpoint];
+}
+
 - (CGPoint) getCheckpoint:(int) c {
     
     if(chp_cnt > 0)
-        return chp[c];
+        return [self ort2iso: chp[c]];
     
     CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"Objects"];
     NSAssert(objects != nil, @"'Objects' object group not found 1");
@@ -72,7 +78,7 @@
     } while (sp != nil);
 
     if (chp_cnt > 0)
-        return chp[c];
+        return [self ort2iso: chp[c]];
 
     return ccp(0, 0);
 }

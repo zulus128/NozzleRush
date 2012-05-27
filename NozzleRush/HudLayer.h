@@ -15,6 +15,10 @@
     BOOL flagbegin;
     CCSprite* joyfire;
     id move_ease_in;
+    
+    CCLabelTTF* score;
 }
+
+- (void) updateScore;
 
 @end

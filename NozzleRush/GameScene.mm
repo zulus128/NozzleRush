@@ -82,7 +82,6 @@ enum {
 		[self addChild:[Common instance].tileMap z:-1];
 		
         
-        
         _background = [[Common instance].tileMap layerNamed:@"LayerTile7"];
         _background.position = ccp(81,0);
 
@@ -193,6 +192,7 @@ enum {
 //    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
 //    [self setViewpointCenter:eData.position];
 
+    [self.hudLayer updateScore];
 }
 
 //- (CGPoint)boundLayerPos:(CGPoint)newPos {
@@ -364,7 +364,8 @@ enum {
         for (int i = 0; i < [[Common instance] getCheckpointCnt]; i++) {
             
             CGPoint p = [[Common instance] getCheckpoint:i];
-            ccDrawPoint([[Common instance]ort2iso:p]);
+//            ccDrawPoint([[Common instance]ort2iso:p]);
+            ccDrawPoint(p);
         }
         
         float ex = enemy.eye.x * PTM_RATIO;

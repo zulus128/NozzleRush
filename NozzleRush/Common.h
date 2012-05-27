@@ -30,10 +30,14 @@
 - (CGPoint) getMapObjectPos:(NSString*) name;
 - (CGPoint) ort2iso:(CGPoint) pos;
 - (CGPoint) getCheckpoint:(int) c;
+- (CGPoint) getCurCheckpoint;
 - (int) getCheckpointCnt;
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
 @property (nonatomic) b2World* world;
+@property (assign, readwrite) int laps;
+@property (assign, readwrite) int checkpoint;
+@property (assign, readwrite) int distToChp;
 
 @end

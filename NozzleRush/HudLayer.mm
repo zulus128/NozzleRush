@@ -9,18 +9,18 @@
 #import "HudLayer.h"
 #import "Common.h"
 
-
 #define JOYCENTERX 70
 #define JOYCENTERY 70
 #define JOYTRIGGERRADIUS 102
 #define JOYFIELDRADIUS 250
 
 @implementation HudLayer
--(id) init
-{
+
+-(id) init {
+    
 	if ((self = [super init])) {
 
-//		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         self.isTouchEnabled = YES;
         
@@ -36,12 +36,22 @@
         
         move_ease_in = [[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:0.3f position:ccp(JOYCENTERX, JOYCENTERY)] rate:3.0f] retain];
 
+        score = [CCLabelTTF labelWithString:@"Checkpoint:  Lap: " fontName:@"Marker Felt" fontSize:18];
+        score.position = ccp(245, winSize.height - 30);
+        [self addChild:score z:60];
 
+        
 	}
 	return self;
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void) updateScore {
+    
+    NSString* str = [NSString stringWithFormat:@"Checkpoint: %d, Lap: %d, Distance to checkpoint: %d", [Common instance].checkpoint, [Common instance].laps, [Common instance].distToChp];
+    [score setString:str];
+}
+
+- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
         if(flagbegin)
             return;
@@ -104,8 +114,7 @@
 }
 
 
--(void) dealloc
-{
+-(void) dealloc {
 
     [move_ease_in release];
     
