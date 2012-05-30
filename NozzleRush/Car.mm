@@ -83,8 +83,8 @@
         } else name = @"car3.png";
     } else name = @"car4.png";
     
-    if(typ == CT_ME)
-        NSLog(@"angle = %f, %f, %@", rot, a, name);
+//    if(typ == CT_ME)
+//        NSLog(@"angle = %f, %f, %@", rot, a, name);
     
     CCSprite *eData = (CCSprite *)body->GetUserData();
     
