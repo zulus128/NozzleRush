@@ -103,7 +103,8 @@
  
         [self initPhysics];
         
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
+//        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
+        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"MoonMap.tmx"];
         
         chp_cnt = -1;
         

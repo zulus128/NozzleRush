@@ -64,6 +64,7 @@
     float a = (rot < 0)?(360 + rot):rot;
     a = a + 22.5f;
     
+    
     if (a < 360.0f) {
         if (a < 315.0f) {
             if (a < 270.0f) {
@@ -80,8 +81,10 @@
                 } else name = @"car1.png";
             } else name = @"car2.png";
         } else name = @"car3.png";
-    }
+    } else name = @"car4.png";
     
+    if(typ == CT_ME)
+        NSLog(@"angle = %f, %f, %@", rot, a, name);
     
     CCSprite *eData = (CCSprite *)body->GetUserData();
     
