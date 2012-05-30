@@ -68,30 +68,35 @@ enum {
 
 // on "init" you need to initialize your instance
 -(id) init {
-
+    
     if((self = [super init])) {				
-	
-//        self.isTouchEnabled = YES;
+        
+        //        self.isTouchEnabled = YES;
         
         debugs = [[NSMutableArray alloc] init];
         
-//      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
-//		[self addChild:_tileMap z:-1];
-
-//        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
+        //      self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest1.tmx"];
+        //		[self addChild:_tileMap z:-1];
+        
+        //        [Common instance].tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"RaceMapTest5.tmx"];
 		[self addChild:[Common instance].tileMap z:-1];
 		
+        _background = [[Common instance].tileMap layerNamed:@"RoadLayer"];
+        _background.position = ccp(0,0);
         
-        _background = [[Common instance].tileMap layerNamed:@"LayerTile7"];
-        _background.position = ccp(81,0);
-
-        _background1 = [[Common instance].tileMap layerNamed:@"LayerTile7Down"];
-        _background1.position = ccp(83,2);
-
         
+        // added by Andrew Osipov 28.05.12      
+        [[[Common instance].tileMap layerNamed:@"BackBackgroundLayer"] setZOrder:-5];
+        [[[Common instance].tileMap layerNamed:@"FrontBackgroundLayer"] setZOrder:-4];
+        [[[Common instance].tileMap layerNamed:@"ColumnLayer"] setZOrder:-3];
+        [[[Common instance].tileMap layerNamed:@"RoadLayer"] setZOrder:-2];
+        [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-1];
+        //zOrder:0 for cars
+        [[[Common instance].tileMap layerNamed:@"FrontBorderLayer"] setZOrder:1];
+        //==========================        
         debug = NO;
         
-//        [self initPhysics];
+        //        [self initPhysics];
         
         m_debugDraw = new GLESDebugDraw( PTM_RATIO );
         [Common instance].world->SetDebugDraw(m_debugDraw);
@@ -103,56 +108,56 @@ enum {
         //			flags += b2Draw::e_pairBit;
         //			flags += b2Draw::e_centerOfMassBit;
         m_debugDraw->SetFlags(flags);
-
+        
         
         [self processCollisionLayer];
         
-//        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
-//        NSAssert(objects != nil, @"'Objects' object group not found");
-//        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
-//        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-//        float x = [[spawnPoint valueForKey:@"x"] integerValue];
-//        float y = [[spawnPoint valueForKey:@"y"] integerValue];
-//        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
+        //        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
+        //        NSAssert(objects != nil, @"'Objects' object group not found");
+        //        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
+        //        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
+        //        float x = [[spawnPoint valueForKey:@"x"] integerValue];
+        //        float y = [[spawnPoint valueForKey:@"y"] integerValue];
+        //        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
         
         
-//        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
-//		spriteTexture_ = [parent texture];
-//		[_tileMap addChild:parent z:0 tag:kTagParentNode];
-//        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
-//        [parent addChild:sprite];
+        //        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
+        //		spriteTexture_ = [parent texture];
+        //		[_tileMap addChild:parent z:0 tag:kTagParentNode];
+        //        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
+        //        [parent addChild:sprite];
         
-//        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
-//        [[Common instance].tileMap addChild:sprite z:50];
-//        
-//        CGPoint p = ccp(x,y);
-//
-//        sprite.position = [[Common instance] ort2iso:p];
-//        sprite.scale = 0.5f;
-//        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
-//        [self setViewpointCenter:sprite.position];
-//        
-//        // Define the dynamic body.
-//        //Set up a 1m squared box in the physics world
-//        b2BodyDef bodyDef;
-//        bodyDef.type = b2_dynamicBody;
-//        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-//        
-//        body = [Common instance].world->CreateBody(&bodyDef);
-//        body->SetLinearDamping(1.0f);
-//        body->SetUserData(sprite);
-//        
-//        // Define another box shape for our dynamic body.
-//        b2PolygonShape dynamicBox;
-////        dynamicBox.SetAsBox(2.1f, 2.1f);
-//        dynamicBox.SetAsBox(1.0f, 1.0f);
-//        
-//        // Define the dynamic body fixture.
-//        b2FixtureDef fixtureDef;
-//        fixtureDef.shape = &dynamicBox;	
-//        fixtureDef.density = 0.02f;
-////        fixtureDef.friction = 4.3f;
-//        body->CreateFixture(&fixtureDef);
+        //        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
+        //        [[Common instance].tileMap addChild:sprite z:50];
+        //        
+        //        CGPoint p = ccp(x,y);
+        //
+        //        sprite.position = [[Common instance] ort2iso:p];
+        //        sprite.scale = 0.5f;
+        //        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
+        //        [self setViewpointCenter:sprite.position];
+        //        
+        //        // Define the dynamic body.
+        //        //Set up a 1m squared box in the physics world
+        //        b2BodyDef bodyDef;
+        //        bodyDef.type = b2_dynamicBody;
+        //        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+        //        
+        //        body = [Common instance].world->CreateBody(&bodyDef);
+        //        body->SetLinearDamping(1.0f);
+        //        body->SetUserData(sprite);
+        //        
+        //        // Define another box shape for our dynamic body.
+        //        b2PolygonShape dynamicBox;
+        ////        dynamicBox.SetAsBox(2.1f, 2.1f);
+        //        dynamicBox.SetAsBox(1.0f, 1.0f);
+        //        
+        //        // Define the dynamic body fixture.
+        //        b2FixtureDef fixtureDef;
+        //        fixtureDef.shape = &dynamicBox;	
+        //        fixtureDef.density = 0.02f;
+        ////        fixtureDef.friction = 4.3f;
+        //        body->CreateFixture(&fixtureDef);
         
         
         CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
@@ -162,7 +167,7 @@ enum {
         enemy = [[Car alloc] initWithX: sp.x+200 Y:sp.y+0 Type:CT_ENEMY];
         
         [self scheduleUpdate];
-
+        
 		
     }
     return self;
@@ -182,16 +187,16 @@ enum {
 	// generally best to keep the time step and iterations fixed.
 	[Common instance].world->Step(dt, velocityIterations, positionIterations);	
     
-
+    
     [me update];
     CCSprite *eData = (CCSprite *)(me.body->GetUserData());
     [self setViewpointCenter:eData.position];
     
     [enemy update];
     
-//    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
-//    [self setViewpointCenter:eData.position];
-
+    //    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
+    //    [self setViewpointCenter:eData.position];
+    
     [self.hudLayer updateScore];
 }
 
@@ -238,14 +243,14 @@ enum {
 
 -(void) dealloc
 {
-//	delete world;
-//	world = NULL;
+    //	delete world;
+    //	world = NULL;
 	
-//    [_tileMap release];
-        
+    //    [_tileMap release];
+    
     delete m_debugDraw;
 	m_debugDraw = NULL;
-
+    
     [me release];
     [enemy release];
     
@@ -266,7 +271,7 @@ enum {
     NSArray *pointsArray;
     for (id object in polygonObjectArray)
     {
-       // NSLog(@"Poligon!!!");
+        // NSLog(@"Poligon!!!");
         pointsString = [object valueForKey:@"polygonPoints"];
         if (pointsString != NULL)
         {
@@ -288,7 +293,7 @@ enum {
                 fX = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 // flip y-position (TMX y-origin is upper-left)
-//                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+                //                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
                 fY = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
                 ++i;
                 shape.m_vertices[k].Set(fX/PTM_RATIO, fY/PTM_RATIO);
@@ -325,12 +330,12 @@ enum {
             [self addWall:ccp(x,y) sh:shape];
             
             
-//            glLineWidth(3);
-//            ccDrawLine( ccp(x,y), ccp(x+width,y) );
-//            ccDrawLine( ccp(x+width,y), ccp(x+width,y+height) );
-//            ccDrawLine( ccp(x+width,y+height), ccp(x,y+height) );
-//            ccDrawLine( ccp(x,y+height), ccp(x,y) );
-//            glLineWidth(1);
+            //            glLineWidth(3);
+            //            ccDrawLine( ccp(x,y), ccp(x+width,y) );
+            //            ccDrawLine( ccp(x+width,y), ccp(x+width,y+height) );
+            //            ccDrawLine( ccp(x+width,y+height), ccp(x,y+height) );
+            //            ccDrawLine( ccp(x,y+height), ccp(x,y) );
+            //            glLineWidth(1);
         }
     }
     
@@ -352,19 +357,19 @@ enum {
 	//
 	[super draw];
 	
-//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-//	kmGLPushMatrix();
-//	world->DrawDebugData();	
-//	kmGLPopMatrix();
+    //	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+    //	kmGLPushMatrix();
+    //	world->DrawDebugData();	
+    //	kmGLPopMatrix();
     
-    if(debug) {
+    if(! debug) {
         
         glLineWidth(3);
-
+        
         for (int i = 0; i < [[Common instance] getCheckpointCnt]; i++) {
             
             CGPoint p = [[Common instance] getCheckpoint:i];
-//            ccDrawPoint([[Common instance]ort2iso:p]);
+            //            ccDrawPoint([[Common instance]ort2iso:p]);
             ccDrawPoint(p);
         }
         
@@ -374,17 +379,17 @@ enum {
         float ey1 = enemy.target.y * PTM_RATIO;
         
         ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
-
+        
         ex1 = enemy.target1.x * PTM_RATIO;
         ey1 = enemy.target1.y * PTM_RATIO;
         
         ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
-
+        
         ex1 = enemy.target2.x * PTM_RATIO;
         ey1 = enemy.target2.y * PTM_RATIO;
         
         ccDrawLine( [[Common instance] ort2iso:ccp(ex, ey)], [[Common instance] ort2iso:ccp(ex1, ey1)] );
-
+        
         
         
         for (b2Fixture* f = enemy.body->GetFixtureList(); f; f = f->GetNext()) {
@@ -406,9 +411,9 @@ enum {
             ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
             
         }
-
+        
         for (b2Fixture* f = me.body->GetFixtureList(); f; f = f->GetNext()) {
-
+            
             b2PolygonShape* sh = (b2PolygonShape*)f->GetShape();
             
             int32 cnt = sh->GetVertexCount();
@@ -419,18 +424,18 @@ enum {
             for (int i = 1; i < cnt; i++) {
                 
                 b2Vec2 p = sh->GetVertex(i);
-//                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
+                //                ccDrawLine( [self ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [self ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
                 ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
                 p0 = p;
             }
             ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p00.x * PTM_RATIO, y + p00.y * PTM_RATIO)] );
             
         }
-
+        
         
         
         for (int j = 0; j < debugs.count; j++) {
-
+            
             DebugStruc* ds = [debugs objectAtIndex:j];
             
             int32 cnt = ds.debugShape.GetVertexCount();
@@ -439,7 +444,7 @@ enum {
             float x = ds.debugPoint.x;
             float y = ds.debugPoint.y;
             for (int i = 1; i < cnt; i++) {
-            
+                
                 b2Vec2 p = ds.debugShape.GetVertex(i);
                 ccDrawLine( [[Common instance] ort2iso:ccp(x + p0.x * PTM_RATIO, y + p0.y * PTM_RATIO)], [[Common instance] ort2iso:ccp(x + p.x * PTM_RATIO, y + p.y * PTM_RATIO)] );
                 p0 = p;
@@ -452,7 +457,7 @@ enum {
 }
 
 - (void) addWall: (CGPoint) p sh:(b2PolygonShape)shape {
-
+    
     DebugStruc* ds = [[DebugStruc alloc] init];
     ds.debugPoint = p;
     ds.debugShape = shape;
@@ -473,7 +478,7 @@ enum {
     fixtureDef.friction = 0.3f;
     bodyw->CreateFixture(&fixtureDef);
     
-//    NSLog(@"x = %f, y = %f",p.x,p.y);
+    //    NSLog(@"x = %f, y = %f",p.x,p.y);
     
 }
 
