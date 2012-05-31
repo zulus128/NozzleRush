@@ -200,6 +200,7 @@
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
 		36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.mm */; };
+		36F845B5157764D50000C838 /* MenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36F845B4157764D50000C838 /* MenuScene.mm */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
 		DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */; };
 		DD56F62D1555B99D00E4F162 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61A1555B99D00E4F162 /* 1.png */; };
@@ -613,6 +614,8 @@
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		36AF39AD154C0466008C3F63 /* HudLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudLayer.mm; sourceTree = "<group>"; };
+		36F845B3157764D50000C838 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		36F845B4157764D50000C838 /* MenuScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuScene.mm; sourceTree = "<group>"; };
 		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
 		DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest1.tmx; sourceTree = "<group>"; };
 		DD56F61A1555B99D00E4F162 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -780,6 +783,8 @@
 			children = (
 				36209597152176820041020A /* Common.h */,
 				36209598152176820041020A /* Common.mm */,
+				36F845B3157764D50000C838 /* MenuScene.h */,
+				36F845B4157764D50000C838 /* MenuScene.mm */,
 				3620959A1521777B0041020A /* GameScene.h */,
 				3620959B1521777B0041020A /* GameScene.mm */,
 				36AF39AC154C0466008C3F63 /* HudLayer.h */,
@@ -1606,6 +1611,7 @@
 				3620959C1521777B0041020A /* GameScene.mm in Sources */,
 				36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */,
 				36684B30156B5D7700AEE7B0 /* Car.mm in Sources */,
+				36F845B5157764D50000C838 /* MenuScene.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

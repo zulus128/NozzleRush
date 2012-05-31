@@ -14,6 +14,7 @@
 @synthesize tileMap = _tileMap;
 @synthesize world;
 @synthesize laps, checkpoint, distToChp;
+@synthesize gametype;
 
 + (Common*) instance  {
 	

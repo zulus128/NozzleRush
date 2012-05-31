@@ -20,6 +20,9 @@
 #define MAX_CHECKPOINTS 50
 #define CHP_NAME @"Checkpoint"
 
+
+enum game_type { GT_RACE, GT_FREERIDE };
+
 @interface Common : NSObject {
     
     CGPoint chp[MAX_CHECKPOINTS];
@@ -39,5 +42,6 @@
 @property (assign, readwrite) int laps;
 @property (assign, readwrite) int checkpoint;
 @property (assign, readwrite) int distToChp;
+@property (assign, readwrite) int gametype;
 
 @end

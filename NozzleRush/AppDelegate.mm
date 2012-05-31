@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 
-#import "GameScene.h"
+#import "MenuScene.h"
 
 @implementation AppController
 
@@ -80,7 +80,10 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
-    CCScene *scene = [GameScene scene];
+//    CCScene *scene = [GameScene scene];
+  
+    CCScene *scene = [MenuScene scene];
+    
 //    GameScene *layer = (GameScene *) [scene.children objectAtIndex:0];	
 //    UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:layer action:@selector(handlePanFrom:)] autorelease];
 //    [navController_.view addGestureRecognizer:gestureRecognizer];
