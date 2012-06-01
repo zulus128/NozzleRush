@@ -3,7 +3,7 @@
 
 @interface MenuScene : CCLayer {
     
-    
+    CCScene *scene;
 }
 
 + (id) scene;

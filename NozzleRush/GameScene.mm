@@ -160,17 +160,38 @@ enum {
         //        body->CreateFixture(&fixtureDef);
         
         
-        CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
         
-        me = [[Car alloc] initWithX: sp.x Y:sp.y Type:CT_ME];
+//        me = [[Car alloc] initWithX: sp.x Y:sp.y Type:CT_ME];
+//        
+//        enemy = [[Car alloc] initWithX: sp.x+200 Y:sp.y+0 Type:CT_ENEMY];
+
+        me = [[Car alloc] initWithType:CT_ME];
         
-        enemy = [[Car alloc] initWithX: sp.x+200 Y:sp.y+0 Type:CT_ENEMY];
+        enemy = [[Car alloc] initWithType:CT_ENEMY];
+
+        [Common instance].gamescene = self;
         
-        [self scheduleUpdate];
+//        [self start];
         
+//        [self scheduleUpdate];
 		
     }
     return self;
+}
+
+-(void) start {
+
+    CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
+
+//    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
+    [me setPosX: sp.x Y:sp.y];
+    [enemy setPosX: sp.x + 200 Y:sp.y + 50];
+
+    [Common instance].checkpoint = 0;
+    [Common instance].laps = 0;
+    
+    [self scheduleUpdate];
+
 }
 
 -(void) update: (ccTime) dt {
@@ -194,10 +215,20 @@ enum {
     
     [enemy update];
     
-    //    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
-    //    [self setViewpointCenter:eData.position];
+//    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
+//    [self setViewpointCenter:eData.position];
     
     [self.hudLayer updateScore];
+    
+    if(([Common instance].gametype == GT_RACE) && ([Common instance].laps >= LAPS_CNT)) {
+        
+        [self unscheduleAllSelectors];
+//        [self.hudLayer ccTouchEnded:nil withEvent:nil];
+        [[CCDirector sharedDirector] pause];
+        [self.hudLayer showGO];
+        
+    }
+
 }
 
 //- (CGPoint)boundLayerPos:(CGPoint)newPos {
@@ -362,7 +393,7 @@ enum {
     //	world->DrawDebugData();	
     //	kmGLPopMatrix();
     
-    if(! debug) {
+    if(!debug) {
         
         glLineWidth(3);
         

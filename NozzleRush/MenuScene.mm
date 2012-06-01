@@ -50,7 +50,9 @@
 - (void) race:(id) sender {
 
     [Common instance].gametype = GT_RACE;
-    CCScene *scene = [GameScene scene];
+    if(scene == nil)
+        scene = [[GameScene scene] retain];
+    [[Common instance].gamescene start];
 	[[CCDirector sharedDirector] pushScene: scene]; 
     
 }
@@ -58,7 +60,9 @@
 - (void) ride:(id) sender {
 
     [Common instance].gametype = GT_FREERIDE;
-    CCScene *scene = [GameScene scene];
+    if(scene == nil)
+        scene = [[GameScene scene] retain];
+    [[Common instance].gamescene start];
 	[[CCDirector sharedDirector] pushScene: scene]; 
 
 }

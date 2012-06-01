@@ -19,7 +19,7 @@
 
 #define MAX_CHECKPOINTS 50
 #define CHP_NAME @"Checkpoint"
-
+#define LAPS_CNT 3
 
 enum game_type { GT_RACE, GT_FREERIDE };
 
@@ -43,5 +43,6 @@ enum game_type { GT_RACE, GT_FREERIDE };
 @property (assign, readwrite) int checkpoint;
 @property (assign, readwrite) int distToChp;
 @property (assign, readwrite) int gametype;
+@property (nonatomic, retain) CCLayer* gamescene;
 
 @end

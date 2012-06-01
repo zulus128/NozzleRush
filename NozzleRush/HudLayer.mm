@@ -40,9 +40,27 @@
         score.position = ccp(245, winSize.height - 30);
         [self addChild:score z:60];
 
-        
+        label2 = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Helvetica" fontSize:38];
+        label2.position = ccp(winSize.width / 2 - 40, winSize.height / 2);
+        label2.visible = NO;
+        [self addChild:label2 z:100];
 	}
 	return self;
+}
+
+- (void) showGO {
+    
+    joyfire.position = ccp(JOYCENTERX, JOYCENTERY);
+    trigbeginx = 0;
+    trigbeginy = 0;
+    flagbegin = NO;
+    
+    label2.visible = YES;
+}
+
+- (void) hideGO {
+    
+    label2.visible = NO;
 }
 
 - (void) updateScore {
@@ -111,6 +129,14 @@
     
 //    NSLog(@"----------e");
     
+    
+    if([[CCDirector sharedDirector] isPaused]) {
+        
+        [self hideGO];
+        [[CCDirector sharedDirector] resume];
+//        [[CCDirector sharedDirector] replaceScene:[Common instance].menuscene];
+        [[CCDirector sharedDirector] popScene];
+    }
 }
 
 

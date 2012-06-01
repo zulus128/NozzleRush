@@ -14,23 +14,22 @@
 @synthesize body;
 @synthesize target, target1, target2, eye;
 
-- (id) initWithX: (int) x  Y:(int) y Type:(int) type {
+- (id) initWithType:(int) type {
     
     if((self = [super init])) {				
         
         typ = type;
         
-        CCSprite* sprite = [CCSprite spriteWithFile:@"car6.png"];
+        sprite = [CCSprite spriteWithFile:@"car2.png"];
         [[Common instance].tileMap addChild:sprite z:0];    //corrected by Andrew Osipov 28.05.12
         
-        CGPoint p = ccp(x,y);
-        
-        sprite.position = [[Common instance] ort2iso:p];
         sprite.scale = 0.5f;
         
-        b2BodyDef bodyDef;
+//        CGPoint p = ccp(5079,2325);
+//        sprite.position = [[Common instance] ort2iso:p];
+//        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+
         bodyDef.type = b2_dynamicBody;
-        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
         
         self.body = [Common instance].world->CreateBody(&bodyDef);
         self.body->SetLinearDamping(1.0f);
@@ -50,10 +49,27 @@
         
         
         
-        [[Common instance] getCheckpoint:1];
+
         
     }
     return self;
+}
+
+- (void) setPosX:(int)x Y:(int)y {
+
+    CGPoint p = ccp(x,y);
+    sprite.position = [[Common instance] ort2iso:p];
+//    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+    body->SetTransform(b2Vec2(x / PTM_RATIO, y / PTM_RATIO), 0);
+
+    [[Common instance] getCheckpoint:1];
+    
+    angle = 180;
+    
+    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"car2.png"];
+    [sprite setTexture: tex];
+
+
 }
 
 - (void) update {

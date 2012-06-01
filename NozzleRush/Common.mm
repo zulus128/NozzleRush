@@ -15,6 +15,7 @@
 @synthesize world;
 @synthesize laps, checkpoint, distToChp;
 @synthesize gametype;
+@synthesize  gamescene;
 
 + (Common*) instance  {
 	

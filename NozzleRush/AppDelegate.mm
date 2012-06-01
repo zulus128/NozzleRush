@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 
 #import "MenuScene.h"
+#import "Common.h"
 
 @implementation AppController
 
@@ -83,6 +84,7 @@
 //    CCScene *scene = [GameScene scene];
   
     CCScene *scene = [MenuScene scene];
+//    [Common instance].menuscene = scene;
     
 //    GameScene *layer = (GameScene *) [scene.children objectAtIndex:0];	
 //    UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:layer action:@selector(handlePanFrom:)] autorelease];

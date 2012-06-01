@@ -17,8 +17,12 @@
     id move_ease_in;
     
     CCLabelTTF* score;
+    
+    CCLabelTTF* label2;
 }
 
 - (void) updateScore;
+- (void) showGO;
+- (void) hideGO;
 
 @end

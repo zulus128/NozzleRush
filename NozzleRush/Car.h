@@ -15,11 +15,14 @@ enum Car_type { CT_ME, CT_ENEMY };
     
     float angle;
     int typ;
+    b2BodyDef bodyDef;
+    CCSprite* sprite;
 }
 
-- (id) initWithX: (int) x  Y:(int) y Type:(int) type;
-
+//- (id) initWithX: (int) x  Y:(int) y Type:(int) type;
+- (id) initWithType:(int) type;
 - (void) update;
+- (void) setPosX:(int)x Y:(int)y;
 
 @property (nonatomic) b2Body *body;
 @property (readwrite) b2Vec2 eye;
