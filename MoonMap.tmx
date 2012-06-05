@@ -12,6 +12,9 @@
  <tileset firstgid="20" name="background_tiles_default" tilewidth="199" tileheight="160">
   <image source="background_tiles_default.png" width="512" height="1024"/>
  </tileset>
+ <tileset firstgid="32" name="tr" tilewidth="281" tileheight="253">
+  <image source="tr.png" width="281" height="253"/>
+ </tileset>
  <layer name="BackBackgroundLayer" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKHr8P27DpZDwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/ARU95k8=
@@ -30,6 +33,11 @@
  <layer name="BackBorderLayer" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJzt291ugkAURlGuW5u+so9eSWNsg6QwHJwvnbUSboxBZMuPDEwTAAAAAAAAAADAcZ+36TJN17Ont9vU+7umm1t8vPDzNFn36hZ3miz1anGnyUPvFneadN1Hrb1+feVyJOm9Xaw1GdWl9wJMGcuQImFdJCxDit7rovf+Mk3PHlosVfbYe41Fi6WqHn7rNSp6aFHnaA8tah3poUW91h5anKOlhxbnaenR+z/kf6ZHFj2y6JGlqsdfY0hbr6WMPBY1a+mxd1xv7/nYyE1a9z1bm7SeG4/a5MixYK1J1TXcEZscPTZXj3+/L+d/Lf6IaC3H5ifvLzPPa+QmVffcVDYZ/Xx6y3HgyHz2Gr3HLOk+KD2+pTTR4yGhiR5LPdeJHkt6ZNEjix5Z9MiiRxY9suiRRY8semTRI0vFOFUL96I+d/az4Wv3/2ix7qwmtoF21U20OG7LeK5nOF8rYZyK3zTJo0keTQAAAAAAAAAAAPjpCwBRNy8=
+  </data>
+ </layer>
+ <layer name="Tramplins" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzgENADAIAzCkzL/Kyxg8rYLOAAAAAAAAAAAAAAAAAAAAAADADmkHAAAAAAAAjkg7AADwqbQDAAAAAAAAAAAAAAAArPEACzcAYQ==
   </data>
  </layer>
  <objectgroup name="Collisions" width="100" height="100" opacity="0">
@@ -249,9 +257,9 @@
    <polygon points="0,0 11,11 19,3 8,-8"/>
   </object>
  </objectgroup>
- <layer name="FrontBorderLayer" width="100" height="100">
+ <layer name="FrontBorderLayer" width="100" height="100" opacity="0.95">
   <data encoding="base64" compression="zlib">
-   eJzt3NluglAUQFGf1Tb9ZD+90sYULiDTHU7JWgkPPpTq2aXK5OUCAAAAAAAAAAAAAG19FVxuFV/HGXwWXv+18PrPpHSLl65Jup08t51HpV//L9Rq8XJPHuvxp8Us9JjXYhYfAZ5DVBFmUfv/ZWSte2gx1LKHFmOtemgxrUUPLebl6LHlmIkW7x3tYb55HemhRX57e2hRxp4erfdZzkyPWPSIxWxj0SMWPWI52uP2/Pl7b0nPbbBN6e1j6fgJQ93f97VQkzX7jFPXN/Azl0fO9W3Zf3c+fSx9H1jbJ8cxXD2W1ZyJHsv0aGfqc44ebbWciR5jesSiRyx6xKJHLHrEokcsesSiRyx6xKJHLOlMOqXOU6XcvzY2d294rSZ9rkX9FaGJFkMtm2gxba5J/3zu2mXt9T9avFfqu0bcM7Vf7ibmflyuJlrk0zU58r1XWgAAAAAAAAAAAJzLNwTEN4k=
+   eJzt3MmOgkAUQFHXahs/2U9vaWNsJgeqivck5yQsXIhaV0TG3Q4AAAAAAAAAAAAAYp0bTocVP8cWnBrPf994/lvSusVd12S4nFyXnctKL/8V1mpxdxw81uMhYiz0mBcxFj8J3kNWGcZi7d/LzKJ7aNEX2UOLsageWkyL6KHFvBo9PtlnosVzpT2Mb10lPbSob2kPLdpY0iN6m2XL9MhFj1yMbS565KJHLqU9DtfnH/9Nw2MbfKb18vFq/wl93fd736jJO9uMU+c38Dcul5rzK9l+t04brwfe7dNiH64eY5FjoseYHnGm/ufoESvTOWp66JGNHrnokYseueiRix656JGLHrnokYseuQx7dFodp3pFj/lrwyOaOBf1JkMTLfoim2gxLeK+Flo816qJa6aWq93EuJer1USLeromJfe90gIAAAAAAAAAAGBbfgE8wS+T
   </data>
  </layer>
 </map>

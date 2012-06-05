@@ -191,6 +191,7 @@
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
 		36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.mm */; };
+		36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 36DFD9BB157DF4FA003D99E8 /* tr.png */; };
 		36F845B5157764D50000C838 /* MenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36F845B4157764D50000C838 /* MenuScene.mm */; };
 		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
 		DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */; };
@@ -596,6 +597,7 @@
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		36AF39AD154C0466008C3F63 /* HudLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudLayer.mm; sourceTree = "<group>"; };
+		36DFD9BB157DF4FA003D99E8 /* tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tr.png; sourceTree = "<group>"; };
 		36F845B3157764D50000C838 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		36F845B4157764D50000C838 /* MenuScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuScene.mm; sourceTree = "<group>"; };
 		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 				DD56F6281555B99D00E4F162 /* 15.png */,
 				DD56F6291555B99D00E4F162 /* 16.png */,
 				DD56F62A1555B99D00E4F162 /* 17.png */,
+				36DFD9BB157DF4FA003D99E8 /* tr.png */,
 				DD56F62B1555B99D00E4F162 /* RaceMap.tmx */,
 				DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */,
 				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
@@ -1400,6 +1403,7 @@
 				360AC1731575EB5D009D51A7 /* moonBack.png in Resources */,
 				360AC1741575EB5D009D51A7 /* MoonMap.tmx in Resources */,
 				360AC1751575EB5D009D51A7 /* road_tiles_default.png in Resources */,
+				36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
