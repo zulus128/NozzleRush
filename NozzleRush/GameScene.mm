@@ -93,7 +93,9 @@ enum {
         [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-1];
         //zOrder:0 for cars
         [[[Common instance].tileMap layerNamed:@"FrontBorderLayer"] setZOrder:1];
-        //==========================        
+        //==========================   
+        
+        
         debug = NO;
         
         //        [self initPhysics];
@@ -183,7 +185,10 @@ enum {
 
     CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
 
-//    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
+    sp.x = 6642;//temporary
+    sp.y = 6024;//temporary
+    
+    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     [me setPosX: sp.x Y:sp.y];
     [enemy setPosX: sp.x + 200 Y:sp.y + 50];
 

@@ -256,6 +256,9 @@
   <object name="Checkpoint23" x="6039" y="2393">
    <polygon points="0,0 11,11 19,3 8,-8"/>
   </object>
+  <object name="Tramp1" x="6653" y="5736">
+   <polygon points="0,0 82,3 81,31 3,26"/>
+  </object>
  </objectgroup>
  <layer name="FrontBorderLayer" width="100" height="100" opacity="0.95">
   <data encoding="base64" compression="zlib">

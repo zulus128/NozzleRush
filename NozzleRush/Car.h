@@ -9,6 +9,9 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
+#define hstep 3
+#define hmax 40
+
 enum Car_type { CT_ME, CT_ENEMY };
 
 @interface Car : NSObject {
@@ -17,6 +20,9 @@ enum Car_type { CT_ME, CT_ENEMY };
     int typ;
     b2BodyDef bodyDef;
     CCSprite* sprite;
+    
+    int hh;
+    int hdir;
 }
 
 //- (id) initWithX: (int) x  Y:(int) y Type:(int) type;

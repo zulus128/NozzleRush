@@ -48,7 +48,7 @@
         self.body->CreateFixture(&fixtureDef);
         
         
-        
+        hdir = 1;
 
         
     }
@@ -115,7 +115,19 @@
     //    CCSprite *eData = (CCSprite *)(body->GetUserData());
     CGPoint ep = ccp(body->GetPosition().x * PTM_RATIO,
                      body->GetPosition().y * PTM_RATIO);
-    eData.position = [[Common instance] ort2iso:ep];
+    
+//    if(typ == CT_ME)
+//        NSLog(@"me x=%f, y=%f",ep.x, ep.y);
+    
+    CGPoint ep1 = [[Common instance] ort2iso:ep];
+    
+    ep1.y += hh;
+    
+    hh += (hstep * hdir);
+    if((hh > hmax) || (hh < 0))
+        hdir = -hdir;
+        
+    eData.position = ep1;
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     if (typ == CT_ME) {
