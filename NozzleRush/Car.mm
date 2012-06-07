@@ -72,6 +72,14 @@
 
 }
 
+- (CGPoint) getGroundPosition {
+    
+//    NSLog(@"hh = %d", hh);
+//    return ccp(sprite.position.x, sprite.position.y - ((hh<0)?0:(hh>hmax?hmax:hh)));
+    
+    return groundPosition;
+}
+
 - (void) update {
     
     float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
@@ -120,6 +128,8 @@
 //        NSLog(@"me x=%f, y=%f",ep.x, ep.y);
     
     CGPoint ep1 = [[Common instance] ort2iso:ep];
+    
+    groundPosition = ep1;
     
     ep1.y += hh;
     

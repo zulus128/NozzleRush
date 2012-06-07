@@ -35,6 +35,8 @@
     Car* me;
     Car* enemy;
     
+    int tr_cnt;
+    
 }
 
 //@property (nonatomic, retain) CCTMXTiledMap *tileMap;

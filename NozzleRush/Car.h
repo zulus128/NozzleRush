@@ -9,8 +9,8 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
-#define hstep 3
-#define hmax 40
+#define hstep 5
+#define hmax 60
 
 enum Car_type { CT_ME, CT_ENEMY };
 
@@ -20,7 +20,7 @@ enum Car_type { CT_ME, CT_ENEMY };
     int typ;
     b2BodyDef bodyDef;
     CCSprite* sprite;
-    
+    CGPoint groundPosition;
     int hh;
     int hdir;
 }
@@ -29,6 +29,7 @@ enum Car_type { CT_ME, CT_ENEMY };
 - (id) initWithType:(int) type;
 - (void) update;
 - (void) setPosX:(int)x Y:(int)y;
+- (CGPoint) getGroundPosition;
 
 @property (nonatomic) b2Body *body;
 @property (readwrite) b2Vec2 eye;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */; };
+		36096A0C15807BA000AC5073 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36096A0B15807BA000AC5073 /* ContactListener.mm */; };
 		3609B65E156F95DE00642CEF /* RaceMapTest5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */; };
 		360AC1711575EB5D009D51A7 /* background_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16C1575EB5D009D51A7 /* background_tiles_default.png */; };
 		360AC1721575EB5D009D51A7 /* border_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16D1575EB5D009D51A7 /* border_default.png */; };
@@ -227,6 +228,8 @@
 
 /* Begin PBXFileReference section */
 		3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest3.tmx; sourceTree = "<group>"; };
+		36096A0A15807BA000AC5073 /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
+		36096A0B15807BA000AC5073 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest5.tmx; sourceTree = "<group>"; };
 		360AC16C1575EB5D009D51A7 /* background_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_tiles_default.png; sourceTree = "<group>"; };
 		360AC16D1575EB5D009D51A7 /* border_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border_default.png; sourceTree = "<group>"; };
@@ -763,6 +766,8 @@
 				36F845B4157764D50000C838 /* MenuScene.mm */,
 				3620959A1521777B0041020A /* GameScene.h */,
 				3620959B1521777B0041020A /* GameScene.mm */,
+				36096A0A15807BA000AC5073 /* ContactListener.h */,
+				36096A0B15807BA000AC5073 /* ContactListener.mm */,
 				36AF39AC154C0466008C3F63 /* HudLayer.h */,
 				36AF39AD154C0466008C3F63 /* HudLayer.mm */,
 				36684B2E156B5D7700AEE7B0 /* Car.h */,
@@ -1580,6 +1585,7 @@
 				36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */,
 				36684B30156B5D7700AEE7B0 /* Car.mm in Sources */,
 				36F845B5157764D50000C838 /* MenuScene.mm in Sources */,
+				36096A0C15807BA000AC5073 /* ContactListener.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

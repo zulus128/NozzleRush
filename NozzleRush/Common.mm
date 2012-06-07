@@ -74,7 +74,7 @@
             float x = [[sp valueForKey:@"x"] integerValue];
             float y = [[sp valueForKey:@"y"] integerValue];
             chp[chp_cnt++] = ccp(x, y); 
-            NSLog(@"Checkpoint%d x = %f, y = %f", chp_cnt, x, y);
+//            NSLog(@"Checkpoint%d x = %f, y = %f", chp_cnt, x, y);
         }
         
     } while (sp != nil);

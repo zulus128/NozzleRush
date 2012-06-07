@@ -9,7 +9,7 @@
 #import "GameScene.h"
 #import "HudLayer.h"
 #import "Common.h"
-
+#import "ContactListener.h"
 
 enum {
 	kTagParentNode = 1,
@@ -86,11 +86,12 @@ enum {
         
         
         // added by Andrew Osipov 28.05.12      
-        [[[Common instance].tileMap layerNamed:@"BackBackgroundLayer"] setZOrder:-5];
-        [[[Common instance].tileMap layerNamed:@"FrontBackgroundLayer"] setZOrder:-4];
-        [[[Common instance].tileMap layerNamed:@"ColumnLayer"] setZOrder:-3];
-        [[[Common instance].tileMap layerNamed:@"RoadLayer"] setZOrder:-2];
-        [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-1];
+        [[[Common instance].tileMap layerNamed:@"BackBackgroundLayer"] setZOrder:-6];
+        [[[Common instance].tileMap layerNamed:@"FrontBackgroundLayer"] setZOrder:-5];
+        [[[Common instance].tileMap layerNamed:@"ColumnLayer"] setZOrder:-4];
+        [[[Common instance].tileMap layerNamed:@"RoadLayer"] setZOrder:-3];
+        [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-2];
+        [[[Common instance].tileMap layerNamed:@"Tramplins"] setZOrder:-1];
         //zOrder:0 for cars
         [[[Common instance].tileMap layerNamed:@"FrontBorderLayer"] setZOrder:1];
         //==========================   
@@ -98,6 +99,12 @@ enum {
         
         debug = NO;
         
+        
+        
+        
+        ContactListener *contactListener = new ContactListener;
+        [Common instance].world->SetContactListener(contactListener);
+
         //        [self initPhysics];
         
         m_debugDraw = new GLESDebugDraw( PTM_RATIO );
@@ -113,6 +120,8 @@ enum {
         
         
         [self processCollisionLayer];
+
+        [self processTramplins];
         
         //        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
         //        NSAssert(objects != nil, @"'Objects' object group not found");
@@ -216,7 +225,8 @@ enum {
     
     [me update];
     CCSprite *eData = (CCSprite *)(me.body->GetUserData());
-    [self setViewpointCenter:eData.position];
+//    [self setViewpointCenter:eData.position];
+    [self setViewpointCenter:[me getGroundPosition]];
     
     [enemy update];
     
@@ -293,33 +303,75 @@ enum {
 	[super dealloc];
 }	
 
+-(void) processTramplins {
 
--(void) processCollisionLayer
-{
-    // create Box2d polygons for map collision boundaries
-    CCTMXObjectGroup *collisionObjects = [[Common instance].tileMap objectGroupNamed:@"Collisions"];
-    NSMutableArray *polygonObjectArray = [collisionObjects objects];
-    // TMX polygon points delimiters (Box2d points must have counter-clockwise winding)
+    
+    CCTMXObjectGroup *objects = [[Common instance].tileMap  objectGroupNamed:@"Objects"];
+    NSAssert(objects != nil, @"'Objects for tramplins' object group not found");
+    
+    
+    tr_cnt = 0;
+    NSMutableDictionary *sp;
+    do {
+        
+        NSString* s = [NSString stringWithFormat:@"%@%d", TRP_NAME, (tr_cnt + 1)];
+        sp = [objects objectNamed:s];        
+        if(sp != nil) {
+            
+            float x = [[sp valueForKey:@"x"] integerValue];
+            float y = [[sp valueForKey:@"y"] integerValue];
+
+            b2PolygonShape shape = [self getShape:sp];
+            
+            b2BodyDef bodyDef;
+//            bodyDef.type = b2_staticBody;/* b2_dynamicBody;*/
+            bodyDef.position.Set(x/PTM_RATIO, y/PTM_RATIO);
+            b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
+            
+            b2FixtureDef fixtureDef;
+            fixtureDef.shape = &shape;	
+            fixtureDef.isSensor = true;
+//            fixtureDef.density = 1000.0f;
+//            fixtureDef.friction = 0.3f;
+            bodyw->CreateFixture(&fixtureDef);
+            
+            tr_cnt++;
+            NSLog(@"Tramplin%d x = %f, y = %f", tr_cnt, x, y);
+        }
+        
+    } while (sp != nil);
+    
+//    if (chp_cnt > 0)
+//        return [self ort2iso: chp[c]];
+
+    
+}
+
+- (b2PolygonShape) getShape:(id) object {
+
+ 
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString: @", "];
     int x, y, n, i, k, fX, fY;
     float area;
     NSString *pointsString;
     NSArray *pointsArray;
-    for (id object in polygonObjectArray)
-    {
-        // NSLog(@"Poligon!!!");
+
+    b2PolygonShape shape;
+
+    // NSLog(@"Poligon!!!");
         pointsString = [object valueForKey:@"polygonPoints"];
         if (pointsString != NULL)
         {
             pointsArray = [pointsString componentsSeparatedByCharactersInSet:characterSet];
             n = pointsArray.count;
-            b2PolygonShape shape;
+//            b2PolygonShape shape;
             shape.m_vertexCount = n/2;
             if (shape.m_vertexCount > b2_maxPolygonVertices)
             {
                 // polygon has too many vertices, so skip over object
                 NSLog(@"%s skipped TMX polygon at x=%d,y=%d for exceeding %d vertices", __PRETTY_FUNCTION__, x, y, b2_maxPolygonVertices);
-                continue;
+                return shape;
+//                continue;
             }
             NSLog(@"pointsArray = %@", pointsArray);
             
@@ -357,6 +409,76 @@ enum {
             }
             // must call 'Set', because it processes points
             shape.Set(shape.m_vertices, shape.m_vertexCount);
+        }
+            return shape;
+}
+
+-(void) processCollisionLayer {
+    
+    int x,y;
+    // create Box2d polygons for map collision boundaries
+    CCTMXObjectGroup *collisionObjects = [[Common instance].tileMap objectGroupNamed:@"Collisions"];
+    NSMutableArray *polygonObjectArray = [collisionObjects objects];
+    // TMX polygon points delimiters (Box2d points must have counter-clockwise winding)
+//    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString: @", "];
+//    int x, y, n, i, k, fX, fY;
+//    float area;
+//    NSString *pointsString;
+//    NSArray *pointsArray;
+    for (id object in polygonObjectArray) {
+        
+        b2PolygonShape shape = [self getShape:object];
+        
+//        // NSLog(@"Poligon!!!");
+//        pointsString = [object valueForKey:@"polygonPoints"];
+//        if (pointsString != NULL)
+//        {
+//            pointsArray = [pointsString componentsSeparatedByCharactersInSet:characterSet];
+//            n = pointsArray.count;
+//            b2PolygonShape shape;
+//            shape.m_vertexCount = n/2;
+//            if (shape.m_vertexCount > b2_maxPolygonVertices)
+//            {
+//                // polygon has too many vertices, so skip over object
+//                NSLog(@"%s skipped TMX polygon at x=%d,y=%d for exceeding %d vertices", __PRETTY_FUNCTION__, x, y, b2_maxPolygonVertices);
+//                continue;
+//            }
+//            NSLog(@"pointsArray = %@", pointsArray);
+//            
+//            // build polygon verticies;
+//            for (i = 0, k = 0; i < n; ++k)
+//            {
+//                fX = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
+//                ++i;
+//                // flip y-position (TMX y-origin is upper-left)
+//                //                fY = - [[pointsArray objectAtIndex:i] intValue] / CC_CONTENT_SCALE_FACTOR();
+//                fY = [[pointsArray objectAtIndex:i] intValue];// / CC_CONTENT_SCALE_FACTOR();
+//                ++i;
+//                shape.m_vertices[k].Set(fX/PTM_RATIO, fY/PTM_RATIO);
+//            }
+//            
+//            // calculate area of a simple (ie. non-self-intersecting) polygon,
+//            // because it will be negative for counter-clockwise winding
+//            area = 0.0;
+//            n = shape.m_vertexCount;
+//            for (i = 0; i < n; ++i)
+//            {
+//                k = (i + 1) % n;
+//                area += (shape.m_vertices[k].x * shape.m_vertices[i].y) - (shape.m_vertices[i].x * shape.m_vertices[k].y);
+//            }
+//            if (area > 0)
+//            {
+//                // reverse order of vertices, because winding is clockwise
+//                b2PolygonShape reverseShape;
+//                reverseShape.m_vertexCount = shape.m_vertexCount;
+//                for (i = n - 1, k = 0; i > -1; --i, ++k)
+//                {
+//                    reverseShape.m_vertices[i].Set(shape.m_vertices[k].x, shape.m_vertices[k].y);
+//                }
+//                shape = reverseShape;
+//            }
+//            // must call 'Set', because it processes points
+//            shape.Set(shape.m_vertices, shape.m_vertexCount);
             x = [[object valueForKey:@"x"] intValue];// / CC_CONTENT_SCALE_FACTOR();
             y = [[object valueForKey:@"y"] intValue];// / CC_CONTENT_SCALE_FACTOR();
             // TODO add the box2d object to the box2d world at coordinate (x,y)
@@ -372,7 +494,7 @@ enum {
             //            ccDrawLine( ccp(x+width,y+height), ccp(x,y+height) );
             //            ccDrawLine( ccp(x,y+height), ccp(x,y) );
             //            glLineWidth(1);
-        }
+//        }
     }
     
 }
@@ -398,7 +520,7 @@ enum {
     //	world->DrawDebugData();	
     //	kmGLPopMatrix();
     
-    if(!debug) {
+    if(debug) {
         
         glLineWidth(3);
         

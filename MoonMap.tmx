@@ -182,6 +182,9 @@
   <object x="3136" y="2816">
    <polygon points="0,0 630,-630 233,-473"/>
   </object>
+  <object x="6152" y="5728">
+   <polygon points="0,0 299,301 305,-129 -26,-318"/>
+  </object>
  </objectgroup>
  <objectgroup name="Objects" width="100" height="100">
   <object name="SpawnPoint" x="5079" y="2325">
