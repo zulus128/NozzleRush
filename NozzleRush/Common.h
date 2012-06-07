@@ -22,6 +22,8 @@
 #define TRP_NAME @"Tramp"
 #define LAPS_CNT 3
 
+#define TRAMPLIN_TAG 3000
+
 enum game_type { GT_RACE, GT_FREERIDE };
 
 @interface Common : NSObject {

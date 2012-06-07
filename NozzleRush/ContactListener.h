@@ -1,4 +1,5 @@
 #include "Box2D.h"
+#include "cocos2d.h"
 
 class ContactListener : public b2ContactListener {
 public:

@@ -335,6 +335,10 @@ enum {
 //            fixtureDef.friction = 0.3f;
             bodyw->CreateFixture(&fixtureDef);
             
+            CCNode* o = [CCNode node];
+            o.tag = TRAMPLIN_TAG;
+            bodyw->SetUserData(o);
+            
             tr_cnt++;
             NSLog(@"Tramplin%d x = %f, y = %f", tr_cnt, x, y);
         }
