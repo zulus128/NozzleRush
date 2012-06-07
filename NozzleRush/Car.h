@@ -9,19 +9,19 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
-#define hstep 5
+#define hstep 7
 #define hmax 60
 
 enum Car_type { CT_ME, CT_ENEMY };
 
-@interface Car : NSObject {
+@interface Car : CCNode {
     
     float angle;
     int typ;
     b2BodyDef bodyDef;
     CCSprite* sprite;
     CGPoint groundPosition;
-    int hh;
+    float hh;
     int hdir;
 }
 
@@ -36,4 +36,6 @@ enum Car_type { CT_ME, CT_ENEMY };
 @property (readwrite) b2Vec2 target;
 @property (readwrite) b2Vec2 target1;
 @property (readwrite) b2Vec2 target2;
+@property (assign, readwrite) BOOL jump;
+
 @end

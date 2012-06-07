@@ -19,10 +19,11 @@
 
 #define MAX_CHECKPOINTS 50
 #define CHP_NAME @"Checkpoint"
-#define TRP_NAME @"Tramp"
+#define TRP_NAME @"Tramplin"
 #define LAPS_CNT 3
 
 #define TRAMPLIN_TAG 3000
+//#define ME_TAG 2000
 
 enum game_type { GT_RACE, GT_FREERIDE };
 

@@ -194,10 +194,11 @@ enum {
 
     CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
 
-    sp.x = 6642;//temporary
-    sp.y = 6024;//temporary
+//    sp.x = 6642;//temporary
+//    sp.y = 6024;//temporary
+//    
+//    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     
-    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     [me setPosX: sp.x Y:sp.y];
     [enemy setPosX: sp.x + 200 Y:sp.y + 50];
 
@@ -224,14 +225,11 @@ enum {
     
     
     [me update];
-    CCSprite *eData = (CCSprite *)(me.body->GetUserData());
-//    [self setViewpointCenter:eData.position];
     [self setViewpointCenter:[me getGroundPosition]];
     
     [enemy update];
+//    [self setViewpointCenter:[enemy getGroundPosition]];
     
-//    CCSprite *eData = (CCSprite *)(enemy.body->GetUserData());
-//    [self setViewpointCenter:eData.position];
     
     [self.hudLayer updateScore];
     
@@ -335,7 +333,7 @@ enum {
 //            fixtureDef.friction = 0.3f;
             bodyw->CreateFixture(&fixtureDef);
             
-            CCNode* o = [CCNode node];
+            CCNode* o = [[CCNode alloc] init];
             o.tag = TRAMPLIN_TAG;
             bodyw->SetUserData(o);
             

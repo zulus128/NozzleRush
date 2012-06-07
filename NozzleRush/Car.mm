@@ -13,6 +13,7 @@
 @implementation Car
 @synthesize body;
 @synthesize target, target1, target2, eye;
+@synthesize jump;
 
 - (id) initWithType:(int) type {
     
@@ -33,7 +34,8 @@
         
         self.body = [Common instance].world->CreateBody(&bodyDef);
         self.body->SetLinearDamping(1.0f);
-        self.body->SetUserData(sprite);
+//        self.body->SetUserData(sprite);
+        self.body->SetUserData(self);
         
         // Define another box shape for our dynamic body.
         b2PolygonShape dynamicBox;
@@ -110,12 +112,13 @@
 //    if(typ == CT_ME)
 //        NSLog(@"angle = %f, %f, %@", rot, a, name);
     
-    CCSprite *eData = (CCSprite *)body->GetUserData();
+//    CCSprite *eData = (CCSprite *)body->GetUserData();
     
     if(([Common instance].direction.x != 0) || ([Common instance].direction.y != 0) || (typ != CT_ME)) {
         
         CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:name];
-        [eData setTexture: tex];
+//        [eData setTexture: tex];
+        [sprite setTexture: tex];
         
     }
     
@@ -131,13 +134,23 @@
     
     groundPosition = ep1;
     
+    if(self.jump) {
+    
     ep1.y += hh;
     
-    hh += (hstep * hdir);
-    if((hh > hmax) || (hh < 0))
+        hh += (float)(hstep * hdir)/* * ((hdir > 0)?1:1.1f)*/;
+        
+    if((hh > hmax) && (hdir > 0))
         hdir = -hdir;
         
-    eData.position = ep1;
+        if(hh < 0) {
+            self.jump = NO;
+            hdir = 1;
+        }
+    }
+    
+//    eData.position = ep1;
+    sprite.position = ep1;
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     if (typ == CT_ME) {
@@ -158,7 +171,8 @@
         body->SetTransform( body->GetPosition(), desiredAngle );
         
         
-        CGPoint p1 = eData.position;
+//        CGPoint p1 = eData.position;
+        CGPoint p1 = sprite.position;
         CGPoint p2 = [[Common instance] getCurCheckpoint];
         float d = ccpDistance(p1, p2);
         [Common instance].distToChp = d;
