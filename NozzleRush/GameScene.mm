@@ -522,7 +522,7 @@ enum {
     //	world->DrawDebugData();	
     //	kmGLPopMatrix();
     
-    if(debug) {
+    if(!debug) {
         
         glLineWidth(3);
         
