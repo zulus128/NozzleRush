@@ -52,14 +52,30 @@
         
         hdir = 1;
 
+//        emitter = [CCParticleSmoke node];
+        emitter = [[CCParticleSmoke alloc] initWithTotalParticles:40];
+        emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"smoke.png"];
+        emitter.gravity = CGPointZero;
+//        emitter.startColor = _color;
+        emitter.posVar = CGPointZero;
+        emitter.positionType = kCCPositionTypeFree;
+//        emitter.emitterMode = kCCParticleModeRadius;
+        [[Common instance].tileMap addChild:emitter z:-1];
         
     }
     return self;
 }
 
+-(void) dealloc {
+
+    [emitter release];
+    
+    [super dealloc];
+}
+
 - (void) setPosX:(int)x Y:(int)y {
 
-    CGPoint p = ccp(x,y);
+    CGPoint p = ccp(x, y);
     sprite.position = [[Common instance] ort2iso:p];
 //    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
     body->SetTransform(b2Vec2(x / PTM_RATIO, y / PTM_RATIO), 0);
@@ -71,6 +87,7 @@
     CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"car2.png"];
     [sprite setTexture: tex];
 
+    emitter.position = [[Common instance] ort2iso:p];
 
 }
 
@@ -151,6 +168,7 @@
     
 //    eData.position = ep1;
     sprite.position = ep1;
+    emitter.position = ep1;
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     if (typ == CT_ME) {

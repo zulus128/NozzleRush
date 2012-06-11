@@ -191,6 +191,7 @@
 		369FAF13152089290056C20F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF12152089290056C20F /* AppDelegate.mm */; };
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
+		36A1641D1585C53200E163F4 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A1641C1585C53200E163F4 /* smoke.png */; };
 		36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.mm */; };
 		36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 36DFD9BB157DF4FA003D99E8 /* tr.png */; };
 		36F845B5157764D50000C838 /* MenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36F845B4157764D50000C838 /* MenuScene.mm */; };
@@ -598,6 +599,7 @@
 		369FAF17152089290056C20F /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		369FAF18152089290056C20F /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		36A1641C1585C53200E163F4 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		36AF39AD154C0466008C3F63 /* HudLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudLayer.mm; sourceTree = "<group>"; };
 		36DFD9BB157DF4FA003D99E8 /* tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tr.png; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				DD69A6961561E104001FF24B /* car6.png */,
 				DD69A6971561E104001FF24B /* car7.png */,
 				DD69A6981561E104001FF24B /* car8.png */,
+				36A1641C1585C53200E163F4 /* smoke.png */,
 			);
 			name = Cars;
 			sourceTree = "<group>";
@@ -1409,6 +1412,7 @@
 				360AC1741575EB5D009D51A7 /* MoonMap.tmx in Resources */,
 				360AC1751575EB5D009D51A7 /* road_tiles_default.png in Resources */,
 				36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */,
+				36A1641D1585C53200E163F4 /* smoke.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

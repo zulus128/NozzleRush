@@ -23,6 +23,7 @@ enum Car_type { CT_ME, CT_ENEMY };
     CGPoint groundPosition;
     float hh;
     int hdir;
+    CCParticleSystem *emitter;
 }
 
 //- (id) initWithX: (int) x  Y:(int) y Type:(int) type;
