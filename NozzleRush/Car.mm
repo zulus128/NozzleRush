@@ -61,6 +61,7 @@
         emitter.positionType = kCCPositionTypeFree;
 //        emitter.emitterMode = kCCParticleModeRadius;
         [[Common instance].tileMap addChild:emitter z:-1];
+//        [[Common instance].gamescene addChild:emitter z:1150];
         
     }
     return self;
