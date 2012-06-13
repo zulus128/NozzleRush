@@ -60,8 +60,9 @@ enum {
     
     CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    self.position = ccpMult(viewPoint, 0.5f);
+//    self.position = ccpMult(viewPoint, 0.5f);
     self.position = viewPoint;
+//    [Common instance].tileMap.position = viewPoint;
     
 }
 

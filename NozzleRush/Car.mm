@@ -58,8 +58,8 @@
         emitter.gravity = CGPointZero;
 //        emitter.startColor = _color;
         emitter.posVar = CGPointZero;
-        emitter.positionType = kCCPositionTypeFree;
-//        emitter.emitterMode = kCCParticleModeRadius;
+        emitter.positionType = kCCPositionTypeRelative;
+        emitter.emitterMode = kCCParticleModeRadius;
         [[Common instance].tileMap addChild:emitter z:-1];
 //        [[Common instance].gamescene addChild:emitter z:1150];
         

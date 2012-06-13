@@ -7,15 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */; };
 		36096A0C15807BA000AC5073 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36096A0B15807BA000AC5073 /* ContactListener.mm */; };
-		3609B65E156F95DE00642CEF /* RaceMapTest5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */; };
-		360AC1711575EB5D009D51A7 /* background_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16C1575EB5D009D51A7 /* background_tiles_default.png */; };
-		360AC1721575EB5D009D51A7 /* border_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16D1575EB5D009D51A7 /* border_default.png */; };
-		360AC1731575EB5D009D51A7 /* moonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16E1575EB5D009D51A7 /* moonBack.png */; };
-		360AC1741575EB5D009D51A7 /* MoonMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 360AC16F1575EB5D009D51A7 /* MoonMap.tmx */; };
-		360AC1751575EB5D009D51A7 /* road_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 360AC1701575EB5D009D51A7 /* road_tiles_default.png */; };
-		36209595152176050041020A /* track_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 36209594152176050041020A /* track_tiles.png */; };
 		36209599152176820041020A /* Common.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36209598152176820041020A /* Common.mm */; };
 		3620959C1521777B0041020A /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620959B1521777B0041020A /* GameScene.mm */; };
 		364B77E4154A58CA009E4E9E /* Button_field_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77DF154A58CA009E4E9E /* Button_field_1.png */; };
@@ -192,30 +184,16 @@
 		369FAF19152089290056C20F /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369FAF18152089290056C20F /* GLES-Render.mm */; };
 		369FAF1E152089290056C20F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 369FAF1D152089290056C20F /* blocks.png */; };
 		36A1641D1585C53200E163F4 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A1641C1585C53200E163F4 /* smoke.png */; };
+		36A969F51588A4DE00BCEB2B /* background_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969ED1588A4DE00BCEB2B /* background_tiles_default.png */; };
+		36A969F61588A4DE00BCEB2B /* border_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969EE1588A4DE00BCEB2B /* border_default.png */; };
+		36A969F71588A4DE00BCEB2B /* moonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969EF1588A4DE00BCEB2B /* moonBack.png */; };
+		36A969F81588A4DE00BCEB2B /* MoonMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36A969F01588A4DE00BCEB2B /* MoonMap.tmx */; };
+		36A969F91588A4DE00BCEB2B /* road_additional_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969F11588A4DE00BCEB2B /* road_additional_tiles_default.png */; };
+		36A969FA1588A4DE00BCEB2B /* road_tiles_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969F21588A4DE00BCEB2B /* road_tiles_default.png */; };
+		36A969FB1588A4DE00BCEB2B /* tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969F31588A4DE00BCEB2B /* tr.png */; };
+		36A969FC1588A4DE00BCEB2B /* track_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A969F41588A4DE00BCEB2B /* track_tiles.png */; };
 		36AF39AE154C0466008C3F63 /* HudLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AF39AD154C0466008C3F63 /* HudLayer.mm */; };
-		36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 36DFD9BB157DF4FA003D99E8 /* tr.png */; };
 		36F845B5157764D50000C838 /* MenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36F845B4157764D50000C838 /* MenuScene.mm */; };
-		36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA3291525CD9E0007BEB2 /* track1.tmx */; };
-		DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */; };
-		DD56F62D1555B99D00E4F162 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61A1555B99D00E4F162 /* 1.png */; };
-		DD56F62E1555B99D00E4F162 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61B1555B99D00E4F162 /* 2.png */; };
-		DD56F62F1555B99D00E4F162 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61C1555B99D00E4F162 /* 3.png */; };
-		DD56F6301555B99D00E4F162 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61D1555B99D00E4F162 /* 4.png */; };
-		DD56F6311555B99D00E4F162 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61E1555B99D00E4F162 /* 5.png */; };
-		DD56F6321555B99D00E4F162 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F61F1555B99D00E4F162 /* 6.png */; };
-		DD56F6331555B99D00E4F162 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6201555B99D00E4F162 /* 7.png */; };
-		DD56F6341555B99D00E4F162 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6211555B99D00E4F162 /* 8.png */; };
-		DD56F6351555B99D00E4F162 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6221555B99D00E4F162 /* 9.png */; };
-		DD56F6361555B99D00E4F162 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6231555B99D00E4F162 /* 10.png */; };
-		DD56F6371555B99D00E4F162 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6241555B99D00E4F162 /* 11.png */; };
-		DD56F6381555B99D00E4F162 /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6251555B99D00E4F162 /* 12.png */; };
-		DD56F6391555B99D00E4F162 /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6261555B99D00E4F162 /* 13.png */; };
-		DD56F63A1555B99D00E4F162 /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6271555B99D00E4F162 /* 14.png */; };
-		DD56F63B1555B99D00E4F162 /* 15.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6281555B99D00E4F162 /* 15.png */; };
-		DD56F63C1555B99D00E4F162 /* 16.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F6291555B99D00E4F162 /* 16.png */; };
-		DD56F63D1555B99D00E4F162 /* 17.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56F62A1555B99D00E4F162 /* 17.png */; };
-		DD56F63E1555B99D00E4F162 /* RaceMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD56F62B1555B99D00E4F162 /* RaceMap.tmx */; };
-		DD56F63F1555B99D00E4F162 /* RaceMapTest.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */; };
 		DD69A6991561E104001FF24B /* car1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6911561E104001FF24B /* car1.png */; };
 		DD69A69A1561E104001FF24B /* car2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6921561E104001FF24B /* car2.png */; };
 		DD69A69B1561E104001FF24B /* car3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6931561E104001FF24B /* car3.png */; };
@@ -224,20 +202,11 @@
 		DD69A69E1561E104001FF24B /* car6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6961561E104001FF24B /* car6.png */; };
 		DD69A69F1561E104001FF24B /* car7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6971561E104001FF24B /* car7.png */; };
 		DD69A6A01561E104001FF24B /* car8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6981561E104001FF24B /* car8.png */; };
-		F210EF11156DFE0500E931DC /* RaceMapTest4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest3.tmx; sourceTree = "<group>"; };
 		36096A0A15807BA000AC5073 /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
 		36096A0B15807BA000AC5073 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
-		3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest5.tmx; sourceTree = "<group>"; };
-		360AC16C1575EB5D009D51A7 /* background_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_tiles_default.png; sourceTree = "<group>"; };
-		360AC16D1575EB5D009D51A7 /* border_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border_default.png; sourceTree = "<group>"; };
-		360AC16E1575EB5D009D51A7 /* moonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moonBack.png; sourceTree = "<group>"; };
-		360AC16F1575EB5D009D51A7 /* MoonMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MoonMap.tmx; sourceTree = "<group>"; };
-		360AC1701575EB5D009D51A7 /* road_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road_tiles_default.png; sourceTree = "<group>"; };
-		36209594152176050041020A /* track_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_tiles.png; sourceTree = "<group>"; };
 		36209597152176820041020A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		36209598152176820041020A /* Common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Common.mm; sourceTree = "<group>"; };
 		3620959A1521777B0041020A /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
@@ -600,32 +569,18 @@
 		369FAF18152089290056C20F /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		369FAF1D152089290056C20F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		36A1641C1585C53200E163F4 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
+		36A969ED1588A4DE00BCEB2B /* background_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_tiles_default.png; sourceTree = "<group>"; };
+		36A969EE1588A4DE00BCEB2B /* border_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border_default.png; sourceTree = "<group>"; };
+		36A969EF1588A4DE00BCEB2B /* moonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moonBack.png; sourceTree = "<group>"; };
+		36A969F01588A4DE00BCEB2B /* MoonMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MoonMap.tmx; sourceTree = "<group>"; };
+		36A969F11588A4DE00BCEB2B /* road_additional_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road_additional_tiles_default.png; sourceTree = "<group>"; };
+		36A969F21588A4DE00BCEB2B /* road_tiles_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road_tiles_default.png; sourceTree = "<group>"; };
+		36A969F31588A4DE00BCEB2B /* tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tr.png; sourceTree = "<group>"; };
+		36A969F41588A4DE00BCEB2B /* track_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_tiles.png; sourceTree = "<group>"; };
 		36AF39AC154C0466008C3F63 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		36AF39AD154C0466008C3F63 /* HudLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HudLayer.mm; sourceTree = "<group>"; };
-		36DFD9BB157DF4FA003D99E8 /* tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tr.png; sourceTree = "<group>"; };
 		36F845B3157764D50000C838 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		36F845B4157764D50000C838 /* MenuScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuScene.mm; sourceTree = "<group>"; };
-		36FEA3291525CD9E0007BEB2 /* track1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = track1.tmx; sourceTree = "<group>"; };
-		DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest1.tmx; sourceTree = "<group>"; };
-		DD56F61A1555B99D00E4F162 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		DD56F61B1555B99D00E4F162 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		DD56F61C1555B99D00E4F162 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		DD56F61D1555B99D00E4F162 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		DD56F61E1555B99D00E4F162 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
-		DD56F61F1555B99D00E4F162 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
-		DD56F6201555B99D00E4F162 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
-		DD56F6211555B99D00E4F162 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
-		DD56F6221555B99D00E4F162 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
-		DD56F6231555B99D00E4F162 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
-		DD56F6241555B99D00E4F162 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
-		DD56F6251555B99D00E4F162 /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
-		DD56F6261555B99D00E4F162 /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
-		DD56F6271555B99D00E4F162 /* 14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 14.png; sourceTree = "<group>"; };
-		DD56F6281555B99D00E4F162 /* 15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15.png; sourceTree = "<group>"; };
-		DD56F6291555B99D00E4F162 /* 16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16.png; sourceTree = "<group>"; };
-		DD56F62A1555B99D00E4F162 /* 17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 17.png; sourceTree = "<group>"; };
-		DD56F62B1555B99D00E4F162 /* RaceMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMap.tmx; sourceTree = "<group>"; };
-		DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest.tmx; sourceTree = "<group>"; };
 		DD69A6911561E104001FF24B /* car1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car1.png; sourceTree = "<group>"; };
 		DD69A6921561E104001FF24B /* car2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car2.png; sourceTree = "<group>"; };
 		DD69A6931561E104001FF24B /* car3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3.png; sourceTree = "<group>"; };
@@ -635,7 +590,6 @@
 		DD69A6971561E104001FF24B /* car7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car7.png; sourceTree = "<group>"; };
 		DD69A6981561E104001FF24B /* car8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car8.png; sourceTree = "<group>"; };
 		DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallback.h; sourceTree = "<group>"; };
-		F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RaceMapTest4.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -689,37 +643,14 @@
 		3664D95615208A1C006DF7DD /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				36FEA3291525CD9E0007BEB2 /* track1.tmx */,
-				36209594152176050041020A /* track_tiles.png */,
-				DD56F61A1555B99D00E4F162 /* 1.png */,
-				DD56F61B1555B99D00E4F162 /* 2.png */,
-				DD56F61C1555B99D00E4F162 /* 3.png */,
-				DD56F61D1555B99D00E4F162 /* 4.png */,
-				DD56F61E1555B99D00E4F162 /* 5.png */,
-				DD56F61F1555B99D00E4F162 /* 6.png */,
-				DD56F6201555B99D00E4F162 /* 7.png */,
-				DD56F6211555B99D00E4F162 /* 8.png */,
-				DD56F6221555B99D00E4F162 /* 9.png */,
-				DD56F6231555B99D00E4F162 /* 10.png */,
-				DD56F6241555B99D00E4F162 /* 11.png */,
-				DD56F6251555B99D00E4F162 /* 12.png */,
-				DD56F6261555B99D00E4F162 /* 13.png */,
-				DD56F6271555B99D00E4F162 /* 14.png */,
-				DD56F6281555B99D00E4F162 /* 15.png */,
-				DD56F6291555B99D00E4F162 /* 16.png */,
-				DD56F62A1555B99D00E4F162 /* 17.png */,
-				36DFD9BB157DF4FA003D99E8 /* tr.png */,
-				DD56F62B1555B99D00E4F162 /* RaceMap.tmx */,
-				DD56F62C1555B99D00E4F162 /* RaceMapTest.tmx */,
-				DD3CC62315633083007D3FA6 /* RaceMapTest1.tmx */,
-				3602709B156B81B30081B2E4 /* RaceMapTest3.tmx */,
-				F210EF10156DFE0500E931DC /* RaceMapTest4.tmx */,
-				3609B65D156F95DE00642CEF /* RaceMapTest5.tmx */,
-				360AC16C1575EB5D009D51A7 /* background_tiles_default.png */,
-				360AC16D1575EB5D009D51A7 /* border_default.png */,
-				360AC16E1575EB5D009D51A7 /* moonBack.png */,
-				360AC16F1575EB5D009D51A7 /* MoonMap.tmx */,
-				360AC1701575EB5D009D51A7 /* road_tiles_default.png */,
+				36A969ED1588A4DE00BCEB2B /* background_tiles_default.png */,
+				36A969EE1588A4DE00BCEB2B /* border_default.png */,
+				36A969EF1588A4DE00BCEB2B /* moonBack.png */,
+				36A969F01588A4DE00BCEB2B /* MoonMap.tmx */,
+				36A969F11588A4DE00BCEB2B /* road_additional_tiles_default.png */,
+				36A969F21588A4DE00BCEB2B /* road_tiles_default.png */,
+				36A969F31588A4DE00BCEB2B /* tr.png */,
+				36A969F41588A4DE00BCEB2B /* track_tiles.png */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1368,32 +1299,11 @@
 				369FAD28152089240056C20F /* iTunesArtwork in Resources */,
 				369FAE5E152089270056C20F /* ChangeLog in Resources */,
 				369FAF1E152089290056C20F /* blocks.png in Resources */,
-				36209595152176050041020A /* track_tiles.png in Resources */,
-				36FEA32A1525CD9E0007BEB2 /* track1.tmx in Resources */,
 				364B77E4154A58CA009E4E9E /* Button_field_1.png in Resources */,
 				364B77E5154A58CA009E4E9E /* Button_fire_1.png in Resources */,
 				364B77E6154A58CA009E4E9E /* Button_trigger_1.png in Resources */,
 				364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */,
 				364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */,
-				DD56F62D1555B99D00E4F162 /* 1.png in Resources */,
-				DD56F62E1555B99D00E4F162 /* 2.png in Resources */,
-				DD56F62F1555B99D00E4F162 /* 3.png in Resources */,
-				DD56F6301555B99D00E4F162 /* 4.png in Resources */,
-				DD56F6311555B99D00E4F162 /* 5.png in Resources */,
-				DD56F6321555B99D00E4F162 /* 6.png in Resources */,
-				DD56F6331555B99D00E4F162 /* 7.png in Resources */,
-				DD56F6341555B99D00E4F162 /* 8.png in Resources */,
-				DD56F6351555B99D00E4F162 /* 9.png in Resources */,
-				DD56F6361555B99D00E4F162 /* 10.png in Resources */,
-				DD56F6371555B99D00E4F162 /* 11.png in Resources */,
-				DD56F6381555B99D00E4F162 /* 12.png in Resources */,
-				DD56F6391555B99D00E4F162 /* 13.png in Resources */,
-				DD56F63A1555B99D00E4F162 /* 14.png in Resources */,
-				DD56F63B1555B99D00E4F162 /* 15.png in Resources */,
-				DD56F63C1555B99D00E4F162 /* 16.png in Resources */,
-				DD56F63D1555B99D00E4F162 /* 17.png in Resources */,
-				DD56F63E1555B99D00E4F162 /* RaceMap.tmx in Resources */,
-				DD56F63F1555B99D00E4F162 /* RaceMapTest.tmx in Resources */,
 				DD69A6991561E104001FF24B /* car1.png in Resources */,
 				DD69A69A1561E104001FF24B /* car2.png in Resources */,
 				DD69A69B1561E104001FF24B /* car3.png in Resources */,
@@ -1402,17 +1312,15 @@
 				DD69A69E1561E104001FF24B /* car6.png in Resources */,
 				DD69A69F1561E104001FF24B /* car7.png in Resources */,
 				DD69A6A01561E104001FF24B /* car8.png in Resources */,
-				DD3CC62415633083007D3FA6 /* RaceMapTest1.tmx in Resources */,
-				3602709C156B81B30081B2E4 /* RaceMapTest3.tmx in Resources */,
-				F210EF11156DFE0500E931DC /* RaceMapTest4.tmx in Resources */,
-				3609B65E156F95DE00642CEF /* RaceMapTest5.tmx in Resources */,
-				360AC1711575EB5D009D51A7 /* background_tiles_default.png in Resources */,
-				360AC1721575EB5D009D51A7 /* border_default.png in Resources */,
-				360AC1731575EB5D009D51A7 /* moonBack.png in Resources */,
-				360AC1741575EB5D009D51A7 /* MoonMap.tmx in Resources */,
-				360AC1751575EB5D009D51A7 /* road_tiles_default.png in Resources */,
-				36DFD9BC157DF4FA003D99E8 /* tr.png in Resources */,
 				36A1641D1585C53200E163F4 /* smoke.png in Resources */,
+				36A969F51588A4DE00BCEB2B /* background_tiles_default.png in Resources */,
+				36A969F61588A4DE00BCEB2B /* border_default.png in Resources */,
+				36A969F71588A4DE00BCEB2B /* moonBack.png in Resources */,
+				36A969F81588A4DE00BCEB2B /* MoonMap.tmx in Resources */,
+				36A969F91588A4DE00BCEB2B /* road_additional_tiles_default.png in Resources */,
+				36A969FA1588A4DE00BCEB2B /* road_tiles_default.png in Resources */,
+				36A969FB1588A4DE00BCEB2B /* tr.png in Resources */,
+				36A969FC1588A4DE00BCEB2B /* track_tiles.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,9 @@
  <tileset firstgid="32" name="tr" tilewidth="281" tileheight="253">
   <image source="tr.png" width="281" height="253"/>
  </tileset>
+ <tileset firstgid="33" name="road_additional_tiles_default" tilewidth="222" tileheight="186">
+  <image source="road_additional_tiles_default.png" width="222" height="2976"/>
+ </tileset>
  <layer name="BackBackgroundLayer" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKHr8P27DpZDwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/ARU95k8=
@@ -38,6 +41,11 @@
  <layer name="Tramplins" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzgENADAIAzCkzL/Kyxg8rYLOAAAAAAAAAAAAAAAAAAAAAADADmkHAAAAAAAAjkg7AADwqbQDAAAAAAAAAAAAAAAArPEACzcAYQ==
+  </data>
+ </layer>
+ <layer name="TrackObjectsLayer" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2bEJADAIAEGHscv++wm2klqQuwm+/wgAAAAAAAAAAACYcjsAAAAAAAAA+PLzAAAAAAAAAAAAAAAA7nrbAQAAAAAAAAAAAEArjLgAdA==
   </data>
  </layer>
  <objectgroup name="Collisions" width="100" height="100" opacity="0">
@@ -268,8 +276,17 @@
   <object name="Tramplin3" x="4549" y="4235">
    <polygon points="0,0 147,-1 151,47 2,27"/>
   </object>
+  <object name="oilSpot" x="5266" y="2256">
+   <polygon points="0,0 0,92 92,90 91,1"/>
+  </object>
+  <object name="oilSpot" x="3385" y="3947">
+   <polygon points="0,0 0,92 92,90 91,1"/>
+  </object>
+  <object name="healingPoint" x="4795" y="7049">
+   <polygon points="0,0 92,0 92,-94 -4,-94"/>
+  </object>
  </objectgroup>
- <layer name="FrontBorderLayer" width="100" height="100" opacity="0.95">
+ <layer name="FrontBorderLayer" width="100" height="100" opacity="0.94">
   <data encoding="base64" compression="zlib">
    eJzt3MmOgkAUQFHXahs/2U9vaWNsJgeqivck5yQsXIhaV0TG3Q4AAAAAAAAAAAAAYp0bTocVP8cWnBrPf994/lvSusVd12S4nFyXnctKL/8V1mpxdxw81uMhYiz0mBcxFj8J3kNWGcZi7d/LzKJ7aNEX2UOLsageWkyL6KHFvBo9PtlnosVzpT2Mb10lPbSob2kPLdpY0iN6m2XL9MhFj1yMbS565KJHLqU9DtfnH/9Nw2MbfKb18vFq/wl93fd736jJO9uMU+c38Dcul5rzK9l+t04brwfe7dNiH64eY5FjoseYHnGm/ufoESvTOWp66JGNHrnokYseueiRix656JGLHrnokYseuQx7dFodp3pFj/lrwyOaOBf1JkMTLfoim2gxLeK+Flo816qJa6aWq93EuJer1USLeromJfe90gIAAAAAAAAAAGBbfgE8wS+T
   </data>
