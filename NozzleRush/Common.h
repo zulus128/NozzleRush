@@ -20,9 +20,14 @@
 #define MAX_CHECKPOINTS 50
 #define CHP_NAME @"Checkpoint"
 #define TRP_NAME @"Tramplin"
+#define OIL_NAME @"oilSpot"
+#define HEAL_NAME @"healingPoint"
+
 #define LAPS_CNT 3
 
 #define TRAMPLIN_TAG 3000
+#define OILSPOT_TAG 3001
+#define HEAL_TAG 3002
 //#define ME_TAG 2000
 
 enum game_type { GT_RACE, GT_FREERIDE };

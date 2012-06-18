@@ -31,6 +31,13 @@
 	return instance;
 }
 
+- (CGPoint)tileCoordForPosition:(CGPoint)position {
+    
+    int x = position.x / self.tileMap.tileSize.width;
+    int y = ((self.tileMap.mapSize.height * self.tileMap.tileSize.height) - position.y) / self.tileMap.tileSize.height;
+    return ccp(x, y);
+}
+
 - (CGPoint) getMapObjectPos:(NSString*) name {
     
     CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"Objects"];

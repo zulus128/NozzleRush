@@ -14,6 +14,7 @@
 @synthesize body;
 @synthesize target, target1, target2, eye;
 @synthesize jump;
+@synthesize oil, heal;
 
 - (id) initWithType:(int) type {
     
@@ -26,10 +27,6 @@
         
         sprite.scale = 0.5f;
         
-//        CGPoint p = ccp(5079,2325);
-//        sprite.position = [[Common instance] ort2iso:p];
-//        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-
         bodyDef.type = b2_dynamicBody;
         
         self.body = [Common instance].world->CreateBody(&bodyDef);
@@ -177,6 +174,12 @@
         CGPoint f = ccpMult([Common instance].direction, 1.0f);
         //        b2Vec2 ff1 = b2Vec2(f.x, -f.y);
         float32 ang = CC_DEGREES_TO_RADIANS(-45);
+        
+        if(self.oil) {
+        
+            ang = 4;
+        }
+        
         float32 x2 = f.x * cos(ang) - (-f.y) * sin(ang);
         float32 y2 = (-f.y) * cos(ang) + f.x * sin(ang);
         //        b2Vec2 f2 = b2Vec2(cos(CC_DEGREES_TO_RADIANS(angle2)), sin(CC_DEGREES_TO_RADIANS(angle2)));

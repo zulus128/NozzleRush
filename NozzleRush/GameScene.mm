@@ -121,72 +121,15 @@ enum {
         
         
         [self processCollisionLayer];
-
         [self processTramplins];
+        [self processOilSpots];
+        [self processHeals];
         
-        //        CCTMXObjectGroup *objects = [[Common instance].tileMap objectGroupNamed:@"Objects"];
-        //        NSAssert(objects != nil, @"'Objects' object group not found");
-        //        NSMutableDictionary *spawnPoint = [objects objectNamed:@"SpawnPoint"];        
-        //        NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-        //        float x = [[spawnPoint valueForKey:@"x"] integerValue];
-        //        float y = [[spawnPoint valueForKey:@"y"] integerValue];
-        //        NSLog(@"SpawnPoint xy x = %f, y = %f, CC_CONTENT_SCALE_FACTOR = %f",x,y,CC_CONTENT_SCALE_FACTOR());
-        
-        
-        //        CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"4test.png" capacity:10];
-        //		spriteTexture_ = [parent texture];
-        //		[_tileMap addChild:parent z:0 tag:kTagParentNode];
-        //        PhysicsSprite* sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0, 0, 191, 179)];						
-        //        [parent addChild:sprite];
-        
-        //        CCSprite* sprite = [CCSprite spriteWithFile:@"car4.png"];
-        //        [[Common instance].tileMap addChild:sprite z:50];
-        //        
-        //        CGPoint p = ccp(x,y);
-        //
-        //        sprite.position = [[Common instance] ort2iso:p];
-        //        sprite.scale = 0.5f;
-        //        NSLog(@"orttoiso SpawnPoint x = %f, y = %f",sprite.position.x,sprite.position.y);
-        //        [self setViewpointCenter:sprite.position];
-        //        
-        //        // Define the dynamic body.
-        //        //Set up a 1m squared box in the physics world
-        //        b2BodyDef bodyDef;
-        //        bodyDef.type = b2_dynamicBody;
-        //        bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-        //        
-        //        body = [Common instance].world->CreateBody(&bodyDef);
-        //        body->SetLinearDamping(1.0f);
-        //        body->SetUserData(sprite);
-        //        
-        //        // Define another box shape for our dynamic body.
-        //        b2PolygonShape dynamicBox;
-        ////        dynamicBox.SetAsBox(2.1f, 2.1f);
-        //        dynamicBox.SetAsBox(1.0f, 1.0f);
-        //        
-        //        // Define the dynamic body fixture.
-        //        b2FixtureDef fixtureDef;
-        //        fixtureDef.shape = &dynamicBox;	
-        //        fixtureDef.density = 0.02f;
-        ////        fixtureDef.friction = 4.3f;
-        //        body->CreateFixture(&fixtureDef);
-        
-        
-        
-//        me = [[Car alloc] initWithX: sp.x Y:sp.y Type:CT_ME];
-//        
-//        enemy = [[Car alloc] initWithX: sp.x+200 Y:sp.y+0 Type:CT_ENEMY];
-
-        me = [[Car alloc] initWithType:CT_ME];
-        
+        me = [[Car alloc] initWithType:CT_ME];        
         enemy = [[Car alloc] initWithType:CT_ENEMY];
 
         [Common instance].gamescene = self;
         
-//        [self start];
-        
-//        [self scheduleUpdate];
-		
     }
     return self;
 }
@@ -195,8 +138,8 @@ enum {
 
     CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
 
-//    sp.x = 6642;//temporary
-//    sp.y = 6024;//temporary
+    sp.x = 4962;//temporary
+    sp.y = 7052;//temporary
 //    
 //    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     
@@ -347,6 +290,86 @@ enum {
 //    if (chp_cnt > 0)
 //        return [self ort2iso: chp[c]];
 
+    
+}
+
+-(void) processOilSpots {
+    
+    
+    CCTMXObjectGroup *objects = [[Common instance].tileMap  objectGroupNamed:@"Objects"];
+    NSAssert(objects != nil, @"'Objects for oilspots' object group not found");
+    
+    tr_cnt = 0;
+    NSMutableDictionary *sp;
+    do {
+        
+        NSString* s = [NSString stringWithFormat:@"%@%d", OIL_NAME, (tr_cnt + 1)];
+        sp = [objects objectNamed:s];        
+        if(sp != nil) {
+            
+            float x = [[sp valueForKey:@"x"] integerValue];
+            float y = [[sp valueForKey:@"y"] integerValue];
+            
+            b2PolygonShape shape = [self getShape:sp];
+            
+            b2BodyDef bodyDef;
+            bodyDef.position.Set(x/PTM_RATIO, y/PTM_RATIO);
+            b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
+            
+            b2FixtureDef fixtureDef;
+            fixtureDef.shape = &shape;	
+            fixtureDef.isSensor = true;
+            bodyw->CreateFixture(&fixtureDef);
+            
+            CCNode* o = [[CCNode alloc] init];
+            o.tag = OILSPOT_TAG;
+            bodyw->SetUserData(o);
+            
+            tr_cnt++;
+            NSLog(@"oilSpot%d x = %f, y = %f", tr_cnt, x, y);
+        }
+        
+    } while (sp != nil);
+    
+}
+
+-(void) processHeals {
+    
+    
+    CCTMXObjectGroup *objects = [[Common instance].tileMap  objectGroupNamed:@"Objects"];
+    NSAssert(objects != nil, @"'Objects for heals' object group not found");
+    
+    tr_cnt = 0;
+    NSMutableDictionary *sp;
+    do {
+        
+        NSString* s = [NSString stringWithFormat:@"%@%d", HEAL_NAME, (tr_cnt + 1)];
+        sp = [objects objectNamed:s];        
+        if(sp != nil) {
+            
+            float x = [[sp valueForKey:@"x"] integerValue];
+            float y = [[sp valueForKey:@"y"] integerValue];
+            
+            b2PolygonShape shape = [self getShape:sp];
+            
+            b2BodyDef bodyDef;
+            bodyDef.position.Set(x/PTM_RATIO, y/PTM_RATIO);
+            b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
+            
+            b2FixtureDef fixtureDef;
+            fixtureDef.shape = &shape;	
+            fixtureDef.isSensor = true;
+            bodyw->CreateFixture(&fixtureDef);
+            
+            CCNode* o = [[CCNode alloc] init];
+            o.tag = HEAL_TAG;
+            bodyw->SetUserData(o);
+            
+            tr_cnt++;
+            NSLog(@"healingPoint%d x = %f, y = %f", tr_cnt, x, y);
+        }
+        
+    } while (sp != nil);
     
 }
 

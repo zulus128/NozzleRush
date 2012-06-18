@@ -24,22 +24,35 @@ void ContactListener::BeginContact(b2Contact *contact) {
 //        NSLog(@"BEGIN CONTACT!");
     }
 
-//    CCNode* actor2 = (CCNode*)contact->GetFixtureB()->GetBody()->GetUserData();
-//    if ((actor2 != nil) && (actor2.tag == TRAMPLIN_TAG)) {
-//        
-//        NSLog(@"BEGIN CONTACT!2");
-//    }
+    if(actor1 != nil)
+        if (actor1.tag == OILSPOT_TAG) {
+            
+            Car* actor2 = (Car*)contact->GetFixtureB()->GetBody()->GetUserData();
+            if(actor2 != nil)
+                actor2.oil = YES;
+            
+            //        NSLog(@"BEGIN CONTACT!");
+        }
+
+    if(actor1 != nil)
+        if (actor1.tag == HEAL_TAG) {
+            
+        }
 
 }
 
 void ContactListener::EndContact(b2Contact *contact) {
-//	Actor *actor1 = (Actor *)contact->GetFixtureA()->GetBody()->GetUserData();
-//	Actor *actor2 = (Actor *)contact->GetFixtureB()->GetBody()->GetUserData();
-//	if(actor1 && actor2) {
-//		[actor1 removeContact:actor2];
-//		[actor2 removeContact:actor1];
-//	}
+
+    CCNode* actor1 = (CCNode*)contact->GetFixtureA()->GetBody()->GetUserData();
+    
+    if(actor1 != nil)
+        if (actor1.tag == OILSPOT_TAG) {
+            
+            Car* actor2 = (Car*)contact->GetFixtureB()->GetBody()->GetUserData();
+            if(actor2 != nil)
+                actor2.oil = NO;
+            
+            //        NSLog(@"END CONTACT!");
+        }
 }
 
-//virtual void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
-//virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
