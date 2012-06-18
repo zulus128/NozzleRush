@@ -89,12 +89,13 @@ enum {
         
         
         // added by Andrew Osipov 28.05.12      
-        [[[Common instance].tileMap layerNamed:@"BackBackgroundLayer"] setZOrder:-6];
-        [[[Common instance].tileMap layerNamed:@"FrontBackgroundLayer"] setZOrder:-5];
-        [[[Common instance].tileMap layerNamed:@"ColumnLayer"] setZOrder:-4];
-        [[[Common instance].tileMap layerNamed:@"RoadLayer"] setZOrder:-3];
-        [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-2];
-        [[[Common instance].tileMap layerNamed:@"Tramplins"] setZOrder:-1];
+        [[[Common instance].tileMap layerNamed:@"BackBackgroundLayer"] setZOrder:-7];
+        [[[Common instance].tileMap layerNamed:@"FrontBackgroundLayer"] setZOrder:-6];
+        [[[Common instance].tileMap layerNamed:@"ColumnLayer"] setZOrder:-5];
+        [[[Common instance].tileMap layerNamed:@"RoadLayer"] setZOrder:-4];
+        [[[Common instance].tileMap layerNamed:@"BackBorderLayer"] setZOrder:-3];
+        [[[Common instance].tileMap layerNamed:@"Tramplins"] setZOrder:-2];
+        [[[Common instance].tileMap layerNamed:@"TrackObjectsLayer"] setZOrder:-1];
         //zOrder:0 for cars
         [[[Common instance].tileMap layerNamed:@"FrontBorderLayer"] setZOrder:1];
         //==========================   
@@ -140,8 +141,8 @@ enum {
 
     CGPoint sp = [[Common instance] getMapObjectPos:@"SpawnPoint"];
 
-    sp.x = 4962;//temporary
-    sp.y = 7052;//temporary
+//    sp.x = 4962;//temporary
+//    sp.y = 7052;//temporary
 //    
 //    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     
