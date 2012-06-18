@@ -14,7 +14,7 @@
 @synthesize body;
 @synthesize target, target1, target2, eye;
 @synthesize jump;
-@synthesize oil, heal;
+@synthesize oil/*, heal*/;
 
 - (id) initWithType:(int) type {
     

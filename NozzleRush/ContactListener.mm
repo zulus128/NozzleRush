@@ -37,6 +37,11 @@ void ContactListener::BeginContact(b2Contact *contact) {
     if(actor1 != nil)
         if (actor1.tag == HEAL_TAG) {
             
+           // int tgid = [Common instance] tileCoordForPosition:<#(CGPoint)#>
+           // [[[Common instance].tileMap layerNamed:@"TrackObjectsLayer"] setTileGID:0 at:ccp(51,74)]; 
+            
+            [Common instance].heal = YES;
+            
         }
 
 }

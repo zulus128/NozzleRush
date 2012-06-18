@@ -39,6 +39,6 @@ enum Car_type { CT_ME, CT_ENEMY };
 @property (readwrite) b2Vec2 target2;
 @property (assign, readwrite) BOOL jump;
 @property (assign, readwrite) BOOL oil;
-@property (assign, readwrite) BOOL heal;
+//@property (assign, readwrite) BOOL heal;
 
 @end

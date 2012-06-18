@@ -27,6 +27,8 @@ enum {
 //@synthesize tileMap = _tileMap;
 @synthesize hudLayer = _hudLayer;
 
+//@synthesize timer;
+
 +(id) scene {
     
 	// 'scene' is an autorelease object.
@@ -185,8 +187,30 @@ enum {
         [self.hudLayer showGO];
         
     }
+    
+    if ([Common instance].heal) {
+        
+        [Common instance].heal = NO;
+        
+//        [self.timer invalidate];
+//        self.timer = nil;
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(timerSel) userInfo:nil repeats:NO];
+        
+//        [[[Common instance].tileMap layerNamed:@"TrackObjectsLayer"] setTileGID:0 at:ccp(51,74)]; 
+        
+        [heal hide];
+    }
 
 }
+//- (void) timerSel {
+//
+//    [self.timer invalidate];
+//    self.timer = nil;
+//
+////    [[[Common instance].tileMap layerNamed:@"TrackObjectsLayer"] setTileGID:43/*36*/ at:ccp(51,74)]; 
+//    [heal show];
+//    
+//}
 
 //- (CGPoint)boundLayerPos:(CGPoint)newPos {
 //    
@@ -347,26 +371,32 @@ enum {
         sp = [objects objectNamed:s];        
         if(sp != nil) {
             
+            
             float x = [[sp valueForKey:@"x"] integerValue];
             float y = [[sp valueForKey:@"y"] integerValue];
+
             
             b2PolygonShape shape = [self getShape:sp];
             
-            b2BodyDef bodyDef;
-            bodyDef.position.Set(x/PTM_RATIO, y/PTM_RATIO);
-            b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
+            heal = [[Heal alloc]initWithShape:shape X:x Y:y];
             
-            b2FixtureDef fixtureDef;
-            fixtureDef.shape = &shape;	
-            fixtureDef.isSensor = true;
-            bodyw->CreateFixture(&fixtureDef);
-            
-            CCNode* o = [[CCNode alloc] init];
-            o.tag = HEAL_TAG;
-            bodyw->SetUserData(o);
+//            
+//            b2BodyDef bodyDef;
+//            bodyDef.position.Set(x/PTM_RATIO, y/PTM_RATIO);
+//            b2Body *bodyw = [Common instance].world->CreateBody(&bodyDef);
+//            
+//            b2FixtureDef fixtureDef;
+//            fixtureDef.shape = &shape;	
+//            fixtureDef.isSensor = true;
+//            bodyw->CreateFixture(&fixtureDef);
+//            
+//            CCNode* o = [[CCNode alloc] init];
+//            o.tag = HEAL_TAG;
+//            bodyw->SetUserData(o);
             
             tr_cnt++;
-            NSLog(@"healingPoint%d x = %f, y = %f", tr_cnt, x, y);
+            
+//            NSLog(@"healingPoint%d x = %f, y = %f, tileX = %f, tileY = %f, w = %f, h = %f", tr_cnt, x, y, tp.x, tp.y, [Common instance].tileMap.tileSize.width, [Common instance].tileMap.tileSize.height);
         }
         
     } while (sp != nil);

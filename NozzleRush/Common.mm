@@ -16,6 +16,7 @@
 @synthesize laps, checkpoint, distToChp;
 @synthesize gametype;
 @synthesize  gamescene;
+@synthesize heal;
 
 + (Common*) instance  {
 	
@@ -33,9 +34,22 @@
 
 - (CGPoint)tileCoordForPosition:(CGPoint)position {
     
-    int x = position.x / self.tileMap.tileSize.width;
-    int y = ((self.tileMap.mapSize.height * self.tileMap.tileSize.height) - position.y) / self.tileMap.tileSize.height;
-    return ccp(x, y);
+//    int x = position.x / self.tileMap.tileSize.width;
+//    int y = ((self.tileMap.mapSize.height * self.tileMap.tileSize.height) - position.y) / self.tileMap.tileSize.height;
+//    return ccp(x, y);
+    
+    float halfMapWidth = self.tileMap.mapSize.width * 0.5f;
+    float mapHeight = self.tileMap.mapSize.height;
+    float tileWidth = self.tileMap.tileSize.width;
+    float tileHeight = self.tileMap.tileSize.height;
+    
+    CGPoint tilePosDiv = CGPointMake(position.x / tileWidth, position.y / tileHeight);
+    float inverseTileY = mapHeight - tilePosDiv.y;
+    
+    float posX = (int)(inverseTileY + tilePosDiv.x - halfMapWidth);
+    float posY = (int)(inverseTileY - tilePosDiv.x + halfMapWidth);
+    
+    return ccp(posX, posY);
 }
 
 - (CGPoint) getMapObjectPos:(NSString*) name {

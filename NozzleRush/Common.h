@@ -44,6 +44,7 @@ enum game_type { GT_RACE, GT_FREERIDE };
 - (CGPoint) getCheckpoint:(int) c;
 - (CGPoint) getCurCheckpoint;
 - (int) getCheckpointCnt;
+- (CGPoint)tileCoordForPosition:(CGPoint)position;
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
@@ -53,5 +54,6 @@ enum game_type { GT_RACE, GT_FREERIDE };
 @property (assign, readwrite) int distToChp;
 @property (assign, readwrite) int gametype;
 @property (nonatomic, retain) CCLayer* gamescene;
+@property (assign, readwrite) BOOL heal;
 
 @end

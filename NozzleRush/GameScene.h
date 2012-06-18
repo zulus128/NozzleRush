@@ -3,6 +3,7 @@
 #import "Box2D.h"
 #import "GLES-Render.h"
 #import "Car.h"
+#import "Heal.h"
 
 @interface DebugStruc : NSObject {
 }
@@ -35,6 +36,8 @@
     Car* me;
     Car* enemy;
     
+    Heal* heal;
+    
     int tr_cnt;
     
 }
@@ -45,5 +48,8 @@
 
 + (id) scene;
 - (void) setViewpointCenter:(CGPoint) position;
+- (b2PolygonShape) getShape:(id) object;
+
+//@property (nonatomic, retain) NSTimer* timer;
 
 @end
