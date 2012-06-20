@@ -14,6 +14,9 @@
 #define JOYTRIGGERRADIUS 102
 #define JOYFIELDRADIUS 250
 
+#define JOYWEAPONX 200
+#define JOYWEAPONY 70
+
 @implementation HudLayer
 
 -(id) init {
@@ -34,6 +37,12 @@
         joyfire.scale = SCALE;
         joyfire.position = ccp(JOYCENTERX, JOYCENTERY);
         
+        
+        CCSprite* joyweapon = [CCSprite spriteWithFile:@"Button_fire_1.png"];
+        [self addChild:joyweapon];
+        joyweapon.scale = SCALE/2;
+        joyweapon.position = ccp(JOYWEAPONX, JOYWEAPONY);
+
         move_ease_in = [[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:0.3f position:ccp(JOYCENTERX, JOYCENTERY)] rate:3.0f] retain];
 
         score = [CCLabelTTF labelWithString:@"Checkpoint:  Lap: " fontName:@"Marker Felt" fontSize:18];
@@ -81,7 +90,7 @@
         location = [[CCDirector sharedDirector] convertToGL: location];
         
         
-        if((fabs(location.x - JOYCENTERX)<JOYTRIGGERRADIUS*SCALE) && (fabs(location.y - JOYCENTERY)<JOYTRIGGERRADIUS*SCALE)) {
+        if((fabs(location.x - JOYCENTERX) < JOYTRIGGERRADIUS*SCALE) && (fabs(location.y - JOYCENTERY) < JOYTRIGGERRADIUS*SCALE)) {
             
             trigbeginx = location.x;
             trigbeginy = location.y;
@@ -89,7 +98,12 @@
 //            NSLog(@"touch began x = %f, y = %f", location.x, location.y);
         }
     
-//    NSLog(@"----------b");
+    if((fabs(location.x - JOYWEAPONX) < 50) && (fabs(location.y - JOYWEAPONY) < 50)) {
+
+        [Common instance].machinegun = YES;
+        
+        NSLog(@"touch began x = %f, y = %f", location.x, location.y);
+    }
     
 }
 
@@ -119,7 +133,13 @@
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
 //        NSLog(@"touch ended");
-        
+       
+    if([Common instance].machinegun) {
+    
+        [Common instance].machinegun = NO;
+        return;
+    }
+    
         [joyfire stopAllActions];
         [joyfire runAction:move_ease_in];
         

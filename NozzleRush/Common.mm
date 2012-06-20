@@ -17,6 +17,7 @@
 @synthesize gametype;
 @synthesize  gamescene;
 @synthesize heal;
+@synthesize machinegun;
 
 + (Common*) instance  {
 	

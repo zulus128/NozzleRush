@@ -55,5 +55,6 @@ enum game_type { GT_RACE, GT_FREERIDE };
 @property (assign, readwrite) int gametype;
 @property (nonatomic, retain) CCLayer* gamescene;
 @property (assign, readwrite) BOOL heal;
+@property (assign, readwrite) BOOL machinegun;
 
 @end

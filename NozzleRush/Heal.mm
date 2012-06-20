@@ -45,7 +45,7 @@
 - (void) hide {
  
 
-    NSLog(@"Heal hide");
+//    NSLog(@"Heal hide");
 
     [self.timer invalidate];
     self.timer = nil;
@@ -67,7 +67,7 @@
 
 - (void) show {
  
-    NSLog(@"Heal show");
+//    NSLog(@"Heal show");
     [[[Common instance].tileMap layerNamed:@"TrackObjectsLayer"] setTileGID:43/*36*/ at:tile]; 
 
 }
