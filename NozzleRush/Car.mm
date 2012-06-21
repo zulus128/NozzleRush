@@ -64,6 +64,8 @@
 
             mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
             [[Common instance].tileMap addChild:mach z:0];
+            
+            [mach stopSystem];
         }
     }
     return self;
@@ -93,6 +95,8 @@
     CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"car2.png"];
     [sprite setTexture: tex];
 
+    mach_angle = 315;
+    
     emitter.position = [[Common instance] ort2iso:p];
 
     if (typ == CT_ME)
@@ -116,6 +120,7 @@
     float a = (rot < 0)?(360 + rot):rot;
     a = a + 22.5f;
     
+    float b = 0;
     
     if (a < 360.0f) {
         if (a < 315.0f) {
@@ -125,15 +130,16 @@
                         if (a < 135.0f) {
                             if (a < 90.0f) {
                                 if (a < 45.0f) {
-                                    name = @"car4.png";  
-                                } else name = @"car5.png";
-                            } else name = @"car6.png";
-                        } else name = @"car7.png";
-                    } else name = @"car8.png";
-                } else name = @"car1.png";
-            } else name = @"car2.png";
-        } else name = @"car3.png";
-    } else name = @"car4.png";
+                                    name = @"car4.png"; b = 45;
+                                } else {name = @"car5.png"; b = 90;}
+                            } else {name = @"car6.png"; b = 135;}
+                        } else {name = @"car7.png"; b = 180;}
+                    } else {name = @"car8.png"; b = 225;}
+                } else {name = @"car1.png"; b = 270;}
+            } else {name = @"car2.png"; b = 315;}
+        } else {name = @"car3.png"; b = 0;}
+    } else {name = @"car4.png"; b = 45;}
+    
     
 //    if(typ == CT_ME)
 //        NSLog(@"angle = %f, %f, %@", rot, a, name);
@@ -146,8 +152,10 @@
 //        [eData setTexture: tex];
         [sprite setTexture: tex];
         
+        mach_angle = b;
     }
     
+
     
     //    CCSprite *eData = (CCSprite *)(body->GetUserData());
     CGPoint ep = ccp(body->GetPosition().x * PTM_RATIO,
@@ -178,7 +186,6 @@
 //    eData.position = ep1;
     sprite.position = ep1;
     emitter.position = ep1;
-    mach.position = ep1;
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     if (typ == CT_ME) {
@@ -221,6 +228,19 @@
             }
         }
         //        NSLog(@"dist = %f", d);
+        
+        mach.position = ep1;
+//        mach.rotation = CC_RADIANS_TO_DEGREES(desiredAngle) - 90;
+        mach.rotation = mach_angle;
+        if([Common instance].machinegun != prev_mach) {
+            
+            if ([Common instance].machinegun)
+                [mach resetSystem];
+            else
+                [mach stopSystem];
+            
+        }
+        prev_mach = [Common instance].machinegun;
         
         return;
     }
