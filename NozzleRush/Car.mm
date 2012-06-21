@@ -60,6 +60,11 @@
         [[Common instance].tileMap addChild:emitter z:-1];
 //        [[Common instance].gamescene addChild:emitter z:1150];
         
+        if (typ == CT_ME) {
+
+            mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
+            [[Common instance].tileMap addChild:mach z:0];
+        }
     }
     return self;
 }
@@ -67,6 +72,9 @@
 -(void) dealloc {
 
     [emitter release];
+
+    if (typ == CT_ME)        
+        [mach release];
     
     [super dealloc];
 }
@@ -86,6 +94,9 @@
     [sprite setTexture: tex];
 
     emitter.position = [[Common instance] ort2iso:p];
+
+    if (typ == CT_ME)
+        mach.position = [[Common instance] ort2iso:p];
 
 }
 
@@ -167,6 +178,7 @@
 //    eData.position = ep1;
     sprite.position = ep1;
     emitter.position = ep1;
+    mach.position = ep1;
     //    eData.rotation = -1 * CC_RADIANS_TO_DEGREES(enemy.body->GetAngle());
     
     if (typ == CT_ME) {

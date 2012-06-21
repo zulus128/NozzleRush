@@ -24,6 +24,7 @@ enum Car_type { CT_ME, CT_ENEMY };
     float hh;
     int hdir;
     CCParticleSystem *emitter;
+    CCParticleSystem* mach;
 }
 
 //- (id) initWithX: (int) x  Y:(int) y Type:(int) type;
