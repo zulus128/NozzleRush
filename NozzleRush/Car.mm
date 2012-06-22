@@ -9,6 +9,7 @@
 #import "Car.h"
 #import "Common.h"
 #import "RaysCastCallback.h"
+#import "MachParticleSystem.h"
 
 @implementation Car
 @synthesize body;
@@ -62,7 +63,8 @@
         
         if (typ == CT_ME) {
 
-            mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
+//            mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
+            mach = [[MachParticleSystem particleWithFile:@"machinegun.plist"] retain];
             [[Common instance].tileMap addChild:mach z:0];
             
             [mach stopSystem];

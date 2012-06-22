@@ -15,6 +15,7 @@
 		364B77E6154A58CA009E4E9E /* Button_trigger_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E1154A58CA009E4E9E /* Button_trigger_1.png */; };
 		364B77E7154A58CA009E4E9E /* Button_weapon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E2154A58CA009E4E9E /* Button_weapon_1.png */; };
 		364B77E8154A58CA009E4E9E /* Button_weapon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 364B77E3154A58CA009E4E9E /* Button_weapon_2.png */; };
+		3662183C159435E400433AFD /* MachParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3662183B159435E400433AFD /* MachParticleSystem.m */; };
 		36684B30156B5D7700AEE7B0 /* Car.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36684B2F156B5D7700AEE7B0 /* Car.mm */; };
 		369FACFF152089230056C20F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FACFE152089230056C20F /* QuartzCore.framework */; };
 		369FAD01152089230056C20F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369FAD00152089230056C20F /* OpenGLES.framework */; };
@@ -218,6 +219,8 @@
 		364B77E1154A58CA009E4E9E /* Button_trigger_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_trigger_1.png; sourceTree = "<group>"; };
 		364B77E2154A58CA009E4E9E /* Button_weapon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_1.png; sourceTree = "<group>"; };
 		364B77E3154A58CA009E4E9E /* Button_weapon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_weapon_2.png; sourceTree = "<group>"; };
+		3662183A159435E400433AFD /* MachParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachParticleSystem.h; sourceTree = "<group>"; };
+		3662183B159435E400433AFD /* MachParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachParticleSystem.m; sourceTree = "<group>"; };
 		3665A519152960DA00BD0B27 /* NozzleRush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NozzleRush.entitlements; sourceTree = "<group>"; };
 		36684B2E156B5D7700AEE7B0 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		36684B2F156B5D7700AEE7B0 /* Car.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Car.mm; sourceTree = "<group>"; };
@@ -712,6 +715,8 @@
 				36AF39AD154C0466008C3F63 /* HudLayer.mm */,
 				36684B2E156B5D7700AEE7B0 /* Car.h */,
 				36684B2F156B5D7700AEE7B0 /* Car.mm */,
+				3662183A159435E400433AFD /* MachParticleSystem.h */,
+				3662183B159435E400433AFD /* MachParticleSystem.m */,
 				F2D93A3E158F2F7E0060C88E /* Heal.h */,
 				F2D93A3F158F2F7E0060C88E /* Heal.mm */,
 				DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */,
@@ -1508,6 +1513,7 @@
 				36F845B5157764D50000C838 /* MenuScene.mm in Sources */,
 				36096A0C15807BA000AC5073 /* ContactListener.mm in Sources */,
 				F2D93A40158F2F7E0060C88E /* Heal.mm in Sources */,
+				3662183C159435E400433AFD /* MachParticleSystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1578,8 +1584,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
+				PROVISIONING_PROFILE = "33B0FB29-9BA2-4061-BC65-2687633F9FE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33B0FB29-9BA2-4061-BC65-2687633F9FE8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1625,8 +1631,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DDFD39-7DB0-453E-9AE6-E436723F640A";
+				PROVISIONING_PROFILE = "33B0FB29-9BA2-4061-BC65-2687633F9FE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33B0FB29-9BA2-4061-BC65-2687633F9FE8";
 				USER_HEADER_SEARCH_PATHS = "\"NozzleRush/libs\"";
 				WRAPPER_EXTENSION = app;
 			};
