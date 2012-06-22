@@ -13,6 +13,9 @@
 - (void)updateQuadWithParticle:(tCCParticle*)particle newPosition:(CGPoint)pos {
     
     /* use pos */
+    CGPoint p = ccpSub(self.position, particle->startPos);
+    NSLog(@"Pos = %f, %f", p.x, p.y);
+    
     [super updateQuadWithParticle:particle newPosition:pos];
 }
 

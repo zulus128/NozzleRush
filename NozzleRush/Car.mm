@@ -65,6 +65,8 @@
 
 //            mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
             mach = [[MachParticleSystem particleWithFile:@"machinegun.plist"] retain];
+            mach.positionType = kCCPositionTypeRelative;
+
             [[Common instance].tileMap addChild:mach z:0];
             
             [mach stopSystem];
