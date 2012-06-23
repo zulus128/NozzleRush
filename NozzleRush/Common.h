@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "Car.h"
 
 #define SCALE 0.4f
 
@@ -45,6 +46,7 @@ enum game_type { GT_RACE, GT_FREERIDE };
 - (CGPoint) getCurCheckpoint;
 - (int) getCheckpointCnt;
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
+- (BOOL) bum:(CGPoint) p;
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
@@ -56,5 +58,9 @@ enum game_type { GT_RACE, GT_FREERIDE };
 @property (nonatomic, retain) CCLayer* gamescene;
 @property (assign, readwrite) BOOL heal;
 @property (assign, readwrite) BOOL machinegun;
+
+@property (nonatomic, retain) Car* enemy;
+@property (nonatomic, retain) Car* me;
+
 
 @end

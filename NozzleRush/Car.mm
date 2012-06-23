@@ -50,23 +50,18 @@
         
         hdir = 1;
 
-//        emitter = [CCParticleSmoke node];
         emitter = [[CCParticleSmoke alloc] initWithTotalParticles:40];
         emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"smoke.png"];
         emitter.gravity = CGPointZero;
-//        emitter.startColor = _color;
         emitter.posVar = CGPointZero;
         emitter.positionType = kCCPositionTypeRelative;
         emitter.emitterMode = kCCParticleModeRadius;
         [[Common instance].tileMap addChild:emitter z:-1];
-//        [[Common instance].gamescene addChild:emitter z:1150];
         
         if (typ == CT_ME) {
 
-//            mach = [[CCParticleSystemQuad particleWithFile:@"machinegun.plist"] retain];
             mach = [[MachParticleSystem particleWithFile:@"machinegun.plist"] retain];
             mach.positionType = kCCPositionTypeRelative;
-
             [[Common instance].tileMap addChild:mach z:0];
             
             [mach stopSystem];
@@ -99,7 +94,8 @@
     CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"car2.png"];
     [sprite setTexture: tex];
 
-    mach_angle = 315;
+//    mach_angle = 315;
+    mach_angle = 151;
     
     emitter.position = [[Common instance] ort2iso:p];
 
@@ -126,6 +122,24 @@
     
     float b = 0;
     
+//    if (a < 360.0f) {
+//        if (a < 315.0f) {
+//            if (a < 270.0f) {
+//                if (a < 225.0f) {
+//                    if (a < 180.0f) {
+//                        if (a < 135.0f) {
+//                            if (a < 90.0f) {
+//                                if (a < 45.0f) {
+//                                    name = @"car4.png"; b = 45;
+//                                } else {name = @"car5.png"; b = 90;}
+//                            } else {name = @"car6.png"; b = 135;}
+//                        } else {name = @"car7.png"; b = 180;}
+//                    } else {name = @"car8.png"; b = 225;}
+//                } else {name = @"car1.png"; b = 270;}
+//            } else {name = @"car2.png"; b = 315;}
+//        } else {name = @"car3.png"; b = 0;}
+//    } else {name = @"car4.png"; b = 45;}
+ 
     if (a < 360.0f) {
         if (a < 315.0f) {
             if (a < 270.0f) {
@@ -134,15 +148,15 @@
                         if (a < 135.0f) {
                             if (a < 90.0f) {
                                 if (a < 45.0f) {
-                                    name = @"car4.png"; b = 45;
-                                } else {name = @"car5.png"; b = 90;}
-                            } else {name = @"car6.png"; b = 135;}
-                        } else {name = @"car7.png"; b = 180;}
-                    } else {name = @"car8.png"; b = 225;}
-                } else {name = @"car1.png"; b = 270;}
-            } else {name = @"car2.png"; b = 315;}
-        } else {name = @"car3.png"; b = 0;}
-    } else {name = @"car4.png"; b = 45;}
+                                    name = @"car4.png"; b = 31/*45*/;
+                                } else {name = @"car5.png"; b = 0;}
+                            } else {name = @"car6.png"; b = -31/*-45*/;}
+                        } else {name = @"car7.png"; b = 270;}
+                    } else {name = @"car8.png"; b = 212/*225*/;}
+                } else {name = @"car1.png"; b = 180;}
+            } else {name = @"car2.png"; b = 151/*135*/;}
+        } else {name = @"car3.png"; b = 90;}
+    } else {name = @"car4.png"; b = 31/*45*/;}
     
     
 //    if(typ == CT_ME)
@@ -235,7 +249,8 @@
         
         mach.position = ep1;
 //        mach.rotation = CC_RADIANS_TO_DEGREES(desiredAngle) - 90;
-        mach.rotation = mach_angle;
+//        mach.rotation = mach_angle;
+        mach.angle = mach_angle;
         if([Common instance].machinegun != prev_mach) {
             
             if ([Common instance].machinegun)
@@ -255,7 +270,7 @@
     
     force1.Normalize();
     force1 *= (float32)0.08f;
-    body->ApplyLinearImpulse(force1, body->GetPosition());
+//    body->ApplyLinearImpulse(force1, body->GetPosition());
     
     b2Vec2 toTarget = force1;
     float desiredAngle = atan2f( -toTarget.x, -toTarget.y );

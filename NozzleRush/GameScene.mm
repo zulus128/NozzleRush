@@ -131,6 +131,10 @@ enum {
         me = [[Car alloc] initWithType:CT_ME];        
         enemy = [[Car alloc] initWithType:CT_ENEMY];
 
+        
+        [Common instance].enemy = enemy;
+        [Common instance].me = me;
+        
         [Common instance].gamescene = self;
         
     }
@@ -147,7 +151,7 @@ enum {
 //    NSLog(@"SpawPnoint x=%f, y=%f", sp.x, sp.y);
     
     [me setPosX: sp.x Y:sp.y];
-    [enemy setPosX: sp.x + 200 Y:sp.y + 50];
+    [enemy setPosX: sp.x - 200 Y:sp.y + 00];
 
     [Common instance].checkpoint = 0;
     [Common instance].laps = 0;

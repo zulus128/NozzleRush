@@ -18,6 +18,7 @@
 @synthesize  gamescene;
 @synthesize heal;
 @synthesize machinegun;
+@synthesize enemy, me;
 
 + (Common*) instance  {
 	
@@ -105,6 +106,18 @@
         return [self ort2iso: chp[c]];
 
     return ccp(0, 0);
+}
+
+- (BOOL) bum:(CGPoint) p {
+  
+    NSLog(@"bum x = %f, %f, %f y = %f, %f, %f", p.x, [self.enemy getGroundPosition].x, fabs(p.x-[self.enemy getGroundPosition].x), p.y, [self.enemy getGroundPosition].y, fabs(p.y-[self.enemy getGroundPosition].y));
+ 
+    if(fabs((p.x-[self.enemy getGroundPosition].x) < 30) && (fabs(p.y-[self.enemy getGroundPosition].y) < 30)) {
+
+//        NSLog(@"bum!!!");
+        return YES;    
+    }
+    return NO;
 }
 
 -(void) initPhysics {
