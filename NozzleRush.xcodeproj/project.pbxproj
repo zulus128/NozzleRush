@@ -204,6 +204,8 @@
 		DD69A69E1561E104001FF24B /* car6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6961561E104001FF24B /* car6.png */; };
 		DD69A69F1561E104001FF24B /* car7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6971561E104001FF24B /* car7.png */; };
 		DD69A6A01561E104001FF24B /* car8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD69A6981561E104001FF24B /* car8.png */; };
+		DDB1F0A91596B253007AA694 /* Rocket.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F0A81596B253007AA694 /* Rocket.mm */; };
+		DDB1F0AC1596B7ED007AA694 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = DDB1F0AB1596B7ED007AA694 /* rock.png */; };
 		F2D93A40158F2F7E0060C88E /* Heal.mm in Sources */ = {isa = PBXBuildFile; fileRef = F2D93A3F158F2F7E0060C88E /* Heal.mm */; };
 /* End PBXBuildFile section */
 
@@ -595,6 +597,9 @@
 		DD69A6961561E104001FF24B /* car6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car6.png; sourceTree = "<group>"; };
 		DD69A6971561E104001FF24B /* car7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car7.png; sourceTree = "<group>"; };
 		DD69A6981561E104001FF24B /* car8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car8.png; sourceTree = "<group>"; };
+		DDB1F0A71596B253007AA694 /* Rocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rocket.h; sourceTree = "<group>"; };
+		DDB1F0A81596B253007AA694 /* Rocket.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Rocket.mm; sourceTree = "<group>"; };
+		DDB1F0AB1596B7ED007AA694 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
 		DDE43E14156DC15000E32DD1 /* RaysCastCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallback.h; sourceTree = "<group>"; };
 		F2D93A3E158F2F7E0060C88E /* Heal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heal.h; sourceTree = "<group>"; };
 		F2D93A3F158F2F7E0060C88E /* Heal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Heal.mm; sourceTree = "<group>"; };
@@ -632,7 +637,6 @@
 				DD69A6971561E104001FF24B /* car7.png */,
 				DD69A6981561E104001FF24B /* car8.png */,
 				36A1641C1585C53200E163F4 /* smoke.png */,
-				36BDFE171592C9430042A1C8 /* machinegun.plist */,
 			);
 			name = Cars;
 			sourceTree = "<group>";
@@ -667,6 +671,7 @@
 		369FACEF152089220056C20F = {
 			isa = PBXGroup;
 			children = (
+				DDB1F0AA1596B7D1007AA694 /* Weapon */,
 				361074E91521AB2A00DC776F /* Cars */,
 				364B77DD154A589F009E4E9E /* Joystick */,
 				3664D95615208A1C006DF7DD /* Maps */,
@@ -715,6 +720,8 @@
 				36AF39AD154C0466008C3F63 /* HudLayer.mm */,
 				36684B2E156B5D7700AEE7B0 /* Car.h */,
 				36684B2F156B5D7700AEE7B0 /* Car.mm */,
+				DDB1F0A71596B253007AA694 /* Rocket.h */,
+				DDB1F0A81596B253007AA694 /* Rocket.mm */,
 				3662183A159435E400433AFD /* MachParticleSystem.h */,
 				3662183B159435E400433AFD /* MachParticleSystem.mm */,
 				F2D93A3E158F2F7E0060C88E /* Heal.h */,
@@ -1248,6 +1255,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DDB1F0AA1596B7D1007AA694 /* Weapon */ = {
+			isa = PBXGroup;
+			children = (
+				36BDFE171592C9430042A1C8 /* machinegun.plist */,
+				DDB1F0AB1596B7ED007AA694 /* rock.png */,
+			);
+			name = Weapon;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1335,6 +1351,7 @@
 				36A969FB1588A4DE00BCEB2B /* tr.png in Resources */,
 				36A969FC1588A4DE00BCEB2B /* track_tiles.png in Resources */,
 				36BDFE181592C9430042A1C8 /* machinegun.plist in Resources */,
+				DDB1F0AC1596B7ED007AA694 /* rock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1514,6 +1531,7 @@
 				36096A0C15807BA000AC5073 /* ContactListener.mm in Sources */,
 				F2D93A40158F2F7E0060C88E /* Heal.mm in Sources */,
 				3662183C159435E400433AFD /* MachParticleSystem.mm in Sources */,
+				DDB1F0A91596B253007AA694 /* Rocket.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -206,6 +206,8 @@ enum {
         [heal hide];
     }
 
+    
+    [[Common instance] deleteMarkedObjects];
 }
 //- (void) timerSel {
 //

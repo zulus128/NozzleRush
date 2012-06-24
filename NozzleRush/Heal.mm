@@ -30,9 +30,9 @@
         fixtureDef.isSensor = true;
         bodyw->CreateFixture(&fixtureDef);
         
-        CCNode* o = [[CCNode alloc] init];
-        o.tag = HEAL_TAG;
-        bodyw->SetUserData(o);
+//        CCNode* o = [[CCNode alloc] init];
+        self.tag = HEAL_TAG;
+        bodyw->SetUserData(self);
         
         CGPoint ppp = [[Common instance] ort2iso:ccp(x,y)];
         tile = [[Common instance] tileCoordForPosition:ppp];

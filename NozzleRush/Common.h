@@ -30,6 +30,8 @@
 #define OILSPOT_TAG 3001
 #define HEAL_TAG 3002
 //#define ME_TAG 2000
+#define CAR_TAG 2000
+#define ROCKET_TAG 2001
 
 enum game_type { GT_RACE, GT_FREERIDE };
 
@@ -37,6 +39,7 @@ enum game_type { GT_RACE, GT_FREERIDE };
     
     CGPoint chp[MAX_CHECKPOINTS];
     int chp_cnt;
+    NSMutableSet* remove_objects;
 }
 
 + (Common*) instance;
@@ -47,6 +50,9 @@ enum game_type { GT_RACE, GT_FREERIDE };
 - (int) getCheckpointCnt;
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
 - (BOOL) bum:(CGPoint) p;
+
+- (void) markObjectForDelete:(CCNode*)obj;
+- (void) deleteMarkedObjects;
 
 @property (assign, readwrite) CGPoint direction;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;

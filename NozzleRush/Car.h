@@ -8,11 +8,12 @@
 
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "Rocket.h"
 
 #define hstep 7
 #define hmax 60
 
-enum Car_type { CT_ME, CT_ENEMY };
+enum Car_Type { CT_ME, CT_ENEMY };
 
 @interface Car : CCNode {
     
@@ -27,6 +28,8 @@ enum Car_type { CT_ME, CT_ENEMY };
     CCParticleSystem* mach;
     float mach_angle;
     BOOL prev_mach;
+//    BOOL rocket_launched;
+    Rocket* rocket;
 }
 
 //- (id) initWithX: (int) x  Y:(int) y Type:(int) type;

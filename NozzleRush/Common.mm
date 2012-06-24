@@ -110,7 +110,7 @@
 
 - (BOOL) bum:(CGPoint) p {
   
-    NSLog(@"bum x = %f, %f, %f y = %f, %f, %f", p.x, [self.enemy getGroundPosition].x, fabs(p.x-[self.enemy getGroundPosition].x), p.y, [self.enemy getGroundPosition].y, fabs(p.y-[self.enemy getGroundPosition].y));
+//    NSLog(@"bum x = %f, %f, %f y = %f, %f, %f", p.x, [self.enemy getGroundPosition].x, fabs(p.x-[self.enemy getGroundPosition].x), p.y, [self.enemy getGroundPosition].y, fabs(p.y-[self.enemy getGroundPosition].y));
  
     if(fabs((p.x-[self.enemy getGroundPosition].x) < 30) && (fabs(p.y-[self.enemy getGroundPosition].y) < 30)) {
 
@@ -144,7 +144,7 @@
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"MoonMap.tmx"];
         
         chp_cnt = -1;
-        
+        remove_objects = [[NSMutableSet alloc] init];
     }
 	return self;	
 }
@@ -169,7 +169,25 @@
     delete world;
 	world = NULL;
 
+    [remove_objects release];
+    
     [super dealloc];
+}
+
+- (void) markObjectForDelete:(CCNode*)obj {
+    
+    [remove_objects addObject:obj];
+}
+
+- (void) deleteMarkedObjects {
+    
+    for(CCNode* foo in remove_objects) {
+        
+        [foo release];
+        foo = nil;
+    }
+    
+    [remove_objects removeAllObjects];
 }
 
 @end

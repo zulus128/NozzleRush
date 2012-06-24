@@ -22,6 +22,8 @@
     if((self = [super init])) {				
         
         typ = type;
+        self.tag = CAR_TAG;
+        rocket = nil;
         
         sprite = [CCSprite spriteWithFile:@"car2.png"];
         [[Common instance].tileMap addChild:sprite z:0];    //corrected by Andrew Osipov 28.05.12
@@ -77,6 +79,10 @@
     if (typ == CT_ME)        
         [mach release];
     
+    [[Common instance].tileMap removeChild:sprite cleanup:YES];
+    [Common instance].world->DestroyBody( self.body );
+    self.body = nil;
+
     [super dealloc];
 }
 
@@ -113,6 +119,21 @@
 }
 
 - (void) update {
+    
+    if (rocket != nil) {
+
+        [rocket update];
+    
+//        NSLog(@"vel = %f", rocket.body->GetLinearVelocity().Normalize());
+    
+        if (rocket.body->GetLinearVelocity().Normalize() < 0.4) {
+            
+//            [rocket release];
+            [[Common instance] markObjectForDelete:rocket];
+            rocket = nil;
+        }
+        
+    }
     
     float rot = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
     
@@ -253,8 +274,15 @@
         mach.angle = mach_angle;
         if([Common instance].machinegun != prev_mach) {
             
-            if ([Common instance].machinegun)
+            if ([Common instance].machinegun) {
+             
                 [mach resetSystem];
+                
+                b2Vec2 bodyP = self.body->GetPosition();
+                if (rocket == nil)
+//                    [rocket release];
+                    rocket = [[Rocket alloc] initWithX:bodyP.x Y:bodyP.y Angle:desiredAngle Type:RT_STANDARD];
+            }
             else
                 [mach stopSystem];
             
